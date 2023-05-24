@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider } from "@mui/material";
+import { Route, Routes } from 'react-router-dom';
+import MyTheme from './MyTheme';
+import LogInPage from './pages/user/LogInPage';
+import VerificationPage from './pages/user/VerificationPage';
+import SignUpPage from './pages/user/SignUpPage';
+import SignUpSuccessPage from './pages/user/SignUpSuccessPage';
+import SearchIdPage from './pages/user/SearchIdPage';
+import SearchIdSuccessPage from './pages/user/SearchIdSuccessPage';
+import SearchIdFailurePage from './pages/user/SearchIdFailurePage';
+import SearchPasswordPage from './pages/user/SearchPasswordPage';
+import SearchPasswordSuccessPage from './pages/user/SearchPasswordSuccessPage';
+import SearchPasswordFailurePage from './pages/user/SearchPasswordFailurePage';
+import RegisterSmartfarmPage from './pages/smartfarm/RegisterSmartfarmPage';
+import RegisterSmartfarmSuccessPage from "./pages/smartfarm/RegisterSmartfarmSuccessPage";
+import RegisterPlantPage from './pages/smartfarm/RegisterPlantPage';
+import RegisterPlantSuccessPage from './pages/smartfarm/RegisterPlantSuccessPage';
+import LedControlPage from "./pages/smartfarm/LedControlPage";
+import WateringSystemControlPage from './pages/smartfarm/WateringSystemControlPage';
+import FanControlPage from "./pages/smartfarm/FanControlPage";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <ThemeProvider theme={MyTheme}>
+      <Routes>
+        <Route path="/" element={<LogInPage />}/>
+        <Route path="/verification" element={<VerificationPage />}/>
+        <Route path="/signup" element={<SignUpPage />}/>
+        <Route path="/signup/success" element={<SignUpSuccessPage />}/>
+        <Route path="/search/id" element={<SearchIdPage />}/>
+        <Route path="/search/id/success" element={<SearchIdSuccessPage />}/>
+        <Route path="/search/id/failure" element={<SearchIdFailurePage />}/>
+        <Route path="/search/password" element={<SearchPasswordPage />}/>
+        <Route path="/search/password/success" element={<SearchPasswordSuccessPage />}/>
+        <Route path="/search/password/failure" element={<SearchPasswordFailurePage />}/>
+        <Route path="/register/smartfarm" element={<RegisterSmartfarmPage />}/>
+        <Route path="/register/smartfarm/success" element={<RegisterSmartfarmSuccessPage />}/>
+        <Route path="/register/plant" element={<RegisterPlantPage />}/>
+        <Route path="/register/plant/success" element={<RegisterPlantSuccessPage />}/>
+        <Route path="/smartfarm/control/led" element={<LedControlPage />}/>
+        <Route path="/smartfarm/control/wateringsystem" element={<WateringSystemControlPage />}/>
+        <Route path="/smartfarm/control/fan" element={<FanControlPage />}/>
+      </Routes>
+    </ThemeProvider>
+  )
+};
 
 export default App;
