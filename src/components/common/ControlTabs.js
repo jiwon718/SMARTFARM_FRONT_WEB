@@ -1,40 +1,42 @@
-import { useState } from 'react';
-import { ThemeProvider, createTheme, Box, Tabs, Tab } from '@mui/material';
+import { NavLink } from 'react-router-dom';
+import { Box, Stack } from '@mui/material';
+import './ControlTabs.css';
 
-const theme = createTheme({
-    components: {
-        MuiTimePicker: {
-            styleOverrides: {
-                root: {
-                    color: 'info'
-                },
-            },
-        },
-    },
-});
+const ControlTabs = ({ tabNumber }) => {
+    const activeStyle = {
+        color: '#2196f3'
 
-const ControlTabs = () => {
-    const [value, setValue] = useState(0);
-
-    const handleChange = (event, newValue) => {
-      setValue(newValue);
     };
-  
+
     return (
-      <Box sx={{ width: '100%', bgcolor: 'background.paper',position: 'fixed', bottom: 5 }}>
-        <ThemeProvider theme={theme}>
-            <Tabs
-                value={value}
-                onChange={handleChange}
-                centered
+        <Box sx={{ width: '100%', position: 'fixed', bottom: 5 }}>
+            <Stack
+                direction='row'
+                alignItems='center'
+                justifyContent='center'
+                spacing={3}
             >
-                <Tab label="LED" sx={{ fontSize: 18 }} />
-                <Tab label="관수 시스템" sx={{ fontSize: 18 }} />
-                <Tab label="환풍기" sx={{ fontSize: 18 }} />
-            </Tabs>
-        </ThemeProvider>
-      </Box>
-    ); 
+                <NavLink
+                    to="/smartfarm/control/led"
+                    style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                >
+                    LED
+                </NavLink>
+                <NavLink
+                    to="/smartfarm/control/wateringsystem"
+                    style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                >
+                    관수 시스템
+                </NavLink>
+                <NavLink
+                    to="/smartfarm/control/fan"
+                    style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                >
+                    환풍기
+                </NavLink>
+            </Stack>
+        </Box>
+    )
 };
 
 export default ControlTabs;

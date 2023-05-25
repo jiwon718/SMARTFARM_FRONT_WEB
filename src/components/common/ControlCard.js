@@ -1,8 +1,8 @@
 import { Card, CardContent } from '@mui/material';
 
-const ControlCard = ({ children }) => {
+const ControlCard = ({ sx, children }) => {
     return (
-        <Card sx={{ width: '100%' }}>
+        <Card sx={sx}>
             <CardContent sx={{ margin: 2 }}>
                 {children}
             </CardContent>

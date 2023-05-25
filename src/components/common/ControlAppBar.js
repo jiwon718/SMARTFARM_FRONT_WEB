@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Stack, Typography } from '@mui/material';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
@@ -7,6 +8,12 @@ import IconButtonWithTooltip from '../common/IconButtonWithTooltip';
 import { IOSSwitch } from '../common/TypographyWithSwitch';
 
 const ControlAppBar = ({ text }) => {
+    const navigate = useNavigate();
+
+    const goHome = () => {
+        navigate('/home');
+    }
+
     return (
         <Stack
             direction='row'
@@ -15,7 +22,7 @@ const ControlAppBar = ({ text }) => {
             sx={{ margin: 0.2 }}
         >
             <Stack direction='row' alignItems='center'>
-                <IconButtonWithTooltip title='홈'>
+                <IconButtonWithTooltip title='홈' onClick={goHome}>
                     <HomeRoundedIcon sx={{ fontSize: 36 }}/>
                 </IconButtonWithTooltip>
                 <IconButtonWithTooltip title='알람'>

@@ -8,7 +8,7 @@ import TypographyWithTimePicker from '../common/TypographyWithTimePicker';
 const LedControl = () => {
     return (
         <div style={{ width: '100%'}} >
-            <ControlCard>
+            <ControlCard sx={{ width: '100%' }}>
                 <TypographyWithSwitch text='전원 ON/OFF'/>
                 <TypographyWithSwitch text='켜기/끄기' sx={{ mt: 1.5 }}/>
                 <TypographyWithNumberPicker text='밝기' sx={{ mt: 1.5 }}/>

@@ -11,6 +11,9 @@ import SearchIdFailurePage from './pages/user/SearchIdFailurePage';
 import SearchPasswordPage from './pages/user/SearchPasswordPage';
 import SearchPasswordSuccessPage from './pages/user/SearchPasswordSuccessPage';
 import SearchPasswordFailurePage from './pages/user/SearchPasswordFailurePage';
+import HomePage from './pages/smartfarm/HomePage';
+import NotRegisterSmartfarmPage from './pages/smartfarm/NotRegisterSmartfarmPage';
+import NotRegisterPlantPage from './pages/smartfarm/NotRegisterPlantPage';
 import RegisterSmartfarmPage from './pages/smartfarm/RegisterSmartfarmPage';
 import RegisterSmartfarmSuccessPage from "./pages/smartfarm/RegisterSmartfarmSuccessPage";
 import RegisterPlantPage from './pages/smartfarm/RegisterPlantPage';
@@ -33,6 +36,9 @@ const App = () => {
         <Route path="/search/password" element={<SearchPasswordPage />}/>
         <Route path="/search/password/success" element={<SearchPasswordSuccessPage />}/>
         <Route path="/search/password/failure" element={<SearchPasswordFailurePage />}/>
+        <Route path="/home" element={<HomePage />}/>
+        <Route path="/not/register/smartfarm" element={<NotRegisterSmartfarmPage />}/>
+        <Route path="/not/register/plant" element={<NotRegisterPlantPage />}/>
         <Route path="/register/smartfarm" element={<RegisterSmartfarmPage />}/>
         <Route path="/register/smartfarm/success" element={<RegisterSmartfarmSuccessPage />}/>
         <Route path="/register/plant" element={<RegisterPlantPage />}/>

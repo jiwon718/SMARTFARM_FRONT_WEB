@@ -11,7 +11,8 @@ const ImgWithTypography = ({ image, text }) => {
             }}
         >
             <img
-                src={image} alt='환영합니다!'
+                src={image}
+                alt={text}
                 style={{
                     width: 120,
                     height: 120,

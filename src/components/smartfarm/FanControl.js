@@ -8,7 +8,7 @@ import TypographyWithTimeNumberPicker from '../common/TypographyWithTimeNumberPi
 const WateringSystemControl = () => {
     return (
         <div style={{ width: '100%'}} >
-            <ControlCard>
+            <ControlCard sx={{ width: '100%' }}>
                 <TypographyWithSwitch text='전원 ON/OFF'/>
                 <TypographyWithButton text='작동하기' sx={{ mt: 1.5 }}/>
                 <CheckBoxWithLabel text='자동 작동하기' sx={{ mt: 1.5 }}/>
