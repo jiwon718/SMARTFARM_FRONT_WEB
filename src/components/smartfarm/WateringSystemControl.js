@@ -5,14 +5,52 @@ import TypographyWithButton from '../common/TypographyWithButton';
 import CheckBoxWithLabel from '../common/CheckBoxWithLabel';
 import TypographyWithTimeNumberPicker from '../common/TypographyWithTimeNumberPicker';
 
-const WateringSystemControl = () => {
+const WateringSystemControl = ({
+    wateringSystemControl,
+    onPowerChange,
+    onWorkChange,
+    onAutoWorkChange,
+    onAutoWorkPeriodChange,
+    onAutoWorkPeriodUnitChange,
+    onAutoWorkTimeChange,
+    onAutoWorkTimeUnitChange
+}) => {
     return (
         <div style={{ width: '100%'}} >
             <ControlCard sx={{ width: '100%' }}>
-                <TypographyWithSwitch text='전원 ON/OFF'/>
-                <TypographyWithButton text='물 주기' sx={{ mt: 1.5 }}/>
-                <CheckBoxWithLabel text='자동 물 주기' sx={{ mt: 1.5 }}/>
-                <TypographyWithTimeNumberPicker text='물 주기' sx={{ mt: 1.5 }}/>
+                <TypographyWithSwitch
+                    text='전원 ON/OFF'
+                    checked={wateringSystemControl.power}
+                    onChange={onPowerChange}
+                />
+                <TypographyWithButton
+                    text='물 주기'
+                    buttonText={wateringSystemControl.workButtonText}
+                    disabled={!wateringSystemControl.power || wateringSystemControl.autoWork}
+                    onClick={onWorkChange}
+                    sx={{ mt: 1.5 }}
+                />
+                <CheckBoxWithLabel
+                    text='자동 물 주기'
+                    disabled={!wateringSystemControl.power}
+                    checked={wateringSystemControl.autoWork}
+                    onChange={onAutoWorkChange}
+                    sx={{ mt: 1.5 }}
+                />
+                <TypographyWithTimeNumberPicker
+                    text='물 주기'
+                    disabled={!wateringSystemControl.power || !wateringSystemControl.autoWork}
+                    periodNumbers={wateringSystemControl.autoWorkPeriodNumber}
+                    period={wateringSystemControl.autoWorkPeriod}
+                    onPeriodChange={onAutoWorkPeriodChange}
+                    periodUnit={wateringSystemControl.autoWorkPeriodUnit}
+                    onPeriodUnitChange={onAutoWorkPeriodUnitChange}
+                    time={wateringSystemControl.autoWorkTime}
+                    onTimeChange={onAutoWorkTimeChange}
+                    timeUnit={wateringSystemControl.autoWorkTimeUnit}
+                    onTimeUnitChange={onAutoWorkTimeUnitChange}
+                    sx={{ mt: 1.5 }}
+                />
             </ControlCard>
             <Box
                 sx={{
@@ -21,7 +59,7 @@ const WateringSystemControl = () => {
                     alignItems: 'center'
                 }}
             >
-                <Typography variant='h6' sx={{ mt: 6 }}>1시간 이후에 30초 동안 물을 뿌립니다.</Typography>
+                <Typography variant='h6' sx={{ mt: 6 }}>{wateringSystemControl.status}</Typography>
             </Box>
         </div>
     )

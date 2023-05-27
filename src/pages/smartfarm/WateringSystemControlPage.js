@@ -1,6 +1,6 @@
 import ContainerBox from '../../components/common/ContainerBox';
 import ControlAppBar from '../../components/common/ControlAppBar';
-import WateringSystemControl from '../../components/smartfarm/WateringSystemControl';
+import WateringSystemControl from '../../containers/smartfarm/WateringSystemControl';
 import ControlTabs from '../../components/common/ControlTabs';
 
 const WateringSystemControlPage = () => {
