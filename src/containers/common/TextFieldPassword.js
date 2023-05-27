@@ -1,5 +1,6 @@
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import TextFiledPassword from '../../components/common/TextFieldPassword';
+import TextFieldPasswordComponent from '../../components/common/TextFieldPassword';
 import { changeShowPassword } from '../../modules/common';
 
 const TextFieldPassword = ({ inputLabel }) => {
@@ -12,7 +13,7 @@ const TextFieldPassword = ({ inputLabel }) => {
     }
 
     return (
-        <TextFiledPassword
+        <TextFieldPasswordComponent
             inputLabel={inputLabel}
             showPassword={showPassword}
             onClickShowPassword={() => dispatch(changeShowPassword())}
@@ -21,4 +22,4 @@ const TextFieldPassword = ({ inputLabel }) => {
     );
 };
 
-export default TextFieldPassword;
+export default React.memo(TextFieldPassword);

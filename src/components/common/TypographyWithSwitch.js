@@ -53,7 +53,7 @@ const IOSSwitch = styled((props) => (
     },
 }));
 
-const TypographyWithSwitch = ({ text, sx }) => {
+const TypographyWithSwitch = ({ text, disabled, checked, onChange, sx }) => {
     return (
 		<Stack
 			direction='row'
@@ -62,7 +62,13 @@ const TypographyWithSwitch = ({ text, sx }) => {
             sx={sx}
 		>
 			<Typography variant='h6'>{text}</Typography>
-			<IOSSwitch color='info' sx={{ m: 1 }} defaultChecked />
+			<IOSSwitch
+                color='info'
+                sx={{ m: 1 }}
+                disabled={disabled}
+                checked={checked}
+                onChange={onChange}
+            />
 		</Stack>
     )
 }

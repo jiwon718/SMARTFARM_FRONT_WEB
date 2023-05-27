@@ -1,43 +1,33 @@
-import { useState } from 'react';
-import { ThemeProvider, createTheme, FormControl, Select, MenuItem, Stack, Typography, TextField } from '@mui/material';
-
-const theme = createTheme({
-    components: {
-        MuiTimePicker: {
-            styleOverrides: {
-                root: {
-                    color: 'info'
-                },
-            },
-        },
-    },
-});
-
-const SelectAutoWidth = ({ children }) => {
-    const [unit, setAge] = useState('');
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-
-  return (
-    <ThemeProvider theme={theme}>
-        <FormControl sx={{ mr: 1, minWidth: 50 }}>
-            <Select
-                value={unit}
-                onChange={handleChange}
-                autoWidth
-            >
-                {children}
-            </Select>
-        </FormControl>
-    </ThemeProvider>
-  );
-}
-
-
+import { MenuItem, Stack, Typography } from '@mui/material';
+import SelectAutoWidth from './SelectAutoWidth';
 
 const TypographyWithTimeNumberPicker = ({ text, sx }) => {
+    // const monthNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    // const weekNumbers = [1, 2, 3];
+    const dayNumbers = [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+        11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+        21, 22, 23, 24, 25, 26, 27, 28, 29
+    ];
+    const timeNumbers = [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+        11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+        21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
+        31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+        41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
+        51, 52, 53, 54, 55, 56, 57, 58, 59, 60
+    ]
+    const periods = [
+        { value: 'month', text: '개월'},
+        { value: 'week', text: '주'},
+        { value: 'day', text: '일'},
+        { value: 'hour', text: '시간'}
+    ];
+    const times = [
+        { value: 'minute', text: '분'},
+        { value: 'second', text: '초'}
+    ];
+
     return (
         <Stack
             direction='row'
@@ -45,38 +35,18 @@ const TypographyWithTimeNumberPicker = ({ text, sx }) => {
             justifyContent='center'
             sx={sx}
         >
-            <TextField
-                type='number'
-                InputLabelProps={{
-                    shrink: true
-                }}
-                color='info'
-                sx={{
-                    width: 65,
-                    mr: 0.5
-                }}
-            />
             <SelectAutoWidth>
-                <MenuItem value='month'>개월</MenuItem>
-                <MenuItem value='week'>주</MenuItem>
-                <MenuItem value='day'>일</MenuItem>
-                <MenuItem value='hour'>시간</MenuItem>
+                {dayNumbers.map(dayNumber => <MenuItem value={dayNumber}>{dayNumber}</MenuItem>)}
+            </SelectAutoWidth>
+            <SelectAutoWidth>
+                {periods.map(period => <MenuItem value={period.value}>{period.text}</MenuItem>)}
             </SelectAutoWidth>
             <Typography variant='h6' sx={{ mr: 2 }}>마다</Typography>
-            <TextField
-                type='number'
-                InputLabelProps={{
-                    shrink: true
-                }}
-                color='info'
-                sx={{
-                    width: 65,
-                    mr: 0.5
-                }}
-            />
             <SelectAutoWidth>
-                <MenuItem value='분'>분</MenuItem>
-                <MenuItem value='초'>초</MenuItem>
+                {timeNumbers.map(number => <MenuItem value={number}>{number}</MenuItem>)}
+            </SelectAutoWidth>
+            <SelectAutoWidth>
+                {times.map(time => <MenuItem value={time.value}>{time.text}</MenuItem>)}
             </SelectAutoWidth>
             <Typography variant='h6'>동안 {text}</Typography>
         </Stack>

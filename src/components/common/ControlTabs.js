@@ -9,7 +9,7 @@ const ControlTabs = ({ tabNumber }) => {
     };
 
     return (
-        <Box sx={{ width: '100%', position: 'fixed', bottom: 5 }}>
+        <Box sx={{ width: '100%', position: 'fixed', bottom: 10 }}>
             <Stack
                 direction='row'
                 alignItems='center'

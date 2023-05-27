@@ -8,8 +8,8 @@ import plant from '../../lib/emoji/plant.png';
 const NotRegisterSmartfarm = () => {
     const navigate = useNavigate();
 
-    const goRegisterSmartfarm = () => {
-        navigate('/register/smartfarm');
+    const goRegisterPlant = () => {
+        navigate('/register/plant');
     };
 
     return (
@@ -50,7 +50,7 @@ const NotRegisterSmartfarm = () => {
                         fontWeight: 'bold',
                         color: '#ffffff'
                     }}
-                    onClick={goRegisterSmartfarm}
+                    onClick={goRegisterPlant}
                     text="작물 등록"
                 />
             </Box>

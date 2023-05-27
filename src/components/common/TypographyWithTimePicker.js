@@ -16,7 +16,7 @@ const theme = createTheme({
     },
 });
 
-const TypographyWithTimePicker = ({ text, sx }) => {
+const TypographyWithTimePicker = ({ text, disabled, value, onChange, sx }) => {
 
     return (
         <Stack
@@ -29,7 +29,12 @@ const TypographyWithTimePicker = ({ text, sx }) => {
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DemoContainer components={['TimePicker']}>
                     <ThemeProvider theme={theme}>
-                        <TimePicker sx={{ width: 60 }}/>
+                        <TimePicker
+                            disabled={disabled}
+                            value={value}
+                            onChange={onChange}
+                            sx={{ width: 60 }}
+                        />
                     </ThemeProvider>
                 </DemoContainer>
             </LocalizationProvider>
