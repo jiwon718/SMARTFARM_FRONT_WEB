@@ -1,6 +1,6 @@
 import { Stack, Typography, Button } from '@mui/material';
 
-const TypographyWithButton = ({ text, sx }) => {
+const TypographyWithButton = ({ text, buttonText, disabled, onClick, sx }) => {
     return (
         <Stack
             direction='row'
@@ -9,7 +9,14 @@ const TypographyWithButton = ({ text, sx }) => {
             sx={sx}
         >
             <Typography variant='h6'>{text}</Typography>
-            <Button variant='contained' color='info'>{text}</Button>
+            <Button
+                disabled={disabled}
+                variant='contained'
+                onClick={onClick}
+                color='info'
+            >
+                {buttonText}
+            </Button>
         </Stack>
     );
 };

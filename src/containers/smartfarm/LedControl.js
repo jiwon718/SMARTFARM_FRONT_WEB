@@ -1,5 +1,4 @@
-import React from 'react';
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import LedControlComponent from '../../components/smartfarm/LedControl';
 import { changePower, changeWork, changeLevel, changeAutoWork, changeAutoWorkStartTime, changeAutoWorkEndTime } from '../../modules/smartfarm/ledControl';

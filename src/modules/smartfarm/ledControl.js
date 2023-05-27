@@ -45,7 +45,7 @@ const ledControl = handleActions(
         [CHANGE_LEVEL]: (state, { payload: level }) => ({
             ...state,
             lightLevel: level,
-            status: state.work === true ? `현재 LED는 ${level}단계 밝기로 켜져 있어요` : 'LED가 껴져 있어요'
+            status: state.work === true ? `현재 LED는 ${level}단계 밝기로 켜져 있어요` : 'LED가 꺼져 있어요'
         }),
         [CHANGE_AUTOWORK]: (state, action) => ({
             ...state,

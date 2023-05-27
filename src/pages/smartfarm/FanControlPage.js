@@ -1,6 +1,6 @@
 import ContainerBox from '../../components/common/ContainerBox';
 import ControlAppBar from '../../components/common/ControlAppBar';
-import FanControl from '../../components/smartfarm/FanControl';
+import FanControl from '../../containers/smartfarm/FanControl';
 import ControlTabs from '../../components/common/ControlTabs';
 
 const FanControlPage = () => {

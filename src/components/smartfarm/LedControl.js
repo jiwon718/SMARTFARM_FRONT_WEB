@@ -67,9 +67,7 @@ const LedControl = ({
                     alignItems: 'center'
                 }}
             >
-                <Typography variant='h6' sx={{ mt: 6 }}>
-                    {ledControl.status}
-                </Typography>
+                <Typography variant='h6' sx={{ mt: 6 }}>{ledControl.status}</Typography>
             </Box>
         </div>
     );

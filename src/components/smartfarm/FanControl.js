@@ -5,14 +5,52 @@ import TypographyWithButton from '../common/TypographyWithButton';
 import CheckBoxWithLabel from '../common/CheckBoxWithLabel';
 import TypographyWithTimeNumberPicker from '../common/TypographyWithTimeNumberPicker';
 
-const WateringSystemControl = () => {
+const FanControl = ({
+    fanControl,
+    onPowerChange,
+    onWorkChange,
+    onAutoWorkChange,
+    onAutoWorkPeriodChange,
+    onAutoWorkPeriodUnitChange,
+    onAutoWorkTimeChange,
+    onAutoWorkTimeUnitChange
+}) => {
     return (
         <div style={{ width: '100%'}} >
             <ControlCard sx={{ width: '100%' }}>
-                <TypographyWithSwitch text='전원 ON/OFF'/>
-                <TypographyWithButton text='작동하기' sx={{ mt: 1.5 }}/>
-                <CheckBoxWithLabel text='자동 작동하기' sx={{ mt: 1.5 }}/>
-                <TypographyWithTimeNumberPicker text='작동하기' sx={{ mt: 1.5 }}/>
+                <TypographyWithSwitch
+                    text='전원 ON/OFF'
+                    checked={fanControl.power}
+                    onChange={onPowerChange}
+                />
+                <TypographyWithButton
+                    text='작동하기'
+                    buttonText={fanControl.workButtonText}
+                    disabled={!fanControl.power || fanControl.autoWork}
+                    onClick={onWorkChange}
+                    sx={{ mt: 1.5 }}
+                />
+                <CheckBoxWithLabel
+                    text='자동 작동하기'
+                    disabled={!fanControl.power}
+                    checked={fanControl.autoWork}
+                    onChange={onAutoWorkChange}
+                    sx={{ mt: 1.5 }}
+                />
+                <TypographyWithTimeNumberPicker
+                    text='작동하기'
+                    disabled={!fanControl.power || !fanControl.autoWork}
+                    periodNumbers={fanControl.autoWorkPeriodNumber}
+                    period={fanControl.autoWorkPeriod}
+                    onPeriodChange={onAutoWorkPeriodChange}
+                    periodUnit={fanControl.autoWorkPeriodUnit}
+                    onPeriodUnitChange={onAutoWorkPeriodUnitChange}
+                    time={fanControl.autoWorkTime}
+                    onTimeChange={onAutoWorkTimeChange}
+                    timeUnit={fanControl.autoWorkTimeUnit}
+                    onTimeUnitChange={onAutoWorkTimeUnitChange}
+                    sx={{ mt: 1.5 }}
+                />
             </ControlCard>
             <Box
                 sx={{
@@ -21,10 +59,10 @@ const WateringSystemControl = () => {
                     alignItems: 'center'
                 }}
             >
-                <Typography variant='h6' sx={{ mt: 6 }}>4시간 이후에 100초 동안 환풍기가 작동합니다.</Typography>
+                <Typography variant='h6' sx={{ mt: 6 }}>{fanControl.status}</Typography>
             </Box>
         </div>
     )
 };
 
-export default WateringSystemControl;
+export default FanControl;
