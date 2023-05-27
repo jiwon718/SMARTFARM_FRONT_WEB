@@ -17,12 +17,12 @@ export const changeAutoWorkEndTime = createAction(CHANGE_AUTOWORK_END_TIME);
 
 const initialState = {
     power: true,
-    work: true,
+    work: false,
     lightLevel: 1,
-    autoWork: true,
+    autoWork: false,
     autoWorkStartTime: dayjs(),
     autoWorkEndTime: dayjs(),
-    status: ''
+    status: 'LED가 꺼져 있어요'
 };
 
 const ledControl = handleActions(

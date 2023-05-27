@@ -55,7 +55,7 @@ const System = ({ image, imageLink, title, text, sx }) => {
     );
 };
 
-const BasicHome = ({ children }) => {
+const BasicHome = ({ children, ledStatus, wateringSystemStatus, fanStatus }) => {
     return (
         <div style={{ width: '100%' }}>
             {children}
@@ -72,21 +72,21 @@ const BasicHome = ({ children }) => {
                     image={bulb}
                     imageLink='/smartfarm/control/led'
                     title='LED'
-                    text='현재 LED는 3단계 밝기로 켜져 있어요'
+                    text={ledStatus}
                     sx={{ mb: 2 }}
                 />
                 <System
                     image={raindrops}
                     imageLink='/smartfarm/control/wateringsystem'
                     title='관수 시스템'
-                    text='1시간 이후에 30초 동안 물을 뿌려요'
+                    text={wateringSystemStatus}
                     sx={{ mb: 2 }}
                 />
                 <System
                     image={wind}
                     imageLink='/smartfarm/control/fan'
                     title='환풍기'
-                    text='4시간 이후에 100초 동안 환풍기가 작동해요'
+                    text={fanStatus}
                 />
             </ControlCard>
         </div>

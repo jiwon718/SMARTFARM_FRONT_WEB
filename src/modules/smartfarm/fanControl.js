@@ -32,12 +32,12 @@ const hourNumbers = [
 const initialState = {
     power: true,
     work: false,
-    autoWork: true,
+    autoWork: false,
     autoWorkPeriod: 1,
     autoWorkPeriodUnit: '시간',
     autoWorkTime: 1,
     autoWorkTimeUnit: '분',
-    status: '',
+    status: '환풍기가 작동하고 있지 않아요',
 
     workButtonText: '작동하기',
     autoWorkPeriodNumber: hourNumbers

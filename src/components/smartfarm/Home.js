@@ -1,5 +1,5 @@
 import { Stack, Box, Typography } from '@mui/material';
-import BasicHome from '../common/BasicHome';
+import BasicHome from '../../containers/common/BasicHome';
 import ButtonDefault from '../common/ButtonDefault';
 import plant from '../../lib/emoji/plant.png';
 import sad from '../../lib/emoji/sad.png';

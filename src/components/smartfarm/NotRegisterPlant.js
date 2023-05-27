@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
-import BasicHome from '../common/BasicHome';
+import BasicHome from '../../containers/common/BasicHome';
 import ButtonDefault from '../common/ButtonDefault';
 import plant from '../../lib/emoji/plant.png';
 
