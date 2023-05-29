@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import ContainerBox from '../../components/common/ContainerBox';
-import LogIn from '../../components/user/LogIn';
+import LogIn from '../../containers/user/LogIn';
 
 const LogInPage = () => {
     return (

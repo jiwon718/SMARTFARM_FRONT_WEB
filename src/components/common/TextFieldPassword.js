@@ -2,7 +2,7 @@ import { FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton } fr
 import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
 import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 
-const TextFieldPassword = ({ inputLabel, showPassword, onClickShowPassword, onMouseDownPassword }) => {
+const TextFieldPassword = ({ inputLabel, showPassword, value, onChange, onClickShowPassword, onMouseDownPassword }) => {
     return (
         <FormControl 
             variant="outlined"
@@ -14,6 +14,8 @@ const TextFieldPassword = ({ inputLabel, showPassword, onClickShowPassword, onMo
                 id="outlined-adornment-password"
                 label={inputLabel}
                 type={showPassword ? 'text' : 'password'}
+                value={value}
+                onChange={onChange}
                 endAdornment={
                     <InputAdornment position="end">
                         <IconButton

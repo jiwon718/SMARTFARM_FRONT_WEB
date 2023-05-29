@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import TextFieldPasswordComponent from '../../components/common/TextFieldPassword';
 import { changeShowPassword } from '../../modules/common';
 
-const TextFieldPassword = ({ inputLabel }) => {
+const TextFieldPassword = ({ inputLabel, value, onChange }) => {
     const showPassword = useSelector(state => state.common.showPassword);
 
     const dispatch = useDispatch();
@@ -15,6 +15,8 @@ const TextFieldPassword = ({ inputLabel }) => {
     return (
         <TextFieldPasswordComponent
             inputLabel={inputLabel}
+            value={value}
+            onChange={onChange}
             showPassword={showPassword}
             onClickShowPassword={() => dispatch(changeShowPassword())}
             onMouseDownPassword={onMouseDownPassword}
