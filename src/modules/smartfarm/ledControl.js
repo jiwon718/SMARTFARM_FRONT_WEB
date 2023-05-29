@@ -1,3 +1,5 @@
+// DB에서 LED 관련 정보 가지고 와서 초기화하기(useEffect)
+
 import { createAction, handleActions } from 'redux-actions';
 import dayjs from 'dayjs';
 

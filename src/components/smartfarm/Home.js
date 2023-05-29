@@ -1,3 +1,7 @@
+// 스마트팜 미등록 시 스마트팜 미등록 홈화면(NotRegisterSmartfarm)으로 이동하기
+// 작물 미등록 시 작물 미등록 화면(NotRegisterPlant)으로 이동하기
+// 작물 상태와 관련하여 화면 기능 구현하기
+
 import { Stack, Box, Typography } from '@mui/material';
 import BasicHome from '../../containers/common/BasicHome';
 import ButtonDefault from '../common/ButtonDefault';

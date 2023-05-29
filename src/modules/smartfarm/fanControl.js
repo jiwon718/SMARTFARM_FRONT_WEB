@@ -1,3 +1,5 @@
+// DB에서 환풍기 관련 정보 가지고 와서 초기화하기(useEffect)
+
 import { createAction, handleActions } from 'redux-actions';
 
 const CHANGE_POWER = 'fanControl/CHANGE_POWER';

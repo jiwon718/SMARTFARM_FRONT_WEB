@@ -1,6 +1,6 @@
 import ContainerBox from '../../components/common/ContainerBox';
 import TypographyPageName from '../../components/common/TypographyPageName';
-import RegisterPlant from '../../components/smartfarm/RegisterPlant';
+import RegisterPlant from '../../containers/smartfarm/RegisterPlant';
 
 const RegisterPlantPage = () => {
     return (

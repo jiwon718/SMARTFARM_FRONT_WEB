@@ -1,3 +1,7 @@
+// '알람' 버튼 클릭 시 알람 화면으로 이동하기
+// '설정' 버튼 클릭 시 설정 화면으로 이동하기
+// '로그아웃' 버튼 클릭 시 로그아웃 다이어로그 화면 추가하기
+
 import { Stack, Typography } from '@mui/material';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';

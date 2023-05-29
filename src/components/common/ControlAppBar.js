@@ -1,3 +1,5 @@
+// 원격 제어 기능 추가하기
+
 import { useNavigate } from 'react-router-dom';
 import { Stack, Typography } from '@mui/material';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';

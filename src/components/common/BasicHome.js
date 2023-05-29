@@ -1,3 +1,5 @@
+// 스마트팜 상태(온도, 습도)와 관련하여 화면 기능 구현하기
+
 import { Link } from 'react-router-dom';
 import { Stack, Typography } from '@mui/material';
 import ControlCard from './ControlCard';

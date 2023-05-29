@@ -38,8 +38,8 @@ const App = () => {
         <Route path="/search/password/success" element={<SearchPasswordSuccessPage />}/>
         <Route path="/search/password/failure" element={<SearchPasswordFailurePage />}/>
         <Route path="/home" element={<HomePage />}/>
-        <Route path="/not/register/smartfarm" element={<NotRegisterSmartfarmPage />}/>
-        <Route path="/not/register/plant" element={<NotRegisterPlantPage />}/>
+        <Route path="/home/not/register/smartfarm" element={<NotRegisterSmartfarmPage />}/>
+        <Route path="/home/not/register/plant" element={<NotRegisterPlantPage />}/>
         <Route path="/register/smartfarm" element={<RegisterSmartfarmPage />}/>
         <Route path="/register/smartfarm/success" element={<RegisterSmartfarmSuccessPage />}/>
         <Route path="/register/plant" element={<RegisterPlantPage />}/>
