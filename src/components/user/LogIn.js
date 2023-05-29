@@ -14,8 +14,8 @@ const LogIn = ({
 }) => {
     const navigate = useNavigate();
 
-    const goVerification = () => {
-        navigate('/verification');
+    const goVerify = () => {
+        navigate('/Verify');
     };
 
     const onLogInClick = () => {
@@ -55,7 +55,7 @@ const LogIn = ({
                     fontSize: 'medium',
                     fontWeight: 'bold'
                 }}
-                onClick={goVerification}
+                onClick={goVerify}
                 text="회원가입"
             />
             <Grid container>

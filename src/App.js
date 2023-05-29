@@ -2,7 +2,7 @@ import { ThemeProvider } from "@mui/material";
 import { Route, Routes } from 'react-router-dom';
 import MyTheme from './MyTheme';
 import LogInPage from './pages/user/LogInPage';
-import VerificationPage from './pages/user/VerificationPage';
+import VerifyPage from './pages/user/VerifyPage';
 import SignUpPage from './pages/user/SignUpPage';
 import SignUpSuccessPage from './pages/user/SignUpSuccessPage';
 import SearchIdPage from './pages/user/SearchIdPage';
@@ -28,7 +28,7 @@ const App = () => {
     <ThemeProvider theme={MyTheme}>
       <Routes>
         <Route path="/" element={<LogInPage />}/>
-        <Route path="/verification" element={<VerificationPage />}/>
+        <Route path="/Verify" element={<VerifyPage />}/>
         <Route path="/signup" element={<SignUpPage />}/>
         <Route path="/signup/success" element={<SignUpSuccessPage />}/>
         <Route path="/search/id" element={<SearchIdPage />}/>

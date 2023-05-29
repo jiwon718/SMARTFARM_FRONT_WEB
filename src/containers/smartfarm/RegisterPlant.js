@@ -20,4 +20,4 @@ const RegisterPlant = () => {
     );
 };
 
-export default RegisterPlant;
+export default React.memo(RegisterPlant);

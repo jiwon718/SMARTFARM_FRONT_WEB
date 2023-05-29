@@ -1,6 +1,6 @@
 import ContainerBox from '../../components/common/ContainerBox';
 import TypographyPageName from '../../components/common/TypographyPageName';
-import SignUp from '../../components/user/SignUp';
+import SignUp from '../../containers/user/SignUp';
 
 const SignUpPage = () => {
     return (

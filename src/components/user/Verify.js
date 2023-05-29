@@ -1,25 +1,45 @@
-// 인증번호 전송 버튼 기능 추가하기
-// 휴대전화 인증 기능 추가하기 (like. TextFieldPassword)
-// 다음 버튼 기능 추가하기
+// '인증번호 전송' 버튼 기능 추가하기
+// : 휴대전화 인증번호 API 사용하기
+// : 재전송 관련 기능 추가 고민하기
+// '다음' 버튼 인증 완료 후 활성화 추가하기
 
 import { useNavigate } from 'react-router-dom';
 import { Grid } from '@mui/material';
+import TextFieldDefault from '../common/TextFieldDefault';
 import TextFieldWithButton from '../common/TextFieldWithButton';
 import ButtonDefault from '../common/ButtonDefault';
 
-const Verification = () => {
+const Verify = ({
+    name,
+    phoneNumber,
+    onNameChange,
+    onPhoneNumberChange
+}) => {
     const navigate = useNavigate();
 
     const goBack = () => {
         navigate('/');
     };
 
+    const goSingUp = () => {
+        navigate('/signup');
+    }
+
     return (
         <div>
+            <TextFieldDefault
+                label="이름"
+                autoFocus={true}
+                value={name}
+                onChange={onNameChange}
+                sx={{ mb: 3 }}
+            />
             <Grid container rowSpacing={3}>
                 <TextFieldWithButton
                     textFieldLabel="휴대전화번호('-' 제외)"
-                    buttonDisabled={true}
+                    textFieldDisabled={name === ''}
+                    textFieldOnChange={onPhoneNumberChange}
+                    buttonDisabled={name === '' || phoneNumber === ''}
                     buttonText="인증번호 전송"/>
                 <TextFieldWithButton
                     textFieldLabel="인증번호"
@@ -29,7 +49,7 @@ const Verification = () => {
                 />
             </Grid>
             <ButtonDefault
-                disabled={true}
+                disabled={false}
                 color="secondary"
                 sx={{
                     mt: 6.5,
@@ -37,6 +57,7 @@ const Verification = () => {
                     fontSize: 'medium',
                     fontWeight: 'bold'
                 }}
+                onClick={goSingUp}
                 text="다음"
             />
             <ButtonDefault
@@ -52,4 +73,4 @@ const Verification = () => {
     );
 };
 
-export default Verification;
+export default Verify;

@@ -21,7 +21,6 @@ const SearchPasswordFailure = () => {
         <div>
             <Box
                 sx={{
-                    mt: 8,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center'
