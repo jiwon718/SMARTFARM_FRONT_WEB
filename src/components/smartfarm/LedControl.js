@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import ControlCard from '../common/ControlCard';
+import MyCard from '../common/MyCard';
 import TypographyWithSwitch from '../common/TypographyWithSwitch';
 import TypographyWithNumberPicker from '../common/TypographyWithNumberPicker';
 import CheckBoxWithLabel from '../common/CheckBoxWithLabel';
@@ -18,7 +18,7 @@ const LedControl = ({
 
     return (
         <div style={{ width: '100%'}} >
-            <ControlCard sx={{ width: '100%' }}>
+            <MyCard sx={{ width: '100%' }}>
                 <TypographyWithSwitch
                     text='전원 ON/OFF'
                     checked={ledControl.power}
@@ -59,7 +59,7 @@ const LedControl = ({
                     onChange={onAutoWorkEndTimeChange}
                     sx={{ mt: 0.3 }}
                 />
-            </ControlCard>
+            </MyCard>
             <Box
                 sx={{
                     display: 'flex',

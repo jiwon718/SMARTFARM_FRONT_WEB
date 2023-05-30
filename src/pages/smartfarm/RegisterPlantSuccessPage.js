@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ContainerBox from '../../components/common/ContainerBox';
 import ImgWithTypography from '../../components/common/ImgWithTypography';
-import plant from '../../lib/emoji/plant.png';
+import plant from '../../lib/icon/plant.png';
 
 const RegisterSmartfarmSuccessPage = () => {
     const navigate = useNavigate();

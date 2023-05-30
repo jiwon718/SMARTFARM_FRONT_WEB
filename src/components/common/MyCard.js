@@ -1,6 +1,6 @@
 import { Card, CardContent } from '@mui/material';
 
-const ControlCard = ({ sx, children }) => {
+const MyCard = ({ sx, children }) => {
     return (
         <Card sx={sx}>
             <CardContent sx={{ margin: 2 }}>
@@ -10,4 +10,4 @@ const ControlCard = ({ sx, children }) => {
     );
 };
 
-export default ControlCard;
+export default MyCard;

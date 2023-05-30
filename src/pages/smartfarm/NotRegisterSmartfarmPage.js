@@ -1,4 +1,4 @@
-import AppBar from '../../components/common/AppBar';
+import AppBar from '../../containers/common/AppBar';
 import ContainerBox from '../../components/common/ContainerBox';
 import NotRegisterSmartfarm from '../../components/smartfarm/NotRegisterSmartfarm';
 

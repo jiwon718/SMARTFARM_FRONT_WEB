@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import ButtonDefault from '../common/ButtonDefault';
-import greenhouse from '../../lib/emoji/greenhouse.png';
+import greenhouse from '../../lib/icon/greenhouse.png';
 
 const NotRegisterSmartfarm = () => {
     const navigate = useNavigate();

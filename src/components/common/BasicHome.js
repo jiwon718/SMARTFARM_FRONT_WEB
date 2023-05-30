@@ -2,10 +2,10 @@
 
 import { Link } from 'react-router-dom';
 import { Stack, Typography } from '@mui/material';
-import ControlCard from './ControlCard';
-import bulb from '../../lib/emoji/bulb.png';
-import raindrops from '../../lib/emoji/raindrops.png';
-import wind from '../../lib/emoji/wind.png';
+import MyCard from './MyCard';
+import bulb from '../../lib/icon/bulb.png';
+import raindrops from '../../lib/icon/raindrops.png';
+import wind from '../../lib/icon/wind.png';
 
 
 const Environment = ({ name, value, sx }) => {
@@ -61,15 +61,15 @@ const BasicHome = ({ children, ledStatus, wateringSystemStatus, fanStatus }) => 
     return (
         <div style={{ width: '100%' }}>
             {children}
-            <ControlCard sx={{ width: '100%', mt: 6, mb: 4 }}>
+            <MyCard sx={{ width: '100%', mt: 6, mb: 4 }}>
                 <Environment
                     name='온도'
                     value='20℃'
                     sx={{ mb: 1 }}
                 />
                 <Environment name='습도' value='72%'/>
-            </ControlCard>
-            <ControlCard sx={{ width: '100%' }}>
+            </MyCard>
+            <MyCard sx={{ width: '100%' }}>
                 <System
                     image={bulb}
                     imageLink='/smartfarm/control/led'
@@ -90,7 +90,7 @@ const BasicHome = ({ children, ledStatus, wateringSystemStatus, fanStatus }) => 
                     title='환풍기'
                     text={fanStatus}
                 />
-            </ControlCard>
+            </MyCard>
         </div>
     )
 };

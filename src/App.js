@@ -21,6 +21,7 @@ import RegisterPlantSuccessPage from './pages/smartfarm/RegisterPlantSuccessPage
 import LedControlPage from "./pages/smartfarm/LedControlPage";
 import WateringSystemControlPage from './pages/smartfarm/WateringSystemControlPage';
 import FanControlPage from "./pages/smartfarm/FanControlPage";
+import AlarmPage from './pages/alarm/AlarmPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 const App = () => {
@@ -47,6 +48,7 @@ const App = () => {
         <Route path="/smartfarm/control/led" element={<LedControlPage />}/>
         <Route path="/smartfarm/control/wateringsystem" element={<WateringSystemControlPage />}/>
         <Route path="/smartfarm/control/fan" element={<FanControlPage />}/>
+        <Route path="/alarm" element={<AlarmPage />}/>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </ThemeProvider>

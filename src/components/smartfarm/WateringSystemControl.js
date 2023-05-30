@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import ControlCard from '../common/ControlCard';
+import MyCard from '../common/MyCard';
 import TypographyWithSwitch from '../common/TypographyWithSwitch';
 import TypographyWithButton from '../common/TypographyWithButton';
 import CheckBoxWithLabel from '../common/CheckBoxWithLabel';
@@ -17,7 +17,7 @@ const WateringSystemControl = ({
 }) => {
     return (
         <div style={{ width: '100%'}} >
-            <ControlCard sx={{ width: '100%' }}>
+            <MyCard sx={{ width: '100%' }}>
                 <TypographyWithSwitch
                     text='전원 ON/OFF'
                     checked={wateringSystemControl.power}
@@ -51,7 +51,7 @@ const WateringSystemControl = ({
                     onTimeUnitChange={onAutoWorkTimeUnitChange}
                     sx={{ mt: 1.5 }}
                 />
-            </ControlCard>
+            </MyCard>
             <Box
                 sx={{
                     display: 'flex',
