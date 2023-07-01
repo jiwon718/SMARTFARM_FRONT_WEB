@@ -57,17 +57,17 @@ const System = ({ image, imageLink, title, text, sx }) => {
     );
 };
 
-const BasicHome = ({ children, ledStatus, wateringSystemStatus, fanStatus }) => {
+const BasicHome = ({ children, temperature, humidity, ledStatus, wateringSystemStatus, fanStatus }) => {
     return (
         <div style={{ width: '100%' }}>
             {children}
             <MyCard sx={{ width: '100%', mt: 6, mb: 4 }}>
                 <Environment
                     name='온도'
-                    value='20℃'
+                    value={`${temperature}℃`}
                     sx={{ mb: 1 }}
                 />
-                <Environment name='습도' value='72%'/>
+                <Environment name='습도' value={`${humidity}%`}/>
             </MyCard>
             <MyCard sx={{ width: '100%' }}>
                 <System
@@ -87,7 +87,7 @@ const BasicHome = ({ children, ledStatus, wateringSystemStatus, fanStatus }) => 
                 <System
                     image={wind}
                     imageLink='/smartfarm/control/fan'
-                    title='환풍기'
+                    title='환기팬'
                     text={fanStatus}
                 />
             </MyCard>

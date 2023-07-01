@@ -1,3 +1,5 @@
+// 데이터 송수신 오류 표시하기(getError, postError)
+
 import { Box, Typography } from '@mui/material';
 import MyCard from '../common/MyCard';
 import TypographyWithSwitch from '../common/TypographyWithSwitch';

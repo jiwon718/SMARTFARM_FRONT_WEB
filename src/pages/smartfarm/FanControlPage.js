@@ -6,7 +6,7 @@ import ControlTabs from '../../components/common/ControlTabs';
 const FanControlPage = () => {
     return (
         <div>
-            <ControlAppBar text='환풍기'/>
+            <ControlAppBar text='환기팬'/>
             <ContainerBox maxWidth="sm">
                 <FanControl />
             </ContainerBox>

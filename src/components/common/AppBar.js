@@ -20,6 +20,10 @@ const ControlAppBar = ({
         navigate('/home');
     }
 
+    const goAlarm = () => {
+        navigate('/alarm');
+    }
+
     const onLogOutClick = () => {
         console.log('SERVER: 로그아웃 처리');
         onLogOutChange()
@@ -37,7 +41,7 @@ const ControlAppBar = ({
                 <IconButtonWithTooltip title='홈' onClick={goHome}>
                     <HomeRoundedIcon sx={{ fontSize: 36 }}/>
                 </IconButtonWithTooltip>
-                <IconButtonWithTooltip title='알람'>
+                <IconButtonWithTooltip title='알람' onClick={goAlarm}>
                     <NotificationsRoundedIcon sx={{ fontSize: 36 }}/>
                 </IconButtonWithTooltip>
                 <IconButtonWithTooltip title='설정'>

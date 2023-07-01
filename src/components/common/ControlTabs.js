@@ -32,7 +32,7 @@ const ControlTabs = ({ tabNumber }) => {
                     to="/smartfarm/control/fan"
                     style={({ isActive }) => (isActive ? activeStyle : undefined)}
                 >
-                    환풍기
+                    환기팬
                 </NavLink>
             </Stack>
         </Box>
