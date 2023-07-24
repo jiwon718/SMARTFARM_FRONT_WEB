@@ -17,22 +17,28 @@ const ControlTabs = ({ tabNumber }) => {
                 spacing={3}
             >
                 <NavLink
-                    to="/smartfarm/control/led"
+                    to={process.env.REACT_APP_CONTROL_LED_PATH}
                     style={({ isActive }) => (isActive ? activeStyle : undefined)}
                 >
                     LED
                 </NavLink>
                 <NavLink
-                    to="/smartfarm/control/wateringsystem"
+                    to={process.env.REACT_APP_CONTROL_WATERING_SYSTEM_PATH}
                     style={({ isActive }) => (isActive ? activeStyle : undefined)}
                 >
                     관수 시스템
                 </NavLink>
                 <NavLink
-                    to="/smartfarm/control/fan"
+                    to={process.env.REACT_APP_CONTROL_FAN_PATH}
                     style={({ isActive }) => (isActive ? activeStyle : undefined)}
                 >
                     환기팬
+                </NavLink>
+                <NavLink
+                    to={process.env.REACT_APP_CONTROL_CENTER_DOOR_PATH}
+                    style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                >
+                    중앙문
                 </NavLink>
             </Stack>
         </Box>

@@ -1,12 +1,5 @@
-// DB에서 관수 시스템 관련 정보 가지고 와서 데이터 전처리하기(GET_WATERINGSYSTEM_SUCCESS)
-
 import { createAction, handleActions } from 'redux-actions';
-import { takeLatest } from 'redux-saga/effects';
-import createRequestSaga, { createRequestActionTypes } from '../../lib/api/createRequestSaga';
-import { getWateringSystemData, postWateringSystemData } from '../../lib/api/webApi';
 
-const [GET_WATERINGSYSTEM, GET_WATERINGSYSTEM_SUCCESS, GET_WATERINGSYSTEM_FAILURE] = createRequestActionTypes('wateringSystemControl/GET_WATERINGSYSTEM');
-const [POST_WATERINGSYSTEM, POST_WATERINGSYSTEM_SUCCESS, POST_WATERINGSYSTEM_FAILURE] = createRequestActionTypes('wateringSystemControl/POST_WATERINGSYSTEM');
 const CHANGE_POWER = 'wateringSystemControl/CHANGE_POWER';
 const CHANGE_WORK = 'wateringSystemControl/CHANGE_WORK';
 const CHANGE_AUTOWORK = 'wateringSystemControl/CHANGE_AUTOWORK';
@@ -15,8 +8,6 @@ const CHANGE_AUTOWORK_PERIOD_UNIT = 'wateringSystemControl/CHANGE_AUTOWORK_PERIO
 const CHANGE_AUTOWORK_TIME = 'wateringSystemControl/CHANGE_AUTOWORK_TIME';
 const CHANGE_AUTOWORK_TIME_UNIT = 'wateringSystemControl/CHANGE_AUTOWORK_TIME_UNIT';
 
-export const getWateringSystem = createAction(GET_WATERINGSYSTEM);
-export const postWateringSystem = createAction(POST_WATERINGSYSTEM);
 export const changePower = createAction(CHANGE_POWER);
 export const changeWork = createAction(CHANGE_WORK);
 export const changeAutoWork = createAction(CHANGE_AUTOWORK);
@@ -24,14 +15,6 @@ export const changeAutoWorkPeriod = createAction(CHANGE_AUTOWORK_PERIOD, autoWor
 export const changeAutoWorkPeriodUnit = createAction(CHANGE_AUTOWORK_PERIOD_UNIT, autoWorkPeriodUnit => autoWorkPeriodUnit);
 export const changeAutoWorkTime = createAction(CHANGE_AUTOWORK_TIME, autoWorkTime => autoWorkTime);
 export const changeAutoWorkTimeUnit = createAction(CHANGE_AUTOWORK_TIME_UNIT, autoWorkTimeUnit => autoWorkTimeUnit);
-
-const getWateringSystemSaga = createRequestSaga(GET_WATERINGSYSTEM, getWateringSystemData);
-const postWateringSystemSaga = createRequestSaga(POST_WATERINGSYSTEM, postWateringSystemData);
-
-export function* wateringSystemControlSaga() {
-    yield takeLatest(GET_WATERINGSYSTEM, getWateringSystemSaga);
-    yield takeLatest(POST_WATERINGSYSTEM, postWateringSystemSaga);
-};
 
 const monthNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 const weekNumbers = [1, 2, 3];
@@ -64,26 +47,9 @@ const initialState = {
 
 const wateringSystemControl = handleActions(
     {
-        [GET_WATERINGSYSTEM_SUCCESS]: (state, { payload }) => ({
-            /* 받아온 관수 시스템 정보를 상태에 대입 */
+        [CHANGE_POWER]: (state, { payload: power }) => ({
             ...state,
-            getError: false
-        }),
-        [GET_WATERINGSYSTEM_FAILURE]: (state) => ({
-            ...state,
-            getError: true
-        }),
-        [POST_WATERINGSYSTEM_SUCCESS]: (state) => ({
-            ...state,
-            postError: false
-        }),
-        [POST_WATERINGSYSTEM_FAILURE]: (state) => ({
-            ...state,
-            postError: true
-        }),
-        [CHANGE_POWER]: (state) => ({
-            ...state,
-            power: !state.power,
+            power: power,
             status: state.power === true
             ? '관수 시스템에 전원 공급을 하고 있지 않아요'
             : ( state.work === true
@@ -97,10 +63,10 @@ const wateringSystemControl = handleActions(
             status: state.work === true ? '관수 시스템이 작동하고 있지 않아요' : '관수 시스템이 작동하고 있어요',
             workButtonText: state.work === true ? '물 주기' : '중단하기'
         }),
-        [CHANGE_AUTOWORK]: (state) => ({
+        [CHANGE_AUTOWORK]: (state, { payload: autoWork}) => ({
             ...state,
             work: false,
-            autoWork: !state.autoWork,
+            autoWork: autoWork,
             status: state.autoWork === true ? '관수 시스템이 작동하고 있지 않아요' : `${state.autoWorkPeriod}${state.autoWorkPeriodUnit} 이후에 ${state.autoWorkTime}${state.autoWorkTimeUnit} 동안 물을 뿌려요`,
             workButtonText: '물 주기'
         }),

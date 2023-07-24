@@ -61,7 +61,7 @@ const LogIn = ({
             <Grid container>
                 <Grid item xs >
                     <Link
-                        to="/search/id"
+                        to={process.env.REACT_APP_SEARCH_ID_PATH}
                         style={{
                             textDecoration: 'none',
                             color: '#000000'
@@ -72,7 +72,7 @@ const LogIn = ({
                 </Grid>
                 <Grid item>
                     <Link
-                        to="/search/password"
+                        to={process.env.REACT_APP_SEARCH_PASSWORD_PATH}
                         style={{
                             textDecoration: 'none',
                             color: '#000000'

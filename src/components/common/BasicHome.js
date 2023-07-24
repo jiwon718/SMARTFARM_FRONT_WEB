@@ -6,6 +6,7 @@ import MyCard from './MyCard';
 import bulb from '../../lib/icon/bulb.png';
 import raindrops from '../../lib/icon/raindrops.png';
 import wind from '../../lib/icon/wind.png';
+import door from '../../lib/icon/door.png';
 
 
 const Environment = ({ name, value, sx }) => {
@@ -57,7 +58,15 @@ const System = ({ image, imageLink, title, text, sx }) => {
     );
 };
 
-const BasicHome = ({ children, temperature, humidity, ledStatus, wateringSystemStatus, fanStatus }) => {
+const BasicHome = ({
+    children,
+    temperature,
+    humidity,
+    ledStatus,
+    wateringSystemStatus,
+    fanStatus,
+    centerDoorStatus
+}) => {
     return (
         <div style={{ width: '100%' }}>
             {children}
@@ -89,6 +98,13 @@ const BasicHome = ({ children, temperature, humidity, ledStatus, wateringSystemS
                     imageLink='/smartfarm/control/fan'
                     title='환기팬'
                     text={fanStatus}
+                    sx={{ mb: 2 }}
+                />
+                <System
+                    image={door}
+                    imageLink='/smartfarm/control/centerDoor'
+                    title='중앙문'
+                    text={centerDoorStatus}
                 />
             </MyCard>
         </div>

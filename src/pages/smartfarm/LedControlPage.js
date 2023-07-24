@@ -1,5 +1,5 @@
 import ContainerBox from '../../components/common/ContainerBox';
-import ControlAppBar from '../../components/common/ControlAppBar';
+import ControlAppBar from '../../containers/common/ControlAppBar';
 import LedControl from '../../containers/smartfarm/LedControl';
 import ControlTabs from '../../components/common/ControlTabs';
 

@@ -1,18 +1,18 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import WateringSystemControlComponent from '../../components/smartfarm/WateringSystemControl';
-import { changePower, changeWork, changeAutoWork, changeAutoWorkPeriod, changeAutoWorkPeriodUnit, changeAutoWorkTime, changeAutoWorkTimeUnit } from '../../modules/smartfarm/wateringSystemControl';
+import CenterDoorControlComponent from '../../components/smartfarm/CenterDoorControl';
+import { changePower, changeWork, changeAutoWork, changeAutoWorkPeriod, changeAutoWorkPeriodUnit, changeAutoWorkTime, changeAutoWorkTimeUnit } from '../../modules/smartfarm/centerDoorControl';
 
-const WateringSystemControl = () => {
-    const wateringSystemControl = useSelector(state => state.wateringSystemControl);
+const CenterDoorControl = () => {
+    const centerDoorControl = useSelector(state => state.centerDoorControl);
 
     const dispatch = useDispatch();
 
     const onPowerChange = useCallback(e => {
         dispatch(changePower(e.target.checked));
     }, [dispatch]);
-    const onWorkChange = useCallback(() => {
-        dispatch(changeWork());
+    const onWorkChange = useCallback(e => {
+        dispatch(changeWork(e.target.checked));
     }, [dispatch]);
     const onAutoWorkChange = useCallback(e => {
         dispatch(changeAutoWork(e.target.checked));
@@ -31,8 +31,8 @@ const WateringSystemControl = () => {
     }, [dispatch]);
 
     return (
-        <WateringSystemControlComponent
-            wateringSystemControl={wateringSystemControl}
+        <CenterDoorControlComponent
+            centerDoorControl={centerDoorControl}
             onPowerChange={onPowerChange}
             onWorkChange={onWorkChange}
             onAutoWorkChange={onAutoWorkChange}
@@ -44,4 +44,4 @@ const WateringSystemControl = () => {
     );
 };
 
-export default React.memo(WateringSystemControl);
+export default React.memo(CenterDoorControl);

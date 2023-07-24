@@ -1,18 +1,18 @@
 import ContainerBox from '../../components/common/ContainerBox';
 import ControlAppBar from '../../containers/common/ControlAppBar';
-import FanControl from '../../containers/smartfarm/FanControl';
+import CenterDoorControl from '../../containers/smartfarm/CenterDoorControl';
 import ControlTabs from '../../components/common/ControlTabs';
 
-const FanControlPage = () => {
+const CenterDoorPage = () => {
     return (
         <div>
-            <ControlAppBar text='환기팬'/>
+            <ControlAppBar text='중앙문'/>
             <ContainerBox maxWidth="sm">
-                <FanControl />
+                <CenterDoorControl />
             </ContainerBox>
             <ControlTabs />
         </div>
     )
 };
 
-export default FanControlPage;
+export default CenterDoorPage;

@@ -1,5 +1,5 @@
 import ContainerBox from '../../components/common/ContainerBox';
-import ControlAppBar from '../../components/common/ControlAppBar';
+import ControlAppBar from '../../containers/common/ControlAppBar';
 import WateringSystemControl from '../../containers/smartfarm/WateringSystemControl';
 import ControlTabs from '../../components/common/ControlTabs';
 

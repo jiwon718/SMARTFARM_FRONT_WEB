@@ -9,7 +9,7 @@ import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import IconButtonWithTooltip from '../common/IconButtonWithTooltip';
 
-const ControlAppBar = ({
+const AppBar = ({
     text,
     children,
     onLogOutChange
@@ -70,4 +70,4 @@ const ControlAppBar = ({
     );
 };
 
-export default ControlAppBar;
+export default AppBar;

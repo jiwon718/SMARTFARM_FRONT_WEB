@@ -4,7 +4,11 @@ import { Stack, Typography } from '@mui/material';
 import AppBar from '../../containers/common/AppBar';
 import { IOSSwitch } from '../common/TypographyWithSwitch';
 
-const ControlAppBar = ({ text }) => {
+const ControlAppBar = ({
+    text,
+    remoteControl,
+    onRemoteControlChange
+}) => {
     return (
         <AppBar text={text}>
             <div style={{ width: 208 }}>
@@ -14,7 +18,12 @@ const ControlAppBar = ({ text }) => {
                     justifyContent='center'
                 >
                     <Typography variant='h6'>원격 제어</Typography>
-                    <IOSSwitch color='info' sx={{ m: 1, ml: 1.4 }} defaultChecked />
+                    <IOSSwitch
+                        color='info'
+                        sx={{ m: 1, ml: 1.4 }}
+                        checked={remoteControl}
+                        onChange={onRemoteControlChange}
+                    />
                 </Stack>
             </div>
         </AppBar>
