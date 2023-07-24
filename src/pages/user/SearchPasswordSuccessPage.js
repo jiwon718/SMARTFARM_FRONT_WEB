@@ -1,6 +1,6 @@
 import ContainerBox from '../../components/common/ContainerBox';
 import TypographyPageName from '../../components/common/TypographyPageName';
-import SearchPasswordSuccess from '../../components/user/SearchPasswordSuccess';
+import SearchPasswordSuccess from '../../containers/user/SearchPasswordSuccess';
 
 const SearchPasswordSuccessPage = () => {
     return (

@@ -3,7 +3,6 @@
 // : 재전송 관련 기능 추가 고민하기
 // '다음' 버튼 인증 완료 후 활성화 추가하기
 
-import { useNavigate } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import TextFieldDefault from '../common/TextFieldDefault';
 import TextFieldWithButton from '../common/TextFieldWithButton';
@@ -13,18 +12,10 @@ const Verify = ({
     name,
     phoneNumber,
     onNameChange,
-    onPhoneNumberChange
+    onPhoneNumberChange,
+    goBack,
+    goSignUp
 }) => {
-    const navigate = useNavigate();
-
-    const goBack = () => {
-        navigate('/');
-    };
-
-    const goSingUp = () => {
-        navigate('/signup');
-    }
-
     return (
         <div>
             <TextFieldDefault
@@ -57,7 +48,7 @@ const Verify = ({
                     fontSize: 'medium',
                     fontWeight: 'bold'
                 }}
-                onClick={goSingUp}
+                onClick={goSignUp}
                 text="다음"
             />
             <ButtonDefault

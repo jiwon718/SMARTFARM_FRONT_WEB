@@ -17,8 +17,8 @@ import SearchPasswordSuccessPage from './pages/user/SearchPasswordSuccessPage';
 import SearchPasswordFailurePage from './pages/user/SearchPasswordFailurePage';
 // 홈
 import HomePage from './pages/smartfarm/HomePage';
-import NotRegisterSmartfarmPage from './pages/smartfarm/NotRegisterSmartfarmPage';
-import NotRegisterPlantPage from './pages/smartfarm/NotRegisterPlantPage';
+import HomeNotRegisterSmartfarmPage from './pages/smartfarm/HomeNotRegisterSmartfarmPage';
+import HomeNotRegisterPlantPage from './pages/smartfarm/HomeNotRegisterPlantPage';
 // 스마트팜 등록
 import RegisterSmartfarmPage from './pages/smartfarm/RegisterSmartfarmPage';
 import RegisterSmartfarmSuccessPage from "./pages/smartfarm/RegisterSmartfarmSuccessPage";
@@ -32,6 +32,8 @@ import FanControlPage from "./pages/smartfarm/FanControlPage";
 import CenterDoorControlPage from "./pages/smartfarm/CenterDoorPage";
 // 알람
 import AlarmPage from './pages/alarm/AlarmPage';
+// 설정
+import SettingPage from './pages/setting/SettingPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 const App = () => {
@@ -54,20 +56,23 @@ const App = () => {
         <Route path={process.env.REACT_APP_SEARCH_PASSWORD_FAILURE_PATH} element={<SearchPasswordFailurePage />}/>
         {/* 홈 */}
         <Route path={process.env.REACT_APP_HOME_PATH} element={<HomePage />}/>
-        <Route path={process.env.REACT_APP_HOME_NOT_REGISTER_SMARTFARM_PATH} element={<NotRegisterSmartfarmPage />}/>
-        <Route path={process.env.REACT_APP_HOME_NOT_REGISTER_PLANT_PATH} element={<NotRegisterPlantPage />}/>
+        <Route path={process.env.REACT_APP_HOME_NOT_REGISTER_SMARTFARM_PATH} element={<HomeNotRegisterSmartfarmPage />}/>
+        <Route path={process.env.REACT_APP_HOME_NOT_REGISTER_PLANT_PATH} element={<HomeNotRegisterPlantPage />}/>
         {/* 스마트팜 등록 */}
         <Route path={process.env.REACT_APP_REGISTER_SMARTFARM_PATH} element={<RegisterSmartfarmPage />}/>
         <Route path={process.env.REACT_APP_REGISTER_SMARTFARM_SUCCESS_PATH} element={<RegisterSmartfarmSuccessPage />}/>
         {/* 작물 등록 */}
-        <Route path={process.env.REACT_APP_RESITER_PLANT_PATH} element={<RegisterPlantPage />}/>
+        <Route path={process.env.REACT_APP_REGISTER_PLANT_PATH} element={<RegisterPlantPage />}/>
         <Route path={process.env.REACT_APP_REGISTER_PLANT_SUCCESS_PATH} element={<RegisterPlantSuccessPage />}/>
         {/* 스마트팜 시스템 제어 */}
         <Route path={process.env.REACT_APP_CONTROL_LED_PATH} element={<LedControlPage />}/>
         <Route path={process.env.REACT_APP_CONTROL_WATERING_SYSTEM_PATH} element={<WateringSystemControlPage />}/>
         <Route path={process.env.REACT_APP_CONTROL_FAN_PATH} element={<FanControlPage />}/>
         <Route path={process.env.REACT_APP_CONTROL_CENTER_DOOR_PATH} element={<CenterDoorControlPage />}/>
-        <Route path={process.env.REACT_APP_CONTROL_ALARM_PATH} element={<AlarmPage />}/>
+        {/* 알람 */}
+        <Route path={process.env.REACT_APP_ALARM_PATH} element={<AlarmPage />}/>
+        {/* 설정 */}
+        <Route path={process.env.REACT_APP_SETTING_PATH} element={<SettingPage />}/>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </ThemeProvider>

@@ -2,7 +2,7 @@ import AppBar from '../../containers/common/AppBar';
 import ContainerBox from '../../components/common/ContainerBox';
 import Home from '../../components/smartfarm/Home';
 
-const NotRegisterSmartfarmPage = () => {
+const HomePage = () => {
     return (
         <div>
             <AppBar text='홈'/>
@@ -13,4 +13,4 @@ const NotRegisterSmartfarmPage = () => {
     );
 };
 
-export default NotRegisterSmartfarmPage;
+export default HomePage;

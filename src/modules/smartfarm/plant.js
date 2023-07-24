@@ -4,7 +4,7 @@
 import { createAction, handleActions } from 'redux-actions';
 
 const CHANGE_NAME = 'plant/CHANGE_NAME';
-const CHANGE_CULTIVAR = 'plant/CHANGE_CULTIVAR';
+// const CHANGE_CULTIVAR = 'plant/CHANGE_CULTIVAR';
 const CHANGE_DAY = 'plant/CHANGE_DAY';
 
 export const changeName = createAction(CHANGE_NAME, name => name);

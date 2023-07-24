@@ -1,8 +1,8 @@
-// 원격 제어 기능 추가하기
+// SERVER: 스마트팜 원격제어 정보 요청
 
 import { Stack, Typography } from '@mui/material';
 import AppBar from '../../containers/common/AppBar';
-import { IOSSwitch } from '../common/TypographyWithSwitch';
+import { IOSSwitch } from '../../components/common/TypographyWithSwitch';
 
 const ControlAppBar = ({
     text,

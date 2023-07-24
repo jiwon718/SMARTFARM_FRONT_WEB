@@ -1,7 +1,7 @@
 import ContainerBox from '../../components/common/ContainerBox';
-import ControlAppBar from '../../containers/common/ControlAppBar';
+import ControlAppBar from '../../containers/smartfarm/ControlAppBar';
 import LedControl from '../../containers/smartfarm/LedControl';
-import ControlTabs from '../../components/common/ControlTabs';
+import ControlTabs from '../../components/smartfarm/ControlTabs';
 
 const LedControlPage = () => {
     return (

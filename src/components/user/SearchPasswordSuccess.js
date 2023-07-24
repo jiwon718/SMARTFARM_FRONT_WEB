@@ -1,14 +1,7 @@
-import { useNavigate } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import ButtonDefault from '../common/ButtonDefault';
 
-const SearchPasswordSuccess = () => {
-    const navigate = useNavigate();
-
-    const goLogIn = () => {
-        navigate('/');
-    };
-
+const SearchPasswordSuccess = ({ goLogIn }) => {
     return (
         <div>
             <Box

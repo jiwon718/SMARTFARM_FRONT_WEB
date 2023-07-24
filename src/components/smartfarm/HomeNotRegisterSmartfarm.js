@@ -1,15 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import ButtonDefault from '../common/ButtonDefault';
 import greenhouse from '../../lib/icon/greenhouse.png';
 
-const NotRegisterSmartfarm = () => {
-    const navigate = useNavigate();
-
-    const goRegisterSmartfarm = () => {
-        navigate('/register/smartfarm');
-    };
-
+const HomeNotRegisterSmartfarm = ({ goRegisterSmartfarm }) => {
     return (
         <div>
             <Box
@@ -57,4 +50,4 @@ const NotRegisterSmartfarm = () => {
     )
 };
 
-export default NotRegisterSmartfarm;
+export default HomeNotRegisterSmartfarm;

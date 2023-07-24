@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import ControlAppBarComponent from '../../components/common/ControlAppBar';
+import ControlAppBarComponent from '../../components/smartfarm/ControlAppBar';
 import { changeRemoteControl } from '../../modules/smartfarm/smartfarm';
 
 const ControlAppBar = ({ text }) => {

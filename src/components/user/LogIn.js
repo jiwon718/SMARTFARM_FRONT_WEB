@@ -1,6 +1,6 @@
-// '로그인' 버튼 클릭 시 서버에 정보를 전달해서 검증받기 → 검증받으면 홈 화면으로 이동하기
+// SERVER: '로그인' 버튼 클릭 시 서버에 정보를 전달해서 검증 요청 → 검증받으면 홈 화면으로 이동하기
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import TextFieldDefault from '../common/TextFieldDefault';
 import TextFieldPassword from '../../containers/common/TextFieldPassword';
@@ -10,19 +10,10 @@ const LogIn = ({
     id,
     password,
     onIdChange,
-    onPasswordChange
+    onPasswordChange,
+    onLogInClick,
+    goVerify
 }) => {
-    const navigate = useNavigate();
-
-    const goVerify = () => {
-        navigate('/Verify');
-    };
-
-    const onLogInClick = () => {
-        console.log('SERVER: 회원 검증');
-        navigate('/home');
-    }
-
     return (
         <div>
             <TextFieldDefault

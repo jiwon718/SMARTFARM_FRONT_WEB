@@ -5,7 +5,6 @@
 // '다음' 버튼 클릭 시 서버에 이름과 전화번호로 아이디 찾은 후 결과 받기
 // 성공, 실패에 따라 결과 페이지 이동하기
 
-import { useNavigate } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import TextFieldDefault from '../common/TextFieldDefault';
 import TextFieldWithButton from '../common/TextFieldWithButton';
@@ -15,19 +14,10 @@ const SearchId = ({
     name,
     phoneNumber,
     onNameChange,
-    onPhoneNumberChange
+    onPhoneNumberChange,
+    goBack,
+    goNext
 }) => {
-    const navigate = useNavigate();
-
-    const goBack = () => {
-        navigate(-1);
-    };
-
-    const goNext = () => {
-        console.log('SERVER: 이름과 전화번호로 아이디 찾기');
-        navigate('success');
-    }
-
     return (
         <div>
             <TextFieldDefault

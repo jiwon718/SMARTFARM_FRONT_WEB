@@ -1,7 +1,6 @@
 // '알람' 버튼 클릭 시 알람 화면으로 이동하기
 // '설정' 버튼 클릭 시 설정 화면으로 이동하기
 
-import { useNavigate } from 'react-router-dom';
 import { Stack, Typography } from '@mui/material';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
@@ -12,24 +11,11 @@ import IconButtonWithTooltip from '../common/IconButtonWithTooltip';
 const AppBar = ({
     text,
     children,
-    onLogOutChange
+    onLogOutClick,
+    goHome,
+    goAlarm,
+    goSetting
 }) => {
-    const navigate = useNavigate();
-
-    const goHome = () => {
-        navigate('/home');
-    }
-
-    const goAlarm = () => {
-        navigate('/alarm');
-    }
-
-    const onLogOutClick = () => {
-        console.log('SERVER: 로그아웃 처리');
-        onLogOutChange()
-        navigate('/');
-    }
-
     return (
         <Stack
             direction='row'
@@ -44,7 +30,7 @@ const AppBar = ({
                 <IconButtonWithTooltip title='알람' onClick={goAlarm}>
                     <NotificationsRoundedIcon sx={{ fontSize: 36 }}/>
                 </IconButtonWithTooltip>
-                <IconButtonWithTooltip title='설정'>
+                <IconButtonWithTooltip title='설정' onClick={goSetting}>
                     <SettingsRoundedIcon sx={{ fontSize: 36 }}/>
                 </IconButtonWithTooltip>
                 <IconButtonWithTooltip title='로그아웃' onClick={onLogOutClick}>

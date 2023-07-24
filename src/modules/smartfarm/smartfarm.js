@@ -1,4 +1,5 @@
 // 스마트팜 등록번호 확인 후 등록 가능 여부(success) 바꾸기
+
 import { createAction, handleActions } from 'redux-actions';
 
 const CHANGE_SMARTFARM_NUMBER = 'smartfarm/CHANGE_SMARTFARM_NUMBER';

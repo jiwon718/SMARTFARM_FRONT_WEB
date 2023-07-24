@@ -1,6 +1,5 @@
-// 회원가입 완료 버튼 추가하기
+// 회원가입 완료 버튼 기능 추가하기: 이름, 아이디, 비밀번호 유효성 검사 완료 후 클릭 가능
 
-import { useNavigate } from 'react-router-dom';
 import { Grid, Typography } from '@mui/material';
 import TextFieldDefault from '../common/TextFieldDefault';
 import TextFieldPassword from '../../containers/common/TextFieldPassword';
@@ -15,14 +14,10 @@ const SignUp = ({
     onNameChange,
     onIdChange,
     onPasswordChange,
-    onPasswordCheckChange
+    onPasswordCheckChange,
+    onSignUpSuccessClick,
+    goBack
 }) => {
-    const navigate = useNavigate();
-
-    const goBack = () => {
-        navigate(-1);
-    };
-
     return (
         <div>
             <TextFieldDefault
@@ -66,7 +61,7 @@ const SignUp = ({
                 </Grid>
             </Grid>
             <ButtonDefault
-                disabled={true}
+                disabled={false}
                 color="secondary"
                 sx={{
                     mt: 6.5,
@@ -74,6 +69,7 @@ const SignUp = ({
                     fontSize: 'medium',
                     fontWeight: 'bold'
                 }}
+                onClick={onSignUpSuccessClick}
                 text="회원가입 완료"
             />
             <ButtonDefault

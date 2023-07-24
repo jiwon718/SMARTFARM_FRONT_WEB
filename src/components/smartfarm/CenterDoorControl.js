@@ -1,3 +1,5 @@
+// SERVER: 스마트팜 중앙문 상태 및 제어 정보 요청
+
 import { Box, Typography } from '@mui/material';
 import MyCard from '../common/MyCard';
 import TypographyWithSwitch from '../common/TypographyWithSwitch';

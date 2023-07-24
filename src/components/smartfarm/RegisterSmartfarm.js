@@ -1,25 +1,15 @@
-// '스마트팜 등록' 버튼 클릭 시 DB에 스마트팜 등록하기
+// SERVER: '스마트팜 등록' 버튼 클릭 시 DB에 스마트팜 등록 요청
 
-import { useNavigate } from 'react-router-dom';
 import TextFieldWithButton from '../common/TextFieldWithButton';
 import ButtonDefault from '../common/ButtonDefault';
 
 const RegisterSmartfarm = ({
     smartfarm,
     onSmartfarmNumberChange,
-    onSuccessChange
+    onSuccessChange,
+    onRegisterClick,
+    goBack
 }) => {
-    const navigate = useNavigate();
-
-    const goBack = () => {
-        navigate(-1);
-    };
-
-    const onRegisterClick = () => {
-        console.log('DB: 스마트팜 등록');
-        navigate('/register/smartfarm/success');
-    };
-
     return (
         <div style={{ width: '100%' }}>
             <TextFieldWithButton

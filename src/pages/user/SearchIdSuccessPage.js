@@ -1,6 +1,6 @@
 import ContainerBox from '../../components/common/ContainerBox';
 import TypographyPageName from '../../components/common/TypographyPageName';
-import SearchIdSuccess from '../../components/user/SearchIdSuccess';
+import SearchIdSuccess from '../../containers/user/SearchIdSuccess';
 
 const SearchIdSuccessPage = () => {
     return (

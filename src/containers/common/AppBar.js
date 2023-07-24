@@ -1,18 +1,37 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import AppBarComponent from '../../components/common/AppBar';
 import { changeLogOut } from '../../modules/user/user';
 
 const AppBar = ({ text, children }) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const onLogOutChange = useCallback(() => dispatch(changeLogOut()), [dispatch]);
+    const onLogOutClick = useCallback(() => {
+        console.log('SERVER: 로그아웃 처리');
+        dispatch(changeLogOut());
+        navigate(process.env.REACT_APP_LOGIN_PATH);
+    }, [dispatch, navigate]);
+
+    const goHome = () => {
+        navigate(process.env.REACT_APP_HOME_PATH);
+    };
+    const goAlarm = () => {
+        navigate(process.env.REACT_APP_ALARM_PATH);
+    };
+    const goSetting = () => {
+        navigate(process.env.REACT_APP_SETTING_PATH);
+    };
 
     return (
         <AppBarComponent
             text={text}
             children={children}
-            onLogOutChange={onLogOutChange}
+            onLogOutClick={onLogOutClick}
+            goHome={goHome}
+            goAlarm={goAlarm}
+            goSetting={goSetting}
         />
     );
 };

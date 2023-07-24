@@ -1,16 +1,16 @@
 import AppBar from '../../containers/common/AppBar';
 import ContainerBox from '../../components/common/ContainerBox';
-import NotRegisterPlant from '../../components/smartfarm/NotRegisterPlant';
+import HomeNotRegisterPlant from '../../containers/smartfarm/HomeNotRegisterPlant';
 
-const NotRegisterSmartfarmPage = () => {
+const HomeNotRegisterPlantPage = () => {
     return (
         <div>
             <AppBar text='홈'/>
             <ContainerBox maxWidth="sm">
-                <NotRegisterPlant />
+                <HomeNotRegisterPlant />
             </ContainerBox>
         </div>
     );
 };
 
-export default NotRegisterSmartfarmPage;
+export default HomeNotRegisterPlantPage;

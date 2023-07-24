@@ -6,7 +6,6 @@
 // 성공, 실패에 따라 결과 페이지 이동하기
 // 성공 시 임시 비밀번호를 전화번호로 보내주기
 
-import { useNavigate } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import TextFieldDefault from '../common/TextFieldDefault';
 import TextFieldWithButton from '../common/TextFieldWithButton';
@@ -18,19 +17,10 @@ const SearchId = ({
     phoneNumber,
     onNameChange,
     onIdChange,
-    onPhoneNumberChange
+    onPhoneNumberChange,
+    goBack,
+    goNext
 }) => {
-    const navigate = useNavigate();
-
-    const goBack = () => {
-        navigate(-1);
-    };
-
-    const goNext = () => {
-        console.log('SERVER: 이름, 아이디, 전화번호로 비밀번호 찾기');
-        navigate('success');
-    }
-
     return (
         <div>
             <TextFieldDefault

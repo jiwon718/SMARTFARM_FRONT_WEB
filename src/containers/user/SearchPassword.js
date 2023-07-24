@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import SearchPasswordComponent from '../../components/user/SearchPassword';
 import { changeName, changeId, changePhoneNumber } from '../../modules/user/user';
 
@@ -9,10 +10,19 @@ const SearchPassword = () => {
     const phoneNumber = useSelector(state => state.user.phoneNumber);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const onNameChange = useCallback(e => dispatch(changeName(e.target.value)), [dispatch]);
     const onIdChange= useCallback(e => dispatch(changeId(e.target.value)), [dispatch]);
     const onPhoneNumberChange = useCallback(e => dispatch(changePhoneNumber(e.target.value)), [dispatch]);
+
+    const goBack = () => {
+        navigate(-1);
+    };
+    const goNext = () => {
+        console.log('SERVER: 이름, 아이디, 전화번호로 비밀번호 찾기');
+        navigate(process.env.REACT_APP_SEARCH_PASSWORD_SUCCESS_PATH);
+    };
 
     return (
         <SearchPasswordComponent
@@ -22,6 +32,8 @@ const SearchPassword = () => {
             onNameChange={onNameChange}
             onIdChange={onIdChange}
             onPhoneNumberChange={onPhoneNumberChange}
+            goBack={goBack}
+            goNext={goNext}
         />
     );
 };
