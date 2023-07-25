@@ -33,6 +33,9 @@ const SettingPersonalInformation = () => {
         dispatch(changePassword(''));
         setOpen(false);
     };
+    const goBack = () => {
+        navigate(-1);
+    }
 
     useEffect(() => {
         return () => {
@@ -55,8 +58,9 @@ const SettingPersonalInformation = () => {
             onOpenClick={onOpenClick}
             onYesClick={onYesClick}
             onNoClick={onNoClick}
+            goBack={goBack}
         />
     );
 };
 
-export default SettingPersonalInformation;
+export default React.memo(SettingPersonalInformation);

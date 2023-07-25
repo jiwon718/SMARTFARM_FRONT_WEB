@@ -21,7 +21,7 @@ const SettingList = () => {
                 <SettingItem
                     image={lock}
                     title='비밀번호 변경'
-                    path={process.env.REACT_APP_SETTING_PASSWORD_PATH}
+                    path={process.env.REACT_APP_SETTING_PASSWORD_VERIFY_PATH}
                 />
             </SettingBox>
             <SettingBox
@@ -31,7 +31,7 @@ const SettingList = () => {
                 <SettingItem
                     image={greenhouse}
                     title='스마트팜 수정'
-                    path={process.env.REACT_APP_SETTING_SMARTFARM_PATH}
+                    path={process.env.REACT_APP_SETTING_SMARTFARM_VERIFY_PATH}
                 />
             </SettingBox>
             <SettingBox
@@ -41,7 +41,7 @@ const SettingList = () => {
                 <SettingItem
                     image={plant}
                     title='작물 수정'
-                    path={process.env.REACT_APP_SETTING_PLANT_PATH}
+                    path={process.env.REACT_APP_SETTING_PLANT_VERIFY_PATH}
                 />
             </SettingBox>
             <SettingBox

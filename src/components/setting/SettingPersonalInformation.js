@@ -1,3 +1,9 @@
+// SERVER: 서버에 해당 계정 정보 수정 요청
+// SERVER: 서버에 해당 계정 탈퇴 요청
+// 계정 탈퇴에 따른 페이지 이동
+// : 탈퇴 성공 시 설정 목록 페이지로 이동
+// : 탈퇴 실패 시 해당 페이지에 그대로
+
 import { Grid, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@mui/material';
 import TextFieldDefault from "../common/TextFieldDefault";
 import TextFieldWithButton from "../common/TextFieldWithButton";
@@ -15,7 +21,8 @@ const SettingPersonalInformation = ({
     onModifyClick,
     onOpenClick,
     onYesClick,
-    onNoClick
+    onNoClick,
+    goBack
 }) => {
     return (
         <div>
@@ -53,12 +60,22 @@ const SettingPersonalInformation = ({
             <ButtonDefault
                 disabled={false}
                 sx={{
+                    mb: 2,
                     fontSize: 'medium',
                     fontWeight: 'bold'
                 }}
                 color='secondary'
                 onClick={onOpenClick}
                 text="회원 탈퇴"
+            />
+            <ButtonDefault
+                color="secondary"
+                sx={{
+                    fontSize: 'medium',
+                    fontWeight: 'bold'
+                }}
+                onClick={goBack}
+                text="취소"
             />
             <Dialog
                 open={open}
