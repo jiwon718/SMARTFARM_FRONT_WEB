@@ -34,6 +34,7 @@ import CenterDoorControlPage from "./pages/smartfarm/CenterDoorPage";
 import AlarmPage from './pages/alarm/AlarmPage';
 // 설정
 import SettingPage from './pages/setting/SettingPage';
+import SettingPersonalInformationPage from "./pages/setting/SettingPersonalInformationPage";
 import NotFoundPage from './pages/NotFoundPage';
 
 const App = () => {
@@ -73,6 +74,7 @@ const App = () => {
         <Route path={process.env.REACT_APP_ALARM_PATH} element={<AlarmPage />}/>
         {/* 설정 */}
         <Route path={process.env.REACT_APP_SETTING_PATH} element={<SettingPage />}/>
+        <Route path={process.env.REACT_APP_SETTING_PERSONAL_INFORMATION_PATH} element={<SettingPersonalInformationPage />}/>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </ThemeProvider>
