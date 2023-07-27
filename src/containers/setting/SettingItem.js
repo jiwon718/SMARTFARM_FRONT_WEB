@@ -1,3 +1,4 @@
+import React from 'react';
 import { useNavigate } from "react-router-dom";
 import SettingItemComponent from "../../components/setting/SettingItem";
 
@@ -17,4 +18,4 @@ const SettingItem = ({ image, title, path }) => {
     );
 };
 
-export default SettingItem;
+export default React.memo(SettingItem);

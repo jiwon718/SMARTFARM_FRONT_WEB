@@ -41,4 +41,4 @@ const SettingPassword = () => {
     );
 };
 
-export default SettingPassword;
+export default React.memo(SettingPassword);

@@ -11,6 +11,8 @@ export const changeName = createAction(CHANGE_NAME, name => name);
 export const changeDay = createAction(CHANGE_DAY, day => day);
 
 const initialState = {
+    exist: false,
+
     name: '',
     cultivar: '',
     day: 0

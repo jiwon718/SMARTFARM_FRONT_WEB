@@ -11,6 +11,8 @@ export const changeSuccess = createAction(CHANGE_SUCCESS);
 export const changeRemoteControl = createAction(CHANGE_REMOTE_CONTROL);
 
 const initialState = {
+    exist: true,
+
     smartfarmNumber: '',
     registerSuccess: false,
     remoteControl: false,

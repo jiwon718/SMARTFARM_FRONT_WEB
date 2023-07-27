@@ -47,4 +47,4 @@ const SettingPlant = () => {
     );
 };
 
-export default SettingPlant;
+export default React.memo(SettingPlant);

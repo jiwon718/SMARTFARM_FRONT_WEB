@@ -1,5 +1,5 @@
 import { Stack, Typography } from '@mui/material';
-import IOSSwitch from './IOSSwitch';
+import IOSSwitch from '../common/IOSSwitch';
 
 const TypographyWithSwitch = ({ text, disabled, checked, onChange, sx }) => {
     return (
@@ -9,7 +9,7 @@ const TypographyWithSwitch = ({ text, disabled, checked, onChange, sx }) => {
 			justifyContent='space-between'
             sx={sx}
 		>
-			<Typography variant='h6'>{text}</Typography>
+			<Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>{text}</Typography>
 			<IOSSwitch
                 color='info'
                 sx={{ m: 1 }}

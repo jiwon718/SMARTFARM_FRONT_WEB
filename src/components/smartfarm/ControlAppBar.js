@@ -2,7 +2,7 @@
 
 import { Stack, Typography } from '@mui/material';
 import AppBar from '../../containers/common/AppBar';
-import { IOSSwitch } from '../../components/common/TypographyWithSwitch';
+import IOSSwitch from '../../components/common/IOSSwitch';
 
 const ControlAppBar = ({
     text,
