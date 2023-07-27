@@ -23,7 +23,7 @@ const LogIn = () => {
         navigate(process.env.REACT_APP_LOGIN_PATH);
     };
     const goBack = () => {
-        navigate(-1);
+        navigate(process.env.REACT_APP_LOGIN_PATH);
     };
 
     return (

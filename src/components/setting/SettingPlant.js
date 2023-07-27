@@ -1,18 +1,20 @@
-// SERVER: '작물 등록' 버튼 클릭 시 DB에 작물 등록 요청
-// 작물 품종을 입력하지 않았을 시 '작물 등록' 버튼 클릭 불가능 추가하기
-// 작물 품종 검색 기능 추가하기
+// SERVER: 서버로 작물 수정 요청
 
-import { Grid, Stack, Typography, MenuItem } from '@mui/material';
+import { Grid, Stack, Typography, MenuItem, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@mui/material';
 import TextFieldDefault from '../common/TextFieldDefault';
 import TextFieldWithButton from '../common/TextFieldWithButton';
 import SelectAutoWidth from '../common/SelectAutoWidth';
 import ButtonDefault from '../common/ButtonDefault';
 
-const RegisterSmartfarm = ({
+const SettingPlant = ({
     plant,
+    open,
     onNameChange,
     onDayChange,
-    onRegisterClick,
+    onModifyClick,
+    onOpenClick,
+    onYesClick,
+    onNoClick,
     goBack
 }) => {
     const numbers = [
@@ -22,7 +24,7 @@ const RegisterSmartfarm = ({
     ];
 
     return (
-        <div>
+        <div style={{ marginTop: 32 }}>
             <Grid container rowSpacing={3}>
                 <TextFieldDefault
                     label="이름"
@@ -56,8 +58,18 @@ const RegisterSmartfarm = ({
                     fontSize: 'medium',
                     fontWeight: 'bold'
                 }}
-                onClick={onRegisterClick}
-                text="작물 등록"
+                onClick={onModifyClick}
+                text="작물 수정"
+            />
+            <ButtonDefault
+                color="secondary"
+                sx={{
+                    mb: 2,
+                    fontSize: 'medium',
+                    fontWeight: 'bold'
+                }}
+                onClick={onOpenClick}
+                text="작물 삭제"
             />
             <ButtonDefault
                 color="secondary"
@@ -68,8 +80,24 @@ const RegisterSmartfarm = ({
                 onClick={goBack}
                 text="취소"
             />
+            <Dialog
+                open={open}
+                onClose={onNoClick}
+            >
+                <DialogTitle>회원 탈퇴</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        작물 삭제 시 해당 작물 정보를 확인할 수 없습니다.
+                        그래도 삭제하신다면, 아래 예 버튼을 클릭해주세요.
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={onNoClick}>아니요</Button>
+                    <Button onClick={onYesClick}>예</Button>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 };
 
-export default RegisterSmartfarm;
+export default SettingPlant;

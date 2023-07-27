@@ -25,7 +25,7 @@ const SettingPersonalInformation = ({
     goBack
 }) => {
     return (
-        <div>
+        <div style={{ marginTop: 32 }}>
             <TextFieldDefault
                 label="이름"
                 value={name}

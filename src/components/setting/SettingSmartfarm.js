@@ -16,7 +16,7 @@ const SettingSmartfarm = ({
     goBack
 }) => {
     return (
-        <div style={{ width: '100%' }}>
+        <div style={{ width: '100%', marginTop: 32 }}>
             <TextFieldWithButton
                 textFieldLabel="스마트팜 고유번호"
                 textFieldValue={smartfarm.smartfarmNumber}

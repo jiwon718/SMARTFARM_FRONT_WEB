@@ -17,7 +17,7 @@ const SettingPassword = ({
     goBack
 }) => {
     return (
-        <div>
+        <div style={{ marginTop: 32 }}>
             <TextFieldPassword
                 inputLabel="비밀번호"
                 value={password}

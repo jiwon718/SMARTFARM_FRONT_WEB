@@ -5,7 +5,7 @@ const SearchPasswordSuccess = () => {
     const navigate = useNavigate();
 
     const goLogIn = () => {
-        navigate(process.env.REACT_APP_SEARCH_PASSWORD_SUCCESS_PATH);
+        navigate(process.env.REACT_APP_LOGIN_PATH);
     };
 
     return (
