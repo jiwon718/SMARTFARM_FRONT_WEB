@@ -1,6 +1,6 @@
 import { Container, Box } from '@mui/material';
 
-const XsContainerBox = ({ maxWidth, children }) => {
+const ContainerBox = ({ maxWidth, children }) => {
     return (
         <Container component="main" maxWidth={maxWidth}>
             <Box
@@ -17,4 +17,4 @@ const XsContainerBox = ({ maxWidth, children }) => {
     );
 };
 
-export default XsContainerBox;
+export default ContainerBox;

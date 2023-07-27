@@ -3,8 +3,10 @@
 // 성공: 설정 목록 화면으로 이동
 // 실패: 해당 화면에 그대로
 
+import { Grid, Typography } from '@mui/material';
 import TextFieldPassword from "../../containers/common/TextFieldPassword";
 import ButtonDefault from "../common/ButtonDefault";
+import WarningAmberRoundedIcon from '@mui/icons-material/WarningAmberRounded';
 
 const SettingPassword = ({
     password,
@@ -29,6 +31,14 @@ const SettingPassword = ({
                 onChange={onPasswordCheckChange}
                 id="check"
             />
+            <Grid container>
+                <Grid item xs={1}>
+                    <WarningAmberRoundedIcon color="warning" sx={{ fontSize: 20 }}/>
+                </Grid>
+                <Grid item xs={11}>
+                    <Typography variant="caption">비밀번호는 영문 대소문자, 숫자, 특수문자(.!@#$%)를 혼합하여 8~20자로 입력해주세요.</Typography>
+                </Grid>
+            </Grid>
             <ButtonDefault
                 disabled={false}
                 sx={{

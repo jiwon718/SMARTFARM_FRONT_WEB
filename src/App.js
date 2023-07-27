@@ -37,6 +37,8 @@ import SettingPage from './pages/setting/SettingPage';
 import SettingVerifyPage from './pages/setting/SettingVerifyPage';
 import SettingPersonalInformationPage from "./pages/setting/SettingPersonalInformationPage";
 import SettingPasswordPage from './pages/setting/SettingPasswordPage';
+import SettingSmartfarmPage from './pages/setting/SettingSmartfarmPage';
+import RemoveSmartfarmSuccessPage from './pages/setting/RemoveSmartfarmSuccessPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 const App = () => {
@@ -79,6 +81,8 @@ const App = () => {
                 <Route path={process.env.REACT_APP_SETTING_VERIFY_PATH} element={<SettingVerifyPage/>}/>
                 <Route path={process.env.REACT_APP_SETTING_PERSONAL_INFORMATION_PATH} element={<SettingPersonalInformationPage />}/>
                 <Route path={process.env.REACT_APP_SETTING_PASSWORD_PATH} element={<SettingPasswordPage />}/>
+                <Route path={process.env.REACT_APP_SETTING_SMARTFARM_PATH} element={<SettingSmartfarmPage />}/>
+                <Route path={process.env.REACT_APP_REMOVE_SMARTFARM_SUCCESS_PATH} element={<RemoveSmartfarmSuccessPage />}/>
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </ThemeProvider>
