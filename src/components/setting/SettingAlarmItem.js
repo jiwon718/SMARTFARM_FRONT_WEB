@@ -1,13 +1,13 @@
 import { Stack, Typography } from '@mui/material';
 import IOSSwitch from '../common/IOSSwitch';
 
-const TypographyWithSwitch = ({ text, disabled, checked, onChange, sx }) => {
+const SettingAlarmItem = ({ text, disabled, checked, onChange, sx }) => {
     return (
 		<Stack
 			direction='row'
 			alignItems='center'
 			justifyContent='space-between'
-            sx={sx}
+            sx={{ mt: 1, mb: 1 }}
 		>
 			<Typography variant='subtitle1' sx={{ fontWeight: 'bold' }}>{text}</Typography>
 			<IOSSwitch
@@ -21,4 +21,4 @@ const TypographyWithSwitch = ({ text, disabled, checked, onChange, sx }) => {
     )
 }
 
-export default TypographyWithSwitch;
+export default SettingAlarmItem;

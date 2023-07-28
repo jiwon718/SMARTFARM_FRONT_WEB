@@ -1,84 +1,87 @@
-// 스마트팜 미등록 시 스마트팜 미등록 홈화면(HomeNotRegisterSmartfarm)으로 이동하기
-// 작물 미등록 시 작물 미등록 화면(HomeNotRegisterPlant)으로 이동하기
-// SERVER: 작물 상태와 관련된 정보 요청
+import HomeNotRegisterSmartfarm from './HomeNotRegisterSmartfarm';
+import HomeNotRegisterPlant from './HomeNotRegisterPlant';
+import Environment from './Environment';
+import System from './System';
+import MyCard from '../common/MyCard';
+import bulb from '../../lib/icon/bulb.png';
+import raindrops from '../../lib/icon/raindrops.png';
+import wind from '../../lib/icon/wind.png';
+import door from '../../lib/icon/door.png';
 
-import { Stack, Box, Typography } from '@mui/material';
-import BasicHome from '../../containers/common/BasicHome';
-import ButtonDefault from '../common/ButtonDefault';
-import plant from '../../lib/icon/plant.png';
-import sad from '../../lib/emoji/sad.png';
-import laugh from '../../lib/emoji/laugh.png';
+const Home = ({
+    existSmartfarm,
+    existPlant,
+    temperature,
+    humidity,
+    ledStatus,
+    wateringSystemStatus,
+    fanStatus,
+    centerDoorStatus,
+    goRegisterSmartfarm,
+    goRegisterPlant
+}) => {
+    const system = [
+        {
+            id: 1,
+            image: bulb,
+            imageLink: process.env.REACT_APP_CONTROL_LED_PATH,
+            title: 'LED',
+            text: ledStatus,
+            sx: { mb: 2.5 }
+        },
+        {
+            id: 2,
+            image: raindrops,
+            imageLink: process.env.REACT_APP_CONTROL_WATERING_SYSTEM_PATH,
+            title: '관수 시스템',
+            text: wateringSystemStatus,
+            sx: { mb: 2.5 }
+        },
+        {
+            id: 3,
+            image: wind,
+            imageLink: process.env.REACT_APP_CONTROL_FAN_PATH,
+            title: '환기팬',
+            text: fanStatus,
+            sx: { mb: 2.5 }
+        },
+        {
+            id: 4,
+            image: door,
+            imageLink: process.env.REACT_APP_CONTROL_CENTER_DOOR_PATH,
+            title: '중앙문',
+            text: centerDoorStatus
+        },
+    ]
 
-const TextWithEmoji = ({ text, emoji, sx }) => {
     return (
-        <Stack
-            direction='row'
-            alignItems='center'
-            sx={sx}
-        >
-            <Typography variant='subtitle1'>{text}</Typography>
-            <img
-                src={emoji}
-                alt='이모티콘'
-                style={{
-                    width: 20,
-                    height: 20,
-                    marginLeft: 5,
-                    objectFit: 'cover'
-                }}
-            />
-        </Stack>
-    )
-}
-
-const Home = () => {
-    return (
-        <BasicHome>
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center'
-                }}
-            >
-                <img
-                    src={plant}
-                    alt='작물'
-                    style={{
-                        width: 150,
-                        height: 150,
-                        objectFit: 'cover'
-                    }}
-                />
-                <Typography
-                    variant='h5'
-                    sx={{ fontWeight: 'bold', mt: 3.5}}
-                >
-                    새싹이와 10일 째
-                </Typography>
-                <TextWithEmoji
-                    text='90일 후에 새싹이와 헤어질 예정이에요'
-                    emoji={sad}
-                    sx={{ mt: 1}}
-                />
-                <ButtonDefault
-                    color='secondary'
-                    disabled={true}
-                    sx={{
-                        mt: 3,
-                        fontSize: 'medium',
-                        fontWeight: 'bold'
-                    }}
-                    text="수확"
-                />
-                <TextWithEmoji
-                    text='농부의 DNA가 흐르고 있네요'
-                    emoji={laugh}
-                    sx={{ mt: 3 }}
-                />
-                <Typography sx={{ mt: 0.5 }}>새싹이는 건강하게 자라고 있으니 걱정마세요</Typography>
-            </Box>
-        </BasicHome>
+        existSmartfarm === false ? (
+            <HomeNotRegisterSmartfarm onClick={goRegisterSmartfarm}/>
+        ) : (
+            <div style={{ width: '100%'}}>
+                { !existPlant && <HomeNotRegisterPlant onClick={goRegisterPlant}/>}
+                <MyCard sx={{ width: '100%', mt: 6, mb: 4 }}>
+                    <Environment
+                        name='온도'
+                        value={`${temperature}℃`}
+                        sx={{ mb: 1 }}
+                    />
+                    <Environment name='습도' value={`${humidity}%`}/>
+                </MyCard>
+                <MyCard sx={{ width: '100%' }}>
+                    { system.map((system) => 
+                        <System
+                            key={system.id}
+                            image={system.image}
+                            imageLink={system.imageLink}
+                            title={system.title}
+                            text={system.text}
+                            sx={system.sx}
+                        />
+                    )}
+                </MyCard>
+            </div>
+        )
     );
 };
 

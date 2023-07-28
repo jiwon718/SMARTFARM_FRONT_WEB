@@ -1,6 +1,6 @@
 import AppBar from '../../containers/common/AppBar';
 import ContainerBox from '../../components/common/ContainerBox';
-import AlarmList from '../../components/alarm/AlarmList';
+import AlarmList from '../../containers/alarm/AlarmList';
 
 const AlarmPage = () => {
     return (

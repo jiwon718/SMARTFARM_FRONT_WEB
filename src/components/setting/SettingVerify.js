@@ -9,7 +9,8 @@ import ButtonDefault from "../common/ButtonDefault";
 const SettingVerify = ({
     password,
     onPasswordChange,
-    onVerifyClick
+    onVerifyClick,
+    goBack
 }) => {
     return (
         <div>
@@ -22,11 +23,21 @@ const SettingVerify = ({
                 disabled={false}
                 sx={{
                     mt: 6.5,
+                    mb: 2,
                     fontSize: 'medium',
                     fontWeight: 'bold'
                 }}
                 onClick={onVerifyClick}
                 text="다음"
+            />
+            <ButtonDefault
+                color='secondary'
+                sx={{
+                    fontSize: 'medium',
+                    fontWeight: 'bold'
+                }}
+                onClick={goBack}
+                text="취소"
             />
         </div>
     );

@@ -17,8 +17,6 @@ import SearchPasswordSuccessPage from './pages/user/SearchPasswordSuccessPage';
 import SearchPasswordFailurePage from './pages/user/SearchPasswordFailurePage';
 // 홈
 import HomePage from './pages/smartfarm/HomePage';
-import HomeNotRegisterSmartfarmPage from './pages/smartfarm/HomeNotRegisterSmartfarmPage';
-import HomeNotRegisterPlantPage from './pages/smartfarm/HomeNotRegisterPlantPage';
 // 스마트팜 등록
 import RegisterSmartfarmPage from './pages/smartfarm/RegisterSmartfarmPage';
 import RegisterSmartfarmSuccessPage from "./pages/smartfarm/RegisterSmartfarmSuccessPage";
@@ -64,8 +62,6 @@ const App = () => {
                 <Route path={process.env.REACT_APP_SEARCH_PASSWORD_FAILURE_PATH} element={<SearchPasswordFailurePage />}/>
                 {/* 홈 */}
                 <Route path={process.env.REACT_APP_HOME_PATH} element={<HomePage />}/>
-                <Route path={process.env.REACT_APP_HOME_NOT_REGISTER_SMARTFARM_PATH} element={<HomeNotRegisterSmartfarmPage />}/>
-                <Route path={process.env.REACT_APP_HOME_NOT_REGISTER_PLANT_PATH} element={<HomeNotRegisterPlantPage />}/>
                 {/* 스마트팜 등록 */}
                 <Route path={process.env.REACT_APP_REGISTER_SMARTFARM_PATH} element={<RegisterSmartfarmPage />}/>
                 <Route path={process.env.REACT_APP_REGISTER_SMARTFARM_SUCCESS_PATH} element={<RegisterSmartfarmSuccessPage />}/>

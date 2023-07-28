@@ -1,6 +1,6 @@
 import AppBar from '../../containers/common/AppBar';
 import ContainerBox from '../../components/common/ContainerBox';
-import SettingList from '../../components/setting/SettingList';
+import SettingList from '../../containers/setting/SettingList';
 
 const AlarmPage = () => {
     return (

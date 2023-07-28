@@ -29,6 +29,9 @@ const SettingVerify = () => {
                 break;
         }
     };
+    const goBack = () => {
+        navigate(process.env.REACT_APP_SETTING_PATH);
+    };
 
     useEffect(() => {
         return () => {
@@ -41,6 +44,7 @@ const SettingVerify = () => {
             password={password}
             onPasswordChange={onPasswordChange}
             onVerifyClick={onVerifyClick}
+            goBack={goBack}
         />
     );
 };

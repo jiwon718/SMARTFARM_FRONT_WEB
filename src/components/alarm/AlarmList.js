@@ -3,14 +3,21 @@
 
 import AlarmBox from './AlarmBox';
 import AlarmItem from '../../containers/alarm/AlarmItem';
+import ButtonDefault from '../common/ButtonDefault';
 import profile from '../../lib/icon/profile.png';
 import greenhouse from '../../lib/icon/greenhouse.png';
 import plant from '../../lib/icon/plant.png';
 
-const AlarmList = () => {
+const AlarmList = ({
+    existSmartfarm,
+    existPlant,
+    goRegisterSmartfarm,
+    goRegisterPlant
+}) => {
     const userAlarm = null;
     const SmartFarmAlarm = [
-        { id: 1, text: '현장 제어 모드로 설정하셨습니다.', time: '15분 전' }
+        { id: 1, text: '현장 제어 모드로 설정하셨습니다.', time: '15분 전' },
+        { id: 2, text: '원격 제어 모드로 설정하셨습니다.', time: '2시간 전' }
     ];
     const PlantAlarm = [
         { id: 1, text: '작물을 키우기 시작하셨습니다.', time: '10일 전' },
@@ -31,13 +38,39 @@ const AlarmList = () => {
                 title='스마트팜'
                 sx={{ mb: 4 }}
             >
-                { SmartFarmAlarm && SmartFarmAlarm.map((alarm) => <AlarmItem key={alarm.id} alarm={alarm}/>)}
+                { existSmartfarm === false ? (
+                    <ButtonDefault
+                        sx={{
+                            mt: 1,
+                            fontSize: 'medium',
+                            fontweight: 'bold',
+                            color: '#ffffff'
+                        }}
+                        onClick={goRegisterSmartfarm}
+                        text="스마트팜 등록"
+                    />
+                ) : (
+                    SmartFarmAlarm && SmartFarmAlarm.map((alarm) => <AlarmItem key={alarm.id} alarm={alarm}/>)
+                )}
             </AlarmBox>
             <AlarmBox
                 image={plant}
                 title='작물'
             >
-                { PlantAlarm && PlantAlarm.map((alarm) => <AlarmItem key={alarm.id} alarm={alarm}/>)}
+                { existPlant === false ? (
+                    <ButtonDefault
+                        sx={{
+                            mt: 1,
+                            fontSize: 'medium',
+                            fontweight: 'bold',
+                            color: '#ffffff'
+                        }}
+                        onClick={goRegisterPlant}
+                        text="작물 등록"
+                    />
+                ) : (
+                    PlantAlarm && PlantAlarm.map((alarm) => <AlarmItem key={alarm.id} alarm={alarm}/>)
+                )}
             </AlarmBox>
         </div>
     )

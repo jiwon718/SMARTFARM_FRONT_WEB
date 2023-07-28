@@ -1,6 +1,6 @@
 import AppBar from '../../containers/common/AppBar';
 import ContainerBox from '../../components/common/ContainerBox';
-import Home from '../../components/smartfarm/Home';
+import Home from '../../containers/smartfarm/Home';
 
 const HomePage = () => {
     return (

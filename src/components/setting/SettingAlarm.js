@@ -1,7 +1,5 @@
-import { Stack, Divider } from '@mui/material';
 import SettingBox from './SettingBox';
-import TypographyWithSwitch from './TypographyWithSwitch';
-import SettingBoxOnlyTypography from './SettingBoxOnlyTypography';
+import SettingAlarmItem from './SettingAlarmItem';
 import ButtonDefault from '../common/ButtonDefault';
 
 const SettingAlarm = ({
@@ -18,25 +16,71 @@ const SettingAlarm = ({
     goRegisterSmartfarm,
     goRegisterPlant
 }) => {
+    const userSettingAlarm = [
+        {
+            id: 1,
+            text: '개인정보 수정 알람',
+            checked: settingAlarm.modifyPersonalInformation,
+            onChange: onModifyPersonalInformationChange
+        },
+        {
+            id: 2,
+            text: '로그인/로그아웃 알람',
+            checked: settingAlarm.logInOut,
+            onChange: onLogInOutChange
+        }
+    ];
+    const smartfarmSettingAlarm = [
+        {
+            id: 1,
+            text: '스마트팜 정보 수정 알람',
+            checked: settingAlarm.modifySmartfarm,
+            onChange: onModifySmartfarmChange
+        },
+        {
+            id: 2,
+            text: '스마트팜 현장/원격 제어 알람',
+            checked: settingAlarm.autoControlSmartfarm,
+            onChange: onAutoControlSmartfarmChange
+        },
+        {
+            id: 3,
+            text: '스마트팜 이상 경고 알람',
+            checked: settingAlarm.warnSmartfarm,
+            onChange: onWarnSmartfarmChange
+        }
+    ];
+    const plantSettingAlarm = [
+        {
+            id: 1,
+            text: '작물 정보 수정 알람',
+            checked: settingAlarm.modifyPlant,
+            onChange: onModifyPlantChange
+        },
+        {
+            id: 2,
+            text: '작물 적정 수확 시기 알람',
+            checked: settingAlarm.harvestPlant,
+            onChange: onHarvestPlantChange
+        }
+    ];
+
     return (
         <div style={{ width: '100%', marginTop: 32 }}>
             <SettingBox
                 title='사용자'
                 sx={{ mb: 4 }}
             >
-                <TypographyWithSwitch
-                    text='개인정보 수정 알람'
-                    checked={settingAlarm.modifyPersonalInformation}
-                    onChange={onModifyPersonalInformationChange}
-                />
-                <TypographyWithSwitch
-                    text='로그인/로그아웃 알람'
-                    sx={{ mt: 1.5 }}
-                    checked={settingAlarm.logInOut}
-                    onChange={onLogInOutChange}
-                />
+                { userSettingAlarm.map((user) => 
+                    <SettingAlarmItem
+                        key={user.id}
+                        text={user.text}
+                        checked={user.checked}
+                        onChange={user.onChange}
+                    />
+                )}
             </SettingBox>
-            <SettingBoxOnlyTypography
+            <SettingBox
                 title='스마트팜'
                 sx={{ mb: 4 }}
             >
@@ -52,39 +96,23 @@ const SettingAlarm = ({
                         text="스마트팜 등록"
                     />
                 ) : (
-                    <Stack
-                        direction='column'
-                        divider={<Divider orientation="horizontal" flexItem />}
-                        sx={{ mt: 2 }}
-                    >
-                        <TypographyWithSwitch
-                            text='스마트팜 정보 수정 알람'
-                            checked={settingAlarm.modifySmartfarm}
-                            onChange={onModifySmartfarmChange}
+                    smartfarmSettingAlarm.map((smartfarm) => 
+                        <SettingAlarmItem
+                            key={smartfarm.id}
+                            text={smartfarm.text}
+                            checked={smartfarm.checked}
+                            onChange={smartfarm.onChange}
                         />
-                        <TypographyWithSwitch
-                            text='스마트팜 현장/원격 제어 알람'
-                            sx={{ mt: 1.5 }}
-                            checked={settingAlarm.autoControlSmartfarm}
-                            onChange={onAutoControlSmartfarmChange}
-                        />
-                        <TypographyWithSwitch
-                            text='스마트팜 이상 경고 알람'
-                            sx={{ mt: 1.5 }}
-                            checked={settingAlarm.warnSmartfarm}
-                            onChange={onWarnSmartfarmChange}
-                        />
-                    </Stack>
+                    )
                 )}
-            </SettingBoxOnlyTypography>
-            <SettingBoxOnlyTypography
+            </SettingBox>
+            <SettingBox
                 title='작물'
-                sx={{ mb: 4 }}
             >
                 { existPlant === false ? (
                     <ButtonDefault
                         sx={{
-                            mt: 2,
+                            mt: 1,
                             fontSize: 'medium',
                             fontweight: 'bold',
                             color: '#ffffff'
@@ -93,25 +121,16 @@ const SettingAlarm = ({
                         text="작물 등록"
                     />
                 ) : (
-                    <Stack
-                        direction='column'
-                        divider={<Divider orientation="horizontal" flexItem />}
-                        sx={{ mt: 2 }}
-                    >
-                        <TypographyWithSwitch
-                            text='작물 정보 수정 알람'
-                            checked={settingAlarm.modifyPlant}
-                            onChange={onModifyPlantChange}
+                    plantSettingAlarm.map((plant) => 
+                        <SettingAlarmItem
+                            key={plant.id}
+                            text={plant.text}
+                            checked={plant.checked}
+                            onChange={plant.onChange}
                         />
-                        <TypographyWithSwitch
-                            text='작물 적정 수확 시기 알람'
-                            sx={{ mt: 1.5 }}
-                            checked={settingAlarm.harvestPlant}
-                            onChange={onHarvestPlantChange}
-                        />
-                    </Stack>
+                    )
                 )}
-            </SettingBoxOnlyTypography>
+            </SettingBox>
         </div>
     );
 };

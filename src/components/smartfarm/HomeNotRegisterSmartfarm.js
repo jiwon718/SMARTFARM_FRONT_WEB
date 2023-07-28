@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 import ButtonDefault from '../common/ButtonDefault';
 import greenhouse from '../../lib/icon/greenhouse.png';
 
-const HomeNotRegisterSmartfarm = ({ goRegisterSmartfarm }) => {
+const HomeNotRegisterSmartfarm = ({ onClick }) => {
     return (
         <div>
             <Box
@@ -42,7 +42,7 @@ const HomeNotRegisterSmartfarm = ({ goRegisterSmartfarm }) => {
                         fontWeight: 'bold',
                         color: '#ffffff'
                     }}
-                    onClick={goRegisterSmartfarm}
+                    onClick={onClick}
                     text="스마트팜 등록"
                 />
             </Box>
