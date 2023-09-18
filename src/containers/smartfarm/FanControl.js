@@ -1,16 +1,13 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import FanControlComponent from '../../components/smartfarm/FanControl';
-import { changePower, changeWork, changeAutoWork, changeAutoWorkPeriod, changeAutoWorkPeriodUnit, changeAutoWorkTime, changeAutoWorkTimeUnit } from '../../modules/smartfarm/fanControl';
+import { changeWork, changeAutoWork, changeAutoWorkPeriod, changeAutoWorkPeriodUnit, changeAutoWorkTime, changeAutoWorkTimeUnit } from '../../modules/smartfarm/fanControl';
 
 const FanControl = () => {
     const fanControl = useSelector(state => state.fanControl);
 
     const dispatch = useDispatch();
 
-    const onPowerChange = useCallback(e => {
-        dispatch(changePower(e.target.checked));
-    }, [dispatch]);
     const onWorkChange = useCallback(e => {
         dispatch(changeWork(e.target.checked));
     }, [dispatch]);
@@ -33,7 +30,6 @@ const FanControl = () => {
     return (
         <FanControlComponent
             fanControl={fanControl}
-            onPowerChange={onPowerChange}
             onWorkChange={onWorkChange}
             onAutoWorkChange={onAutoWorkChange}
             onAutoWorkPeriodChange={onAutoWorkPeriodChange}

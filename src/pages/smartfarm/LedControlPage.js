@@ -1,12 +1,12 @@
 import ContainerBox from '../../components/common/ContainerBox';
-import ControlAppBar from '../../containers/smartfarm/ControlAppBar';
+import AppBar from '../../containers/common/AppBar';
 import LedControl from '../../containers/smartfarm/LedControl';
 import ControlTabs from '../../components/smartfarm/ControlTabs';
 
 const LedControlPage = () => {
     return (
         <div>
-            <ControlAppBar text='LED'/>
+            <AppBar text='LED'/>
             <ContainerBox maxWidth="sm">
                 <LedControl />
             </ContainerBox>

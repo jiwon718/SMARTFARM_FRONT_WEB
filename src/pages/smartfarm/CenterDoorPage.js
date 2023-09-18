@@ -1,12 +1,12 @@
 import ContainerBox from '../../components/common/ContainerBox';
-import ControlAppBar from '../../containers/smartfarm/ControlAppBar';
+import AppBar from '../../containers/common/AppBar';
 import CenterDoorControl from '../../containers/smartfarm/CenterDoorControl';
 import ControlTabs from '../../components/smartfarm/ControlTabs';
 
 const CenterDoorPage = () => {
     return (
         <div>
-            <ControlAppBar text='중앙문'/>
+            <AppBar text='중앙문'/>
             <ContainerBox maxWidth="sm">
                 <CenterDoorControl />
             </ContainerBox>

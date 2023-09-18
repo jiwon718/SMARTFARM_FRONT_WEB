@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SettingSmartfarmComponent from '../../components/setting/SettingSmartfarm';
-import { changeSmartfarmNumber, changeSuccess } from '../../modules/smartfarm/smartfarm';
+import { changeExist, changeSmartfarmNumber, changeSuccess } from '../../modules/smartfarm/smartfarm';
 
 const SettingSmartfarm = () => {
     const smartfarm = useSelector(state => state.smartfarm);
@@ -23,6 +23,7 @@ const SettingSmartfarm = () => {
     };
     const onYesClick = () => {
         console.log('SERVER: 스마트팜 삭제 요청');
+        dispatch(changeExist());
         navigate(process.env.REACT_APP_REMOVE_SMARTFARM_SUCCESS_PATH);
     };
     const onNoClick = () => {

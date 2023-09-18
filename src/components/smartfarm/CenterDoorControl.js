@@ -2,14 +2,12 @@
 
 import { Box, Typography } from '@mui/material';
 import MyCard from '../common/MyCard';
-import TypographyWithSwitch from '../common/TypographyWithSwitch';
 import TypographyWithButton from '../common/TypographyWithButton';
 import CheckBoxWithLabel from '../common/CheckBoxWithLabel';
 import TypographyWithTimeNumberPicker from '../common/TypographyWithTimeNumberPicker';
 
 const CenterDoorControl = ({
     centerDoorControl,
-    onPowerChange,
     onWorkChange,
     onAutoWorkChange,
     onAutoWorkPeriodChange,
@@ -20,28 +18,22 @@ const CenterDoorControl = ({
     return (
         <div style={{ width: '100%'}} >
             <MyCard sx={{ width: '100%' }}>
-                <TypographyWithSwitch
-                    text='전원 ON/OFF'
-                    checked={centerDoorControl.power}
-                    onChange={onPowerChange}
-                />
                 <TypographyWithButton
                     text='문 열기'
                     buttonText={centerDoorControl.workButtonText}
-                    disabled={!centerDoorControl.power || centerDoorControl.autoWork}
+                    disabled={centerDoorControl.autoWork}
                     onClick={onWorkChange}
                     sx={{ mt: 1.5 }}
                 />
                 <CheckBoxWithLabel
                     text='자동 작동하기'
-                    disabled={!centerDoorControl.power}
                     checked={centerDoorControl.autoWork}
                     onChange={onAutoWorkChange}
                     sx={{ mt: 1.5 }}
                 />
                 <TypographyWithTimeNumberPicker
                     text='작동하기'
-                    disabled={!centerDoorControl.power || !centerDoorControl.autoWork}
+                    disabled={!centerDoorControl.autoWork}
                     periodNumbers={centerDoorControl.autoWorkPeriodNumber}
                     period={centerDoorControl.autoWorkPeriod}
                     onPeriodChange={onAutoWorkPeriodChange}

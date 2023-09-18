@@ -1,54 +1,35 @@
 import { createAction, handleActions } from 'redux-actions';
 import dayjs from 'dayjs';
 
-const CHANGE_POWER = 'ledControl/CHANGE_POWER';
 const CHANGE_WORK = 'ledControl/CHANGE_WORK';
-const CHANGE_LEVEL = 'ledControl/CHANGE_LEVEL';
 const CHANGE_AUTOWORK = 'ledControl/CHANGE_AUTOWORK';
 const CHANGE_AUTOWORK_START_TIME = 'ledControl/CHANGE_AUTOWORK_START_TIME';
 const CHANGE_AUTOWORK_END_TIME = 'ledControl/CHANGE_AUTOWORK_END_TIME';
 
-export const changePower = createAction(CHANGE_POWER, power => power);
-export const changeWork = createAction(CHANGE_WORK, work => work);
-export const changeLevel = createAction(CHANGE_LEVEL, level => level);
+export const changeWork = createAction(CHANGE_WORK);
 export const changeAutoWork = createAction(CHANGE_AUTOWORK, autoWork => autoWork);
 export const changeAutoWorkStartTime = createAction(CHANGE_AUTOWORK_START_TIME);
 export const changeAutoWorkEndTime = createAction(CHANGE_AUTOWORK_END_TIME);
 
 const initialState = {
-    power: false,
     work: false,
-    lightLevel: 1,
     autoWork: false,
     autoWorkStartTime: dayjs(),
     autoWorkEndTime: dayjs(),
     status: 'LED에 전원 공급을 하고 있지 않아요',
 
+    workButtonText: '켜기',
     getError: 'null',
     postError: 'null'
 };
 
 const ledControl = handleActions(
     {
-        [CHANGE_POWER]: (state, { payload: power }) => ({
+        [CHANGE_WORK]: (state) => ({
             ...state,
-            power: power,
-            status: state.power === true
-            ? 'LED에 전원 공급을 하고 있지 않아요'
-            : ( state.work === true
-                ? `현재 LED는 ${state.lightLevel}단계 밝기로 켜져 있어요`
-                : 'LED가 꺼져 있어요'
-            )
-        }),
-        [CHANGE_WORK]: (state, { payload: work }) => ({
-            ...state,
-            work: work,
-            status: state.work === true ? 'LED가 꺼져 있어요' : `현재 LED는 ${state.lightLevel}단계 밝기로 켜져 있어요`
-        }),
-        [CHANGE_LEVEL]: (state, { payload: level }) => ({
-            ...state,
-            lightLevel: level,
-            status: state.work === true ? `현재 LED는 ${level}단계 밝기로 켜져 있어요` : 'LED가 꺼져 있어요'
+            work: !state.work,
+            status: state.work === true ? 'LED가 꺼져 있어요' : 'LED가 켜져 있어요',
+            workButtonText: state.work === true ? '켜기' : '끄기'
         }),
         [CHANGE_AUTOWORK]: (state, { payload: autoWork}) => ({
             ...state,

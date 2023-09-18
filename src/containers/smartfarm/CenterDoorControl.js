@@ -1,16 +1,13 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import CenterDoorControlComponent from '../../components/smartfarm/CenterDoorControl';
-import { changePower, changeWork, changeAutoWork, changeAutoWorkPeriod, changeAutoWorkPeriodUnit, changeAutoWorkTime, changeAutoWorkTimeUnit } from '../../modules/smartfarm/centerDoorControl';
+import { changeWork, changeAutoWork, changeAutoWorkPeriod, changeAutoWorkPeriodUnit, changeAutoWorkTime, changeAutoWorkTimeUnit } from '../../modules/smartfarm/centerDoorControl';
 
 const CenterDoorControl = () => {
     const centerDoorControl = useSelector(state => state.centerDoorControl);
 
     const dispatch = useDispatch();
 
-    const onPowerChange = useCallback(e => {
-        dispatch(changePower(e.target.checked));
-    }, [dispatch]);
     const onWorkChange = useCallback(e => {
         dispatch(changeWork(e.target.checked));
     }, [dispatch]);
@@ -33,7 +30,6 @@ const CenterDoorControl = () => {
     return (
         <CenterDoorControlComponent
             centerDoorControl={centerDoorControl}
-            onPowerChange={onPowerChange}
             onWorkChange={onWorkChange}
             onAutoWorkChange={onAutoWorkChange}
             onAutoWorkPeriodChange={onAutoWorkPeriodChange}

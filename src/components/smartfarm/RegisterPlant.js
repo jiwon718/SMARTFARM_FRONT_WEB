@@ -2,9 +2,8 @@
 // 작물 품종을 입력하지 않았을 시 '작물 등록' 버튼 클릭 불가능 추가하기
 // 작물 품종 검색 기능 추가하기
 
-import { Grid, Stack, Typography, MenuItem } from '@mui/material';
+import { Stack, Typography, MenuItem } from '@mui/material';
 import TextFieldDefault from '../common/TextFieldDefault';
-import TextFieldWithButton from '../common/TextFieldWithButton';
 import SelectAutoWidth from '../common/SelectAutoWidth';
 import ButtonDefault from '../common/ButtonDefault';
 
@@ -22,20 +21,13 @@ const RegisterSmartfarm = ({
     ];
 
     return (
-        <div>
-            <Grid container rowSpacing={3}>
-                <TextFieldDefault
-                    label="이름"
-                    autoFocus={true}
-                    value={plant.name}
-                    onChange={onNameChange}
-                />
-                <TextFieldWithButton
-                        textFieldLabel="작물 품종"
-                        buttonDisabled={true}
-                        buttonText="검색"
-                />
-            </Grid>
+        <div style={{ width: '100%' }}>
+            <TextFieldDefault
+                label="이름"
+                autoFocus={true}
+                value={plant.name}
+                onChange={onNameChange}
+            />
             <Stack
                 direction='row'
                 alignItems='center'

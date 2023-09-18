@@ -1,6 +1,5 @@
 import { createAction, handleActions } from 'redux-actions';
 
-const CHANGE_POWER = 'wateringSystemControl/CHANGE_POWER';
 const CHANGE_WORK = 'wateringSystemControl/CHANGE_WORK';
 const CHANGE_AUTOWORK = 'wateringSystemControl/CHANGE_AUTOWORK';
 const CHANGE_AUTOWORK_PERIOD = 'wateringSystemControl/CHANGE_AUTOWORK_PERIOD';
@@ -8,7 +7,6 @@ const CHANGE_AUTOWORK_PERIOD_UNIT = 'wateringSystemControl/CHANGE_AUTOWORK_PERIO
 const CHANGE_AUTOWORK_TIME = 'wateringSystemControl/CHANGE_AUTOWORK_TIME';
 const CHANGE_AUTOWORK_TIME_UNIT = 'wateringSystemControl/CHANGE_AUTOWORK_TIME_UNIT';
 
-export const changePower = createAction(CHANGE_POWER);
 export const changeWork = createAction(CHANGE_WORK);
 export const changeAutoWork = createAction(CHANGE_AUTOWORK);
 export const changeAutoWorkPeriod = createAction(CHANGE_AUTOWORK_PERIOD, autoWorkPeriod => autoWorkPeriod);
@@ -30,7 +28,6 @@ const hourNumbers = [
 ]
 
 const initialState = {
-    power: false,
     work: false,
     autoWork: false,
     autoWorkPeriod: 1,
@@ -47,16 +44,6 @@ const initialState = {
 
 const wateringSystemControl = handleActions(
     {
-        [CHANGE_POWER]: (state, { payload: power }) => ({
-            ...state,
-            power: power,
-            status: state.power === true
-            ? '관수 시스템에 전원 공급을 하고 있지 않아요'
-            : ( state.work === true
-                ? `${state.autoWorkPeriod}${state.autoWorkPeriodUnit} 이후에 ${state.autoWorkTime}${state.autoWorkTimeUnit} 동안 물을 뿌려요`
-                : '관수 시스템이 작동하고 있지 않아요'
-            )
-        }),
         [CHANGE_WORK]: (state) => ({
             ...state,
             work: !state.work,

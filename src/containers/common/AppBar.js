@@ -17,6 +17,9 @@ const AppBar = ({ text, children }) => {
     const goHome = () => {
         navigate(process.env.REACT_APP_HOME_PATH);
     };
+    const goSmartfarm = () => {
+        navigate(process.env.REACT_APP_CONTROL_LED_PATH);
+    };
     const goAlarm = () => {
         navigate(process.env.REACT_APP_ALARM_PATH);
     };
@@ -30,6 +33,7 @@ const AppBar = ({ text, children }) => {
             children={children}
             onLogOutClick={onLogOutClick}
             goHome={goHome}
+            goSmartfarm={goSmartfarm}
             goAlarm={goAlarm}
             goSetting={goSetting}
         />

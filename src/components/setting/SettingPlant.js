@@ -84,7 +84,7 @@ const SettingPlant = ({
                 open={open}
                 onClose={onNoClick}
             >
-                <DialogTitle>회원 탈퇴</DialogTitle>
+                <DialogTitle>작물 삭제</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         작물 삭제 시 해당 작물 정보를 확인할 수 없습니다.

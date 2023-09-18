@@ -1,6 +1,5 @@
 import { createAction, handleActions } from 'redux-actions';
 
-const CHANGE_POWER = 'centerDoorControl/CHANGE_POWER';
 const CHANGE_WORK = 'centerDoorControl/CHANGE_WORK';
 const CHANGE_AUTOWORK = 'centerDoorControl/CHANGE_AUTOWORK';
 const CHANGE_AUTOWORK_PERIOD = 'centerDoorControl/CHANGE_AUTOWORK_PERIOD';
@@ -8,7 +7,6 @@ const CHANGE_AUTOWORK_PERIOD_UNIT = 'centerDoorControl/CHANGE_AUTOWORK_PERIOD_UN
 const CHANGE_AUTOWORK_TIME = 'centerDoorControl/CHANGE_AUTOWORK_TIME';
 const CHANGE_AUTOWORK_TIME_UNIT = 'centerDoorControl/CHANGE_AUTOWORK_TIME_UNIT';
 
-export const changePower = createAction(CHANGE_POWER, power => power);
 export const changeWork = createAction(CHANGE_WORK);
 export const changeAutoWork = createAction(CHANGE_AUTOWORK, autoWork => autoWork);
 export const changeAutoWorkPeriod = createAction(CHANGE_AUTOWORK_PERIOD, autoWorkPeriod => autoWorkPeriod);
@@ -30,7 +28,6 @@ const hourNumbers = [
 ]
 
 const initialState = {
-    power: false,
     work: false,
     autoWork: false,
     autoWorkPeriod: 1,
@@ -47,16 +44,6 @@ const initialState = {
 
 const centerDoorControl = handleActions(
     {
-        [CHANGE_POWER]: (state, { payload: power }) => ({
-            ...state,
-            power: power,
-            status: state.power === true
-            ? '중앙문에 전원 공급을 하고 있지 않아요'
-            : ( state.work === true
-                ? `${state.autoWorkPeriod}${state.autoWorkPeriodUnit} 이후에 ${state.autoWorkTime}${state.autoWorkTimeUnit} 동안 열려요`
-                : '중앙문이 열려 있지 않아요'
-            )
-        }),
         [CHANGE_WORK]: (state) => ({
             ...state,
             work: !state.work,

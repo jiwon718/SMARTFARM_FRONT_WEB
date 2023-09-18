@@ -2,16 +2,18 @@
 
 import { createAction, handleActions } from 'redux-actions';
 
+const CHANGE_EXIST = 'smartfarm/CHANGE_EXIST';
 const CHANGE_SMARTFARM_NUMBER = 'smartfarm/CHANGE_SMARTFARM_NUMBER';
 const CHANGE_SUCCESS = 'smartfarm/CHANGE_SUCCESS';
 const CHANGE_REMOTE_CONTROL = 'smartfarm/CHANGE_REMOTE_CONTROL';
 
+export const changeExist = createAction(CHANGE_EXIST);
 export const changeSmartfarmNumber = createAction(CHANGE_SMARTFARM_NUMBER, smartfarmNumber => smartfarmNumber);
 export const changeSuccess = createAction(CHANGE_SUCCESS);
 export const changeRemoteControl = createAction(CHANGE_REMOTE_CONTROL);
 
 const initialState = {
-    exist: false,
+    exist: true,
 
     smartfarmNumber: '',
     registerSuccess: false,
@@ -24,6 +26,10 @@ const initialState = {
 
 const smartfarm = handleActions(
     {
+        [CHANGE_EXIST]: (state) => ({
+            ...state,
+            exist: !state.exist
+        }),
         [CHANGE_SMARTFARM_NUMBER]: (state, { payload: smartfarmNumber }) => ({
             ...state,
             smartfarmNumber: smartfarmNumber

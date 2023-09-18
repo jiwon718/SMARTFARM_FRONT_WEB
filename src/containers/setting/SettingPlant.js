@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SettingPlantComponent from '../../components/setting/SettingPlant';
-import { changeName, changeDay } from '../../modules/smartfarm/plant';
+import { changeExist, changeName, changeDay } from '../../modules/smartfarm/plant';
 
 const SettingPlant = () => {
     const plant = useSelector(state => state.plant);
@@ -22,7 +22,8 @@ const SettingPlant = () => {
         setOpen(true);
     };
     const onYesClick = () => {
-        console.log('SERVER: 스마트팜 삭제 요청');
+        console.log('SERVER: 작물 삭제 요청');
+        dispatch(changeExist());
         navigate(process.env.REACT_APP_REMOVE_PLANT_SUCCESS_PATH);
     };
     const onNoClick = () => {

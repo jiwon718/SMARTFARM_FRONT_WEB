@@ -3,6 +3,7 @@
 
 import { Stack, Typography } from '@mui/material';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import TuneIcon from '@mui/icons-material/Tune';
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
@@ -13,6 +14,7 @@ const AppBar = ({
     children,
     onLogOutClick,
     goHome,
+    goSmartfarm,
     goAlarm,
     goSetting
 }) => {
@@ -26,6 +28,9 @@ const AppBar = ({
             <Stack direction='row' alignItems='center'>
                 <IconButtonWithTooltip title='홈' onClick={goHome}>
                     <HomeRoundedIcon sx={{ fontSize: 36 }}/>
+                </IconButtonWithTooltip>
+                <IconButtonWithTooltip title='스마트팜' onClick={goSmartfarm}>
+                    <TuneIcon sx={{ fontSize: 36 }}/>
                 </IconButtonWithTooltip>
                 <IconButtonWithTooltip title='알람' onClick={goAlarm}>
                     <NotificationsRoundedIcon sx={{ fontSize: 36 }}/>
@@ -44,12 +49,12 @@ const AppBar = ({
                     fontWeight: 'bold',
                     color: '#000000',
                     textAlign: 'center',
-                    width: 208
+                    width: 260
                 }}
             >
                 {text}
             </Typography>
-            <div style={{ width: 208 }}>
+            <div style={{ width: 260 }}>
                 {children}
             </div>
         </Stack>

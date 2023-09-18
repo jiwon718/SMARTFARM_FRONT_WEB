@@ -1,5 +1,6 @@
 import HomeNotRegisterSmartfarm from './HomeNotRegisterSmartfarm';
 import HomeNotRegisterPlant from './HomeNotRegisterPlant';
+import HomeRegisterPlant from './HomeRegisterPlant';
 import Environment from './Environment';
 import System from './System';
 import MyCard from '../common/MyCard';
@@ -59,7 +60,11 @@ const Home = ({
             <HomeNotRegisterSmartfarm onClick={goRegisterSmartfarm}/>
         ) : (
             <div style={{ width: '100%'}}>
-                { !existPlant && <HomeNotRegisterPlant onClick={goRegisterPlant}/>}
+                { existPlant === false ? (
+                    <HomeNotRegisterPlant onClick={goRegisterPlant}/>
+                ) : (
+                    <HomeRegisterPlant />
+                )}
                 <MyCard sx={{ width: '100%', mt: 6, mb: 4 }}>
                     <Environment
                         name='온도'

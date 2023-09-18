@@ -1,16 +1,13 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import WateringSystemControlComponent from '../../components/smartfarm/WateringSystemControl';
-import { changePower, changeWork, changeAutoWork, changeAutoWorkPeriod, changeAutoWorkPeriodUnit, changeAutoWorkTime, changeAutoWorkTimeUnit } from '../../modules/smartfarm/wateringSystemControl';
+import { changeWork, changeAutoWork, changeAutoWorkPeriod, changeAutoWorkPeriodUnit, changeAutoWorkTime, changeAutoWorkTimeUnit } from '../../modules/smartfarm/wateringSystemControl';
 
 const WateringSystemControl = () => {
     const wateringSystemControl = useSelector(state => state.wateringSystemControl);
 
     const dispatch = useDispatch();
 
-    const onPowerChange = useCallback(e => {
-        dispatch(changePower(e.target.checked));
-    }, [dispatch]);
     const onWorkChange = useCallback(() => {
         dispatch(changeWork());
     }, [dispatch]);
@@ -33,7 +30,6 @@ const WateringSystemControl = () => {
     return (
         <WateringSystemControlComponent
             wateringSystemControl={wateringSystemControl}
-            onPowerChange={onPowerChange}
             onWorkChange={onWorkChange}
             onAutoWorkChange={onAutoWorkChange}
             onAutoWorkPeriodChange={onAutoWorkPeriodChange}
