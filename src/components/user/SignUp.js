@@ -5,16 +5,19 @@ import TextFieldDefault from '../common/TextFieldDefault';
 import TextFieldPassword from '../../containers/common/TextFieldPassword';
 import ButtonDefault from '../common/ButtonDefault';
 import WarningAmberRoundedIcon from '@mui/icons-material/WarningAmberRounded';
+import SnackbarWithAlert from '../../containers/common/SnackbarWithAlert';
 
 const SignUp = ({
     name,
     id,
     password,
     passwordCheck,
+    signupError,
     onNameChange,
     onIdChange,
     onPasswordChange,
     onPasswordCheckChange,
+    onSignupErrorClear,
     onSignUpSuccessClick,
     goBack
 }) => {
@@ -61,7 +64,7 @@ const SignUp = ({
                 </Grid>
             </Grid>
             <ButtonDefault
-                disabled={false}
+                disabled={name === '' || id === '' || password !== passwordCheck}
                 color="secondary"
                 sx={{
                     mt: 6.5,
@@ -81,6 +84,7 @@ const SignUp = ({
                 onClick={goBack}
                 text="취소"
             />
+            <SnackbarWithAlert message={signupError} clearMessage={onSignupErrorClear}/>
         </div>
     );
 };

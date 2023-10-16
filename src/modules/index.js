@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import { all } from 'redux-saga/effects';
 import common from './common';
 import loading from './loading';
-import user from './user/user';
+import user, { userSaga } from './user/user';
 import smartfarm from './smartfarm/smartfarm';
 import plant from './smartfarm/plant';
 import ledControl from './smartfarm/ledControl';
@@ -22,5 +23,9 @@ const rootReducer = combineReducers({
     centerDoorControl,
     settingAlarm
 });
+
+export function* rootSaga() {
+    yield all([userSaga()]);
+}
 
 export default rootReducer;

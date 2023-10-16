@@ -5,12 +5,15 @@ import { Grid } from '@mui/material';
 import TextFieldDefault from '../common/TextFieldDefault';
 import TextFieldPassword from '../../containers/common/TextFieldPassword';
 import ButtonDefault from '../common/ButtonDefault';
+import SnackbarWithAlert from '../../containers/common/SnackbarWithAlert';
 
 const LogIn = ({
     id,
     password,
+    loginError,
     onIdChange,
     onPasswordChange,
+    onLoginErrorClear,
     onLogInClick,
     goVerify
 }) => {
@@ -73,6 +76,7 @@ const LogIn = ({
                     </Link>
                 </Grid>
             </Grid>
+            <SnackbarWithAlert message={loginError} clearMessage={onLoginErrorClear}/>
         </div>
     );
 };
