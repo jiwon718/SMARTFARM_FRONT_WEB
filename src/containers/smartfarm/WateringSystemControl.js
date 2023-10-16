@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import WateringSystemControlComponent from '../../components/smartfarm/WateringSystemControl';
-import { changeWork, changeAutoWork, changeAutoWorkPeriod, changeAutoWorkPeriodUnit, changeAutoWorkTime, changeAutoWorkTimeUnit } from '../../modules/smartfarm/wateringSystemControl';
+import { changeWork, changeWorkTime, changeAutoWork, changeAutoWorkPeriod } from '../../modules/smartfarm/wateringSystemControl';
 
 const WateringSystemControl = () => {
     const remoteControl = useSelector(state => state.smartfarm.remoteControl);
@@ -12,20 +12,14 @@ const WateringSystemControl = () => {
     const onWorkChange = useCallback(() => {
         dispatch(changeWork());
     }, [dispatch]);
+    const onWorkTimeChange = useCallback(e => {
+        dispatch(changeWorkTime(e.target.value));
+    }, [dispatch]);
     const onAutoWorkChange = useCallback(e => {
         dispatch(changeAutoWork(e.target.checked));
     }, [dispatch]);
     const onAutoWorkPeriodChange = useCallback(e => {
         dispatch(changeAutoWorkPeriod(e.target.value));
-    }, [dispatch]);
-    const onAutoWorkPeriodUnitChange = useCallback(e => {
-        dispatch(changeAutoWorkPeriodUnit(e.target.value));
-    }, [dispatch]);
-    const onAutoWorkTimeChange = useCallback(e => {
-        dispatch(changeAutoWorkTime(e.target.value));
-    }, [dispatch]);
-    const onAutoWorkTimeUnitChange = useCallback(e => {
-        dispatch(changeAutoWorkTimeUnit(e.target.value));
     }, [dispatch]);
 
     return (
@@ -33,11 +27,9 @@ const WateringSystemControl = () => {
             remoteControl={remoteControl}
             wateringSystemControl={wateringSystemControl}
             onWorkChange={onWorkChange}
+            onWorkTimeChange={onWorkTimeChange}
             onAutoWorkChange={onAutoWorkChange}
             onAutoWorkPeriodChange={onAutoWorkPeriodChange}
-            onAutoWorkPeriodUnitChange={onAutoWorkPeriodUnitChange}
-            onAutoWorkTimeChange={onAutoWorkTimeChange}
-            onAutoWorkTimeUnitChange={onAutoWorkTimeUnitChange}
         />
     );
 };

@@ -1,7 +1,7 @@
 // 스마트팜 등록번호 확인 후 등록 가능 여부(success) 바꾸기
 
 import { createAction, handleActions } from 'redux-actions';
-import { put, select, takeLatest } from 'redux-saga/effects';
+import { select, put, takeLatest } from 'redux-saga/effects';
 import { changeRemoteControl as changeLedRemoteControl } from './ledControl';
 import { changeRemoteControl as changeWateringSystemRemoteControl } from './wateringSystemControl';
 import { changeRemoteControl as changeFanRemoteControl } from './fanControl';
