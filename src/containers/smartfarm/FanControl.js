@@ -1,9 +1,10 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import FanControlComponent from '../../components/smartfarm/FanControl';
-import { changeWork, changeAutoWork, changeAutoWorkPeriod, changeAutoWorkPeriodUnit, changeAutoWorkTime, changeAutoWorkTimeUnit } from '../../modules/smartfarm/fanControl';
+import { changeWork, changeAutoWork, changeAutoWorkStartTime, changeAutoWorkEndTime } from '../../modules/smartfarm/fanControl';
 
 const FanControl = () => {
+    const remoteControl = useSelector(state => state.smartfarm.remoteControl);
     const fanControl = useSelector(state => state.fanControl);
 
     const dispatch = useDispatch();
@@ -14,28 +15,21 @@ const FanControl = () => {
     const onAutoWorkChange = useCallback(e => {
         dispatch(changeAutoWork(e.target.checked));
     }, [dispatch]);
-    const onAutoWorkPeriodChange = useCallback(e => {
-        dispatch(changeAutoWorkPeriod(e.target.value));
+    const onAutoWorkStartTimeChange = useCallback(startTime => {
+        dispatch(changeAutoWorkStartTime(startTime));
     }, [dispatch]);
-    const onAutoWorkPeriodUnitChange = useCallback(e => {
-        dispatch(changeAutoWorkPeriodUnit(e.target.value));
-    }, [dispatch]);
-    const onAutoWorkTimeChange = useCallback(e => {
-        dispatch(changeAutoWorkTime(e.target.value));
-    }, [dispatch]);
-    const onAutoWorkTimeUnitChange = useCallback(e => {
-        dispatch(changeAutoWorkTimeUnit(e.target.value));
+    const onAutoWorkEndTimeChange = useCallback(endTime => {
+        dispatch(changeAutoWorkEndTime(endTime));
     }, [dispatch]);
 
     return (
         <FanControlComponent
+            remoteControl={remoteControl}
             fanControl={fanControl}
             onWorkChange={onWorkChange}
             onAutoWorkChange={onAutoWorkChange}
-            onAutoWorkPeriodChange={onAutoWorkPeriodChange}
-            onAutoWorkPeriodUnitChange={onAutoWorkPeriodUnitChange}
-            onAutoWorkTimeChange={onAutoWorkTimeChange}
-            onAutoWorkTimeUnitChange={onAutoWorkTimeUnitChange}
+            onAutoWorkStartTimeChange={onAutoWorkStartTimeChange}
+            onAutoWorkEndTimeChange={onAutoWorkEndTimeChange}
         />
     );
 };

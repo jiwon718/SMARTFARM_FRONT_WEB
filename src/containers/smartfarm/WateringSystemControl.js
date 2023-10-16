@@ -4,6 +4,7 @@ import WateringSystemControlComponent from '../../components/smartfarm/WateringS
 import { changeWork, changeAutoWork, changeAutoWorkPeriod, changeAutoWorkPeriodUnit, changeAutoWorkTime, changeAutoWorkTimeUnit } from '../../modules/smartfarm/wateringSystemControl';
 
 const WateringSystemControl = () => {
+    const remoteControl = useSelector(state => state.smartfarm.remoteControl);
     const wateringSystemControl = useSelector(state => state.wateringSystemControl);
 
     const dispatch = useDispatch();
@@ -29,6 +30,7 @@ const WateringSystemControl = () => {
 
     return (
         <WateringSystemControlComponent
+            remoteControl={remoteControl}
             wateringSystemControl={wateringSystemControl}
             onWorkChange={onWorkChange}
             onAutoWorkChange={onAutoWorkChange}

@@ -3,7 +3,7 @@ import { all } from 'redux-saga/effects';
 import common from './common';
 import loading from './loading';
 import user, { userSaga } from './user/user';
-import smartfarm from './smartfarm/smartfarm';
+import smartfarm, { smartfarmSaga } from './smartfarm/smartfarm';
 import plant from './smartfarm/plant';
 import ledControl from './smartfarm/ledControl';
 import wateringSystemControl from './smartfarm/wateringSystemControl';
@@ -25,7 +25,7 @@ const rootReducer = combineReducers({
 });
 
 export function* rootSaga() {
-    yield all([userSaga()]);
+    yield all([userSaga(), smartfarmSaga()]);
 }
 
 export default rootReducer;

@@ -4,46 +4,45 @@ import { Box, Typography } from '@mui/material';
 import MyCard from '../common/MyCard';
 import TypographyWithButton from '../common/TypographyWithButton';
 import CheckBoxWithLabel from '../common/CheckBoxWithLabel';
-import TypographyWithTimeNumberPicker from '../common/TypographyWithTimeNumberPicker';
+import TypographyWithTimePicker from '../common/TypographyWithTimePicker';
 
 const CenterDoorControl = ({
+    remoteControl,
     centerDoorControl,
     onWorkChange,
     onAutoWorkChange,
-    onAutoWorkPeriodChange,
-    onAutoWorkPeriodUnitChange,
-    onAutoWorkTimeChange,
-    onAutoWorkTimeUnitChange
+    onAutoWorkStartTimeChange,
+    onAutoWorkEndTimeChange
 }) => {
     return (
         <div style={{ width: '100%'}} >
             <MyCard sx={{ width: '100%' }}>
                 <TypographyWithButton
-                    text='문 열기'
+                    text='문 열기/닫기'
                     buttonText={centerDoorControl.workButtonText}
-                    disabled={centerDoorControl.autoWork}
+                    disabled={!remoteControl || centerDoorControl.autoWork}
                     onClick={onWorkChange}
                     sx={{ mt: 1.5 }}
                 />
                 <CheckBoxWithLabel
                     text='자동 작동하기'
                     checked={centerDoorControl.autoWork}
+                    disabled={!remoteControl}
                     onChange={onAutoWorkChange}
                     sx={{ mt: 1.5 }}
                 />
-                <TypographyWithTimeNumberPicker
-                    text='작동하기'
+                <TypographyWithTimePicker
+                    text='여는 시각'
                     disabled={!centerDoorControl.autoWork}
-                    periodNumbers={centerDoorControl.autoWorkPeriodNumber}
-                    period={centerDoorControl.autoWorkPeriod}
-                    onPeriodChange={onAutoWorkPeriodChange}
-                    periodUnit={centerDoorControl.autoWorkPeriodUnit}
-                    onPeriodUnitChange={onAutoWorkPeriodUnitChange}
-                    time={centerDoorControl.autoWorkTime}
-                    onTimeChange={onAutoWorkTimeChange}
-                    timeUnit={centerDoorControl.autoWorkTimeUnit}
-                    onTimeUnitChange={onAutoWorkTimeUnitChange}
-                    sx={{ mt: 1.5 }}
+                    value={centerDoorControl.autoWorkStartTime}
+                    onChange={onAutoWorkStartTimeChange}
+                />
+                <TypographyWithTimePicker
+                    text='닫는 시각'
+                    disabled={!centerDoorControl.autoWork}
+                    value={centerDoorControl.autoWorkEndTime}
+                    onChange={onAutoWorkEndTimeChange}
+                    sx={{ mt: 0.3 }}
                 />
             </MyCard>
             <Box

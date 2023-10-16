@@ -7,6 +7,7 @@ import CheckBoxWithLabel from '../common/CheckBoxWithLabel';
 import TypographyWithTimePicker from '../common/TypographyWithTimePicker';
 
 const LedControl = ({
+    remoteControl,
     ledControl,
     onWorkChange,
     onAutoWorkChange,
@@ -17,26 +18,27 @@ const LedControl = ({
         <div style={{ width: '100%'}} >
             <MyCard sx={{ width: '100%' }}>
                 <TypographyWithButton
-                    text='켜기'
+                    text='켜기/끄기'
                     buttonText={ledControl.workButtonText}
-                    disabled={ledControl.autoWork}
+                    disabled={!remoteControl || ledControl.autoWork}
                     onClick={onWorkChange}
                     sx={{ mt: 1.5 }}
                 />
                 <CheckBoxWithLabel
                     text='자동 작동하기'
                     checked={ledControl.autoWork}
+                    disabled={!remoteControl}
                     onChange={onAutoWorkChange}
                     sx={{ mt: 1.5 }}
                 />
                 <TypographyWithTimePicker
-                    text='켜기'
+                    text='켜는 시각'
                     disabled={!ledControl.autoWork}
                     value={ledControl.autoWorkStartTime}
                     onChange={onAutoWorkStartTimeChange}
                 />
                 <TypographyWithTimePicker
-                    text='끄기'
+                    text='끄는 시각'
                     disabled={!ledControl.autoWork}
                     value={ledControl.autoWorkEndTime}
                     onChange={onAutoWorkEndTimeChange}

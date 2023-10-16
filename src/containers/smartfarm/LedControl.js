@@ -4,6 +4,7 @@ import LedControlComponent from '../../components/smartfarm/LedControl';
 import { changeWork, changeAutoWork, changeAutoWorkStartTime, changeAutoWorkEndTime } from '../../modules/smartfarm/ledControl';
 
 const LedControl = () => {
+    const remoteControl = useSelector(state => state.smartfarm.remoteControl);
     const ledControl = useSelector(state => state.ledControl);
 
     const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const LedControl = () => {
 
     return (
         <LedControlComponent
+            remoteControl={remoteControl}
             ledControl={ledControl}
             onWorkChange={onWorkChange}
             onAutoWorkChange={onAutoWorkChange}

@@ -7,6 +7,7 @@ import CheckBoxWithLabel from '../common/CheckBoxWithLabel';
 import TypographyWithTimeNumberPicker from '../common/TypographyWithTimeNumberPicker';
 
 const WateringSystemControl = ({
+    remoteControl,
     wateringSystemControl,
     onWorkChange,
     onAutoWorkChange,
@@ -19,15 +20,16 @@ const WateringSystemControl = ({
         <div style={{ width: '100%'}} >
             <MyCard sx={{ width: '100%' }}>
                 <TypographyWithButton
-                    text='물 주기'
+                    text='물 주기/중단하기'
                     buttonText={wateringSystemControl.workButtonText}
-                    disabled={wateringSystemControl.autoWork}
+                    disabled={!remoteControl || wateringSystemControl.autoWork}
                     onClick={onWorkChange}
                     sx={{ mt: 1.5 }}
                 />
                 <CheckBoxWithLabel
                     text='자동 물 주기'
                     checked={wateringSystemControl.autoWork}
+                    disabled={!remoteControl}
                     onChange={onAutoWorkChange}
                     sx={{ mt: 1.5 }}
                 />

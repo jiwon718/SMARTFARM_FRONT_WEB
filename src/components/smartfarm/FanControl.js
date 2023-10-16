@@ -4,46 +4,45 @@ import { Box, Typography } from '@mui/material';
 import MyCard from '../common/MyCard';
 import TypographyWithButton from '../common/TypographyWithButton';
 import CheckBoxWithLabel from '../common/CheckBoxWithLabel';
-import TypographyWithTimeNumberPicker from '../common/TypographyWithTimeNumberPicker';
+import TypographyWithTimePicker from '../common/TypographyWithTimePicker';
 
 const FanControl = ({
+    remoteControl,
     fanControl,
     onWorkChange,
     onAutoWorkChange,
-    onAutoWorkPeriodChange,
-    onAutoWorkPeriodUnitChange,
-    onAutoWorkTimeChange,
-    onAutoWorkTimeUnitChange
+    onAutoWorkStartTimeChange,
+    onAutoWorkEndTimeChange
 }) => {
     return (
         <div style={{ width: '100%'}} >
             <MyCard sx={{ width: '100%' }}>
                 <TypographyWithButton
-                    text='작동하기'
+                    text='작동하기/중단하기'
                     buttonText={fanControl.workButtonText}
-                    disabled={fanControl.autoWork}
+                    disabled={!remoteControl || fanControl.autoWork}
                     onClick={onWorkChange}
                     sx={{ mt: 1.5 }}
                 />
                 <CheckBoxWithLabel
                     text='자동 작동하기'
                     checked={fanControl.autoWork}
+                    disabled={!remoteControl}
                     onChange={onAutoWorkChange}
                     sx={{ mt: 1.5 }}
                 />
-                <TypographyWithTimeNumberPicker
-                    text='작동하기'
+                <TypographyWithTimePicker
+                    text='작동하는 시각'
                     disabled={!fanControl.autoWork}
-                    periodNumbers={fanControl.autoWorkPeriodNumber}
-                    period={fanControl.autoWorkPeriod}
-                    onPeriodChange={onAutoWorkPeriodChange}
-                    periodUnit={fanControl.autoWorkPeriodUnit}
-                    onPeriodUnitChange={onAutoWorkPeriodUnitChange}
-                    time={fanControl.autoWorkTime}
-                    onTimeChange={onAutoWorkTimeChange}
-                    timeUnit={fanControl.autoWorkTimeUnit}
-                    onTimeUnitChange={onAutoWorkTimeUnitChange}
-                    sx={{ mt: 1.5 }}
+                    value={fanControl.autoWorkStartTime}
+                    onChange={onAutoWorkStartTimeChange}
+                />
+                <TypographyWithTimePicker
+                    text='중단하는 시각'
+                    disabled={!fanControl.autoWork}
+                    value={fanControl.autoWorkEndTime}
+                    onChange={onAutoWorkEndTimeChange}
+                    sx={{ mt: 0.3 }}
                 />
             </MyCard>
             <Box
