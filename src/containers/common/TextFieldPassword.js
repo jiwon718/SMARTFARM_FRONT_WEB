@@ -1,15 +1,15 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 import TextFieldPasswordComponent from '../../components/common/TextFieldPassword';
-import { changeShowPassword } from '../../modules/common';
 
 const TextFieldPassword = ({ inputLabel, disabled, value, onChange, id, error }) => {
-    const showPassword = useSelector(state => state.common.showPassword);
-
-    const dispatch = useDispatch();
+    const [show, setShow] = useState(false);
 
     const onMouseDownPassword = (event) => {
         event.preventDefault();
+    }
+
+    const onClick = () => {
+        setShow(!show);
     }
 
     return (
@@ -20,8 +20,8 @@ const TextFieldPassword = ({ inputLabel, disabled, value, onChange, id, error })
             disabled={disabled}
             value={value}
             onChange={onChange}
-            showPassword={showPassword}
-            onClickShowPassword={() => dispatch(changeShowPassword())}
+            showPassword={show}
+            onClickShowPassword={onClick}
             onMouseDownPassword={onMouseDownPassword}
         />
     );
