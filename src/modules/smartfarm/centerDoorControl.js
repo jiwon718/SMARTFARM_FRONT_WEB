@@ -20,7 +20,7 @@ const initialState = {
     autoWorkEndTime: dayjs(),
     status: '원격 제어 모드가 아니에요',
 
-    workButtonText: '문 열기',
+    workButtonText: '열기',
     getError: 'null',
     postError: 'null'
 };
@@ -31,14 +31,14 @@ const centerDoorControl = handleActions(
             ...state,
             work: !state.work,
             status: state.work ? '중앙문이 열려 있지 않아요' : '중앙문이 열려 있어요',
-            workButtonText: state.work ? '문 열기' : '문 닫기'
+            workButtonText: state.work ? '열기' : '닫기'
         }),
         [CHANGE_AUTOWORK]: (state, { payload: autoWork }) => ({
             ...state,
             work: false,
             autoWork: autoWork,
             status: !state.autoWork ? `중앙문이 자동으로 ${state.autoWorkStartTime.format('A hh:mm')}에 열고, ${state.autoWorkEndTime.format('A hh:mm')}에 닫아요` : '중앙문이 열려 있지 않아요',
-            workButtonText: '문 열기'
+            workButtonText: '열기'
         }),
         [CHANGE_AUTOWORK_START_TIME]: (state, { payload: startTime }) => ({
             ...state,
@@ -55,7 +55,7 @@ const centerDoorControl = handleActions(
             work: false,
             autoWork: false,
             status: remoteControl ? '중앙문이 열려 있지 않아요' : '원격 제어 모드가 아니에요',
-            workButtonText: '문 열기'
+            workButtonText: '열기'
         })     
     },
     initialState

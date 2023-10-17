@@ -17,14 +17,14 @@ const SnackbarWithAlert = ({
             autoHideDuration={5000}
             onClose={handleClose}
         >
-        <Alert
-            onClose={handleClose}
-            severity="error"
-            sx={{ width: '100%' }}
-        >
-            {message}
-        </Alert>
-      </Snackbar>
+            <Alert
+                onClose={handleClose}
+                severity="error"
+                sx={{ width: '100%' }}
+            >
+                {message}
+            </Alert>
+        </Snackbar>
     )
 }
 

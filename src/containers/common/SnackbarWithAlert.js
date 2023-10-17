@@ -1,27 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { unshowSnackbar } from '../../modules/common';
 import SnackbarWithAlertComponent from '../../components/common/SnackbarWithAlert';
 
-const SnackbarWithAlert = ({ message, clearMessage }) => {
-    const [open, setOpen] = useState(false);
+const SnackbarWithAlert = () => {
+    const open = useSelector(state => state.common.showSnackbar);
+    const errorMessage = useSelector(state => state.common.errorMessage);
+
+    const dispatch = useDispatch();
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
-        return;
+            return;
         }
 
-        setOpen(false);
-        setTimeout(() => clearMessage(), 100);
+        dispatch(unshowSnackbar());
     };
-
-    useEffect(() => {
-        if (message !== null && message !== false) {
-            setOpen(true);
-        }
-    }, [message]);
 
     return (
         <SnackbarWithAlertComponent
-            message={message}
+            message={errorMessage}
             open={open}
             handleClose={handleClose}
         />

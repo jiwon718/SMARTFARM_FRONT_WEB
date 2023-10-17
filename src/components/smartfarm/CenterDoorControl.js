@@ -25,7 +25,7 @@ const CenterDoorControl = ({
                     sx={{ mt: 1.5 }}
                 />
                 <CheckBoxWithLabel
-                    text='자동 작동하기'
+                    text='자동 문 열기/닫기'
                     checked={centerDoorControl.autoWork}
                     disabled={!remoteControl}
                     onChange={onAutoWorkChange}

@@ -25,7 +25,7 @@ const LedControl = ({
                     sx={{ mt: 1.5 }}
                 />
                 <CheckBoxWithLabel
-                    text='자동 작동하기'
+                    text='자동 켜기/끄기'
                     checked={ledControl.autoWork}
                     disabled={!remoteControl}
                     onChange={onAutoWorkChange}

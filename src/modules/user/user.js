@@ -1,7 +1,9 @@
 import { createAction, handleActions } from 'redux-actions';
-import { takeLatest } from 'redux-saga/effects';
+import { put, select, takeLatest } from 'redux-saga/effects';
+import { useNavigate } from 'react-router-dom';
 import createRequestSaga, { createRequestActionTypes } from '../../lib/api/createRequestSaga';
 import * as WebAPI from '../../lib/api/webApi';
+import { showSnackbar } from '../common';
 
 const CHANGE_ID = 'user/CHANGE_ID';
 const CHANGE_PASSWORD = 'user/CHANGE_PASSWORD';
@@ -10,9 +12,7 @@ const CHANGE_NAME = 'user/CHANGE_NAME';
 const CHANGE_PHONE_NUMBER = 'user/CHANGE_PHONE_NUMBER';
 const CHANGE_LOGOUT = 'user/CHANGE_LOGOUT';
 const SIGNUP_INITIALIZE = 'user/SIGNUP_INITIALIZE';
-const CLEAR_SIGNUP_ERROR = 'user/CLEAR_SIGNUP_ERROR';
 const LOGIN_INITIALIZE = 'user/LOGIN_INITIALIZE';
-const CLEAR_LOGIN_ERROR = 'user/CHANGE_LOGIN_ERROR';
 const [SIGNUP, SIGNUP_SUCCESS, SIGNUP_FAILURE] = createRequestActionTypes('user/SIGNUP');
 const [LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE] = createRequestActionTypes('user/LOGIN');
 
@@ -23,18 +23,46 @@ export const changeName = createAction(CHANGE_NAME, name => name);
 export const changePhoneNumber = createAction(CHANGE_PHONE_NUMBER, phoneNumber => phoneNumber);
 export const changeLogOut = createAction(CHANGE_LOGOUT);
 export const signupInitialize = createAction(SIGNUP_INITIALIZE);
-export const clearSignupError = createAction(CLEAR_SIGNUP_ERROR);
 export const loginInitialize = createAction(LOGIN_INITIALIZE);
-export const clearLoginError = createAction(CLEAR_LOGIN_ERROR);
 export const signup = createAction(SIGNUP);
 export const login = createAction(LOGIN);
 
 const signupSaga = createRequestSaga(SIGNUP, WebAPI.signup);
 const loginSaga = createRequestSaga(LOGIN, WebAPI.login);
 
+function* SignupSuccessSaga() {
+    const navigate = useNavigate();
+
+    yield put(signupInitialize());
+    navigate(process.env.REACT_APP_SIGNUP_SUCCESS_PATH);
+}
+
+function* signupFailureSaga() {
+    const signupError = yield select(state => state.user.signupError);
+
+    yield put(showSnackbar(signupError));
+}
+
+function* LoginSuccessSaga() {
+    const navigate = useNavigate();
+
+    yield put(loginInitialize());
+    navigate(process.env.REACT_APP_HOME_PATH);
+}
+
+function* loginFailureSaga() {
+    const loginError = yield select(state => state.user.loginError);
+
+    yield put(showSnackbar(loginError));
+}
+
 export function* userSaga() {
-    yield takeLatest(LOGIN, loginSaga);
     yield takeLatest(SIGNUP, signupSaga);
+    yield takeLatest(LOGIN, loginSaga);
+    yield takeLatest(SIGNUP_SUCCESS, SignupSuccessSaga);
+    yield takeLatest(SIGNUP_FAILURE, signupFailureSaga);
+    yield takeLatest(LOGIN_SUCCESS, LoginSuccessSaga);
+    yield takeLatest(LOGIN_FAILURE, loginFailureSaga);
 }
 
 const initialState = {
@@ -88,26 +116,18 @@ const user = handleActions(
             phoneNumber: '',
             signupError: null
         }),
-        [CLEAR_SIGNUP_ERROR]: (state) => ({
-            ...state,
-            signupError: null
-        }),
         [SIGNUP_SUCCESS]: (state) => ({
             ...state,
             signupError: false
         }),
         [SIGNUP_FAILURE]: (state, { payload: error }) => ({
             ...state,
-            signupError: error.response.data
+            signupError: error.code === 'ERR_NETWORK' ? '잠시 후 시도해주세요' : error.response.data
         }),
         [LOGIN_INITIALIZE]: (state) => ({
             ...state,
             id: '',
             password: '',
-            loginError: null
-        }),
-        [CLEAR_LOGIN_ERROR]: (state) => ({
-            ...state,
             loginError: null
         }),
         [LOGIN_SUCCESS]: (state) => ({
@@ -116,7 +136,7 @@ const user = handleActions(
         }),
         [LOGIN_FAILURE]: (state, { payload: error }) => ({
             ...state,
-            loginError: error.response.data
+            loginError: error.code === 'ERR_NETWORK' ? '잠시 후 시도해주세요' : error.response.data
         })
     },
     initialState

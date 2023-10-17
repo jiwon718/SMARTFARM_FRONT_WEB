@@ -25,7 +25,7 @@ const FanControl = ({
                     sx={{ mt: 1.5 }}
                 />
                 <CheckBoxWithLabel
-                    text='자동 작동하기'
+                    text='자동 작동하기/중단하기'
                     checked={fanControl.autoWork}
                     disabled={!remoteControl}
                     onChange={onAutoWorkChange}

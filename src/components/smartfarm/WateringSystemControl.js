@@ -35,12 +35,12 @@ const WateringSystemControl = ({
                     text='물 주는 시간'
                     numbers={workTimeNumbers}
                     value={wateringSystemControl.workTime}
-                    disabled={!remoteControl}
+                    disabled={!remoteControl || wateringSystemControl.work}
                     onChange={onWorkTimeChange}
                     sx={{ mt: 1.5 }}
                 />
                 <CheckBoxWithLabel
-                    text='자동 물 주기'
+                    text='자동 물 주기/중단하기'
                     checked={wateringSystemControl.autoWork}
                     disabled={!remoteControl}
                     onChange={onAutoWorkChange}

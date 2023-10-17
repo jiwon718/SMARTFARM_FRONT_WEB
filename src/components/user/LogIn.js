@@ -10,10 +10,8 @@ import SnackbarWithAlert from '../../containers/common/SnackbarWithAlert';
 const LogIn = ({
     id,
     password,
-    loginError,
     onIdChange,
     onPasswordChange,
-    onLoginErrorClear,
     onLogInClick,
     goVerify
 }) => {
@@ -76,7 +74,7 @@ const LogIn = ({
                     </Link>
                 </Grid>
             </Grid>
-            <SnackbarWithAlert message={loginError} clearMessage={onLoginErrorClear}/>
+            <SnackbarWithAlert />
         </div>
     );
 };

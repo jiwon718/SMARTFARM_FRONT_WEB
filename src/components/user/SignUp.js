@@ -12,12 +12,10 @@ const SignUp = ({
     id,
     password,
     passwordCheck,
-    signupError,
     onNameChange,
     onIdChange,
     onPasswordChange,
     onPasswordCheckChange,
-    onSignupErrorClear,
     onSignUpSuccessClick,
     goBack
 }) => {
@@ -84,7 +82,7 @@ const SignUp = ({
                 onClick={goBack}
                 text="취소"
             />
-            <SnackbarWithAlert message={signupError} clearMessage={onSignupErrorClear}/>
+            <SnackbarWithAlert />
         </div>
     );
 };
