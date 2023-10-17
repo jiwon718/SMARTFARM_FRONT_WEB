@@ -1,5 +1,6 @@
 import { call, put } from 'redux-saga/effects';
 import { startLoading, finishLoading } from '../../modules/loading';
+import { showSnackbar } from '../../modules/common';
 
 export const createRequestActionTypes = type => {
     const SUCCESS = `${type}_SUCCESS`;
@@ -27,6 +28,7 @@ export default function createRequestSaga(type, request) {
                 payload: e,
                 error: true
             });
+            yield put(showSnackbar(e.code === 'ERR_NETWORK' ? '잠시 후 시도해주세요' : e.response.data));
         }
 
         yield put(finishLoading(type));

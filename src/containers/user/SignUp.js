@@ -1,14 +1,16 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SignUpComponent from '../../components/user/SignUp';
 import { changeName, changeId, changePassword, changePasswordCheck, signupInitialize, signup } from '../../modules/user/user';
+import { unshowSnackbar } from '../../modules/common';
 
-const LogIn = () => {
+const SignUp = () => {
     const name = useSelector(state => state.user.name);
     const id = useSelector(state => state.user.id);
     const password = useSelector(state => state.user.password);
     const passwordCheck = useSelector(state => state.user.passwordCheck);
+    const signupSuccess = useSelector(state => state.user.signupSuccess);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -31,6 +33,17 @@ const LogIn = () => {
         navigate(process.env.REACT_APP_LOGIN_PATH);
     };
 
+    useEffect(() => {
+        if (signupSuccess) {
+            navigate(process.env.REACT_APP_LOGIN_PATH);
+        }
+        
+        return (() => {
+            dispatch(signupInitialize());
+            dispatch(unshowSnackbar());
+        })
+    }, [signupSuccess, navigate, dispatch]);
+
     return (
         <SignUpComponent
             name={name}
@@ -47,4 +60,4 @@ const LogIn = () => {
     );
 };
 
-export default React.memo(LogIn);
+export default React.memo(SignUp);
