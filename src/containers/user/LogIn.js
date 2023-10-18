@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import LogInComponent from '../../components/user/LogIn';
 import { changeId, changePassword, loginInitialize, login } from '../../modules/user/user';
-import { unshowSnackbar } from '../../modules/common';
 
 const LogIn = () => {
     const id = useSelector(state => state.user.id);
@@ -28,10 +27,7 @@ const LogIn = () => {
             navigate(process.env.REACT_APP_HOME_PATH);
         }
 
-        return (() => {
-            dispatch(loginInitialize());
-            dispatch(unshowSnackbar());
-        })
+        return () => dispatch(loginInitialize())
     }, [loginSuccess, navigate, dispatch]);
 
     return (

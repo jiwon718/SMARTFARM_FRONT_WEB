@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SignUpComponent from '../../components/user/SignUp';
 import { changeName, changeId, changePassword, changePasswordCheck, signupInitialize, signup } from '../../modules/user/user';
-import { unshowSnackbar } from '../../modules/common';
 
 const SignUp = () => {
     const name = useSelector(state => state.user.name);
@@ -38,10 +37,7 @@ const SignUp = () => {
             navigate(process.env.REACT_APP_LOGIN_PATH);
         }
         
-        return (() => {
-            dispatch(signupInitialize());
-            dispatch(unshowSnackbar());
-        })
+        return () => dispatch(signupInitialize())
     }, [signupSuccess, navigate, dispatch]);
 
     return (
