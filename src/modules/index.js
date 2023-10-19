@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
 import { all } from 'redux-saga/effects';
-import common, { commonSaga } from './common';
+import common from './common';
 import loading from './loading';
 import user, { userSaga } from './user/user';
 import smartfarm, { smartfarmSaga } from './smartfarm/smartfarm';
-import plant from './smartfarm/plant';
-import ledControl from './smartfarm/ledControl';
+import plant, { plantSaga } from './smartfarm/plant';
+import ledControl, { ledControlSaga } from './smartfarm/ledControl';
 import wateringSystemControl, { wateringSystemControlSaga } from './smartfarm/wateringSystemControl';
-import fanControl from './smartfarm/fanControl';
-import centerDoorControl from './smartfarm/centerDoorControl';
+import fanControl, { fanControlSaga } from './smartfarm/fanControl';
+import centerDoorControl, { centerDoorControlSaga } from './smartfarm/centerDoorControl';
 import settingAlarm from './setting/settingAlarm';
 
 const rootReducer = combineReducers({
@@ -25,7 +25,15 @@ const rootReducer = combineReducers({
 });
 
 export function* rootSaga() {
-    yield all([commonSaga(), userSaga(), smartfarmSaga(), wateringSystemControlSaga()]);
+    yield all([
+        userSaga(),
+        smartfarmSaga(),
+        plantSaga(),
+        ledControlSaga(),
+        wateringSystemControlSaga(),
+        fanControlSaga(),
+        centerDoorControlSaga()
+    ]);
 }
 
 export default rootReducer;

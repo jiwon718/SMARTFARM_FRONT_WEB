@@ -38,7 +38,7 @@ const AlarmList = ({
                 title='스마트팜'
                 sx={{ mb: 4 }}
             >
-                { existSmartfarm === false ? (
+                { !existSmartfarm ? (
                     <ButtonDefault
                         sx={{
                             mt: 1,
@@ -57,7 +57,7 @@ const AlarmList = ({
                 image={plant}
                 title='작물'
             >
-                { existPlant === false ? (
+                { !existPlant ? (
                     <ButtonDefault
                         sx={{
                             mt: 1,

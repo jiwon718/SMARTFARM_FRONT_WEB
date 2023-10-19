@@ -1,17 +1,17 @@
 import React from 'react';
-import { Snackbar, Alert as MuiAlert } from '@mui/material';
+import { Snackbar as MuiSnackbar, Alert as MuiAlert } from '@mui/material';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const SnackbarWithAlert = ({
+const Snackbar = ({
     message,
     open,
     handleClose
 }) => {
     return (
-        <Snackbar
+        <MuiSnackbar
             anchorOrigin={{vertical: 'top', horizontal: 'center'}}
             open={open}
             autoHideDuration={5000}
@@ -24,8 +24,8 @@ const SnackbarWithAlert = ({
             >
                 {message}
             </Alert>
-        </Snackbar>
+        </MuiSnackbar>
     )
 }
 
-export default SnackbarWithAlert;
+export default Snackbar;

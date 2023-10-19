@@ -2,10 +2,11 @@ import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SettingSmartfarmComponent from '../../components/setting/SettingSmartfarm';
-import { changeExist, changeSmartfarmNumber, changeSuccess } from '../../modules/smartfarm/smartfarm';
+import { changeExist, changeSmartfarmNumber, checkSmartfarmNumber } from '../../modules/smartfarm/smartfarm';
 
 const SettingSmartfarm = () => {
-    const smartfarm = useSelector(state => state.smartfarm);
+    const smartfarmNumber = useSelector(state => state.smartfarm.smartfarmNumber);
+    const checkSmartfarmNumberSuccess = useSelector(state => state.smartfarm.checkSmartfarmNumberSuccess);
 
     const [open, setOpen] = useState(false);
 
@@ -13,7 +14,9 @@ const SettingSmartfarm = () => {
     const navigate = useNavigate();
 
     const onSmartfarmNumberChange = useCallback(e => dispatch(changeSmartfarmNumber(e.target.value)), [dispatch]);
-    const onSuccessChange = useCallback(() => dispatch(changeSuccess()), [dispatch]);
+    const onCheckSmartfarmNumberClick = () => {
+        dispatch(checkSmartfarmNumber({smartfarmNumber}));
+    };
 
     const onModifyClick = () => {
         console.log('SERVER: 스마트팜 수정 요청');
@@ -35,10 +38,11 @@ const SettingSmartfarm = () => {
 
     return (
         <SettingSmartfarmComponent
-            smartfarm={smartfarm}
+            smartfarmNumber={smartfarmNumber}
+            checkSmartfarmNumberSuccess={checkSmartfarmNumberSuccess}
             open={open}
             onSmartfarmNumberChange={onSmartfarmNumberChange}
-            onSuccessChange={onSuccessChange}
+            onCheckSmartfarmNumberClick={onCheckSmartfarmNumberClick}
             onModifyClick={onModifyClick}
             onOpenClick={onOpenClick}
             onYesClick={onYesClick}

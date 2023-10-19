@@ -1,26 +1,31 @@
-import { call, put } from 'redux-saga/effects';
+import { select, call, put } from 'redux-saga/effects';
+import { createRequestActionTypes } from './createRequestSaga';
 import { startLoading, finishLoading } from '../../modules/loading';
 import { showSnackbar } from '../../modules/common';
 
-export const createRequestActionTypes = type => {
-    const SUCCESS = `${type}_SUCCESS`;
-    const FAILURE = `${type}_FAILURE`;
-
-    return [type, SUCCESS, FAILURE];
+export const createControlRequesActionTypes = type => {
+    return createRequestActionTypes(type);
 }
 
-export default function createRequestSaga(type, request) {
+export default function createControlRequestSaga(type, request, key) {
     const SUCCESS = `${type}_SUCCESS`;
     const FAILURE = `${type}_FAILURE`;
 
     return function*(action) {
         yield put(startLoading(type));
 
+        const datas = yield select(state => state[type.split('/', 1)[0]]);
+
         try {
-            const response = yield call(request, action.payload);
+            // throw "예외 발생";
+
+            yield call(request, {
+                ...datas,
+                [key]: action.payload !== undefined ? action.payload : !datas[key]
+            });
             yield put({
                 type: SUCCESS,
-                payload: response.data
+                payload: action.payload
             });
         } catch (e) {
             yield put({

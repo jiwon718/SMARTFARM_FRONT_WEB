@@ -2,6 +2,7 @@ import ContainerBox from '../../components/common/ContainerBox';
 import ControlAppBar from '../../containers/smartfarm/ControlAppBar';
 import LedControl from '../../containers/smartfarm/LedControl';
 import ControlTabs from '../../components/smartfarm/ControlTabs';
+import Snackbar from '../../containers/common/Snackbar';
 
 const LedControlPage = () => {
     return (
@@ -11,6 +12,7 @@ const LedControlPage = () => {
                 <LedControl />
             </ContainerBox>
             <ControlTabs />
+            <Snackbar />
         </div>
     )
 };

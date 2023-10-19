@@ -5,7 +5,6 @@ import { Grid } from '@mui/material';
 import TextFieldDefault from '../common/TextFieldDefault';
 import TextFieldPassword from '../../containers/common/TextFieldPassword';
 import ButtonDefault from '../common/ButtonDefault';
-import SnackbarWithAlert from '../../containers/common/SnackbarWithAlert';
 
 const LogIn = ({
     id,
@@ -74,7 +73,6 @@ const LogIn = ({
                     </Link>
                 </Grid>
             </Grid>
-            <SnackbarWithAlert />
         </div>
     );
 };

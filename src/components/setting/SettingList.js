@@ -70,7 +70,7 @@ const SettingList = ({
                 title='작물'
                 sx={{ mb: 4 }}
             >
-                { existPlant === false ? (
+                { !existPlant ? (
                     <ButtonDefault
                         sx={{
                             mt: 1,

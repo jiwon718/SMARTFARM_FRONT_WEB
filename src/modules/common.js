@@ -1,5 +1,5 @@
 import { createAction, handleActions } from 'redux-actions';
-import { delay, put, takeLatest } from 'redux-saga/effects';
+import { select, delay, put, takeLatest } from 'redux-saga/effects';
 
 const SHOW_SNACKBAR = 'common/SHOW_SNACKBAR';
 const UNSHOW_SNACKBAR = 'common/UNSHOW_SNACKBAR';
@@ -15,6 +15,14 @@ const initialState = {
     
     errorMessage: null
 };
+
+export function* initailizeSaga() {
+    const showSnackbar = yield select(state => state.common.showSnackbar);
+
+    if (showSnackbar) {
+        yield put(unshowSnackbar());
+    }
+}
 
 function* unshowSnackbarSaga() {
     yield delay(100);

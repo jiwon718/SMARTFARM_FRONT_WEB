@@ -34,10 +34,10 @@ const SignUp = () => {
 
     useEffect(() => {
         if (signupSuccess) {
-            navigate(process.env.REACT_APP_LOGIN_PATH);
+            navigate(process.env.REACT_APP_SIGNUP_SUCCESS_PATH);
         }
         
-        return () => dispatch(signupInitialize())
+        return () => dispatch(signupInitialize());
     }, [signupSuccess, navigate, dispatch]);
 
     return (

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { unshowSnackbar } from '../../modules/common';
-import SnackbarWithAlertComponent from '../../components/common/SnackbarWithAlert';
+import SnackbarComponent from '../../components/common/Snackbar';
 
-const SnackbarWithAlert = () => {
+const Snackbar = () => {
     const open = useSelector(state => state.common.showSnackbar);
     const errorMessage = useSelector(state => state.common.errorMessage);
 
@@ -18,7 +18,7 @@ const SnackbarWithAlert = () => {
     };
 
     return (
-        <SnackbarWithAlertComponent
+        <SnackbarComponent
             message={errorMessage}
             open={open}
             handleClose={handleClose}
@@ -26,4 +26,4 @@ const SnackbarWithAlert = () => {
     );
 }
 
-export default React.memo(SnackbarWithAlert);
+export default React.memo(Snackbar);

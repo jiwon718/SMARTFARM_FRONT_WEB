@@ -56,11 +56,11 @@ const Home = ({
     ]
 
     return (
-        existSmartfarm === false ? (
+        !existSmartfarm ? (
             <HomeNotRegisterSmartfarm onClick={goRegisterSmartfarm}/>
         ) : (
             <div style={{ width: '100%'}}>
-                { existPlant === false ? (
+                { !existPlant ? (
                     <HomeNotRegisterPlant onClick={goRegisterPlant}/>
                 ) : (
                     <HomeRegisterPlant />

@@ -1,8 +1,8 @@
 import { createAction, handleActions } from 'redux-actions';
-import { select, put, takeLatest } from 'redux-saga/effects';
+import { takeLatest } from 'redux-saga/effects';
 import createRequestSaga, { createRequestActionTypes } from '../../lib/api/createRequestSaga';
 import * as WebAPI from '../../lib/api/webApi';
-import { unshowSnackbar } from '../common';
+import { initailizeSaga } from '../common';
 
 const CHANGE_ID = 'user/CHANGE_ID';
 const CHANGE_PASSWORD = 'user/CHANGE_PASSWORD';
@@ -29,27 +29,11 @@ export const login = createAction(LOGIN);
 const signupSaga = createRequestSaga(SIGNUP, WebAPI.signup);
 const loginSaga = createRequestSaga(LOGIN, WebAPI.login);
 
-function* signupInitializeSaga() {
-    const showSnackbar = yield select(state => state.common.showSnackbar);
-
-    if (showSnackbar) {
-        yield put(unshowSnackbar());
-    }
-}
-
-function* loginInitializeSaga() {
-    const showSnackbar = yield select(state => state.common.showSnackbar);
-
-    if (showSnackbar) {
-        yield put(unshowSnackbar());
-    }
-}
-
 export function* userSaga() {
     yield takeLatest(SIGNUP, signupSaga);
-    yield takeLatest(SIGNUP_INITIALIZE, signupInitializeSaga);
+    yield takeLatest(SIGNUP_INITIALIZE, initailizeSaga);
     yield takeLatest(LOGIN, loginSaga);
-    yield takeLatest(LOGIN_INITIALIZE, loginInitializeSaga);
+    yield takeLatest(LOGIN_INITIALIZE, initailizeSaga);
 }
 
 const initialState = {

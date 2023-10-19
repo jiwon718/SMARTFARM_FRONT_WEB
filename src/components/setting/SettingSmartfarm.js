@@ -5,10 +5,11 @@ import TextFieldWithButton from '../common/TextFieldWithButton';
 import ButtonDefault from '../common/ButtonDefault';
 
 const SettingSmartfarm = ({
-    smartfarm,
+    smartfarmNumber,
+    checkSmartfarmNumberSuccess,
     open,
     onSmartfarmNumberChange,
-    onSuccessChange,
+    onCheckSmartfarmNumberClick,
     onModifyClick,
     onOpenClick,
     onYesClick,
@@ -19,14 +20,14 @@ const SettingSmartfarm = ({
         <div style={{ width: '100%', marginTop: 32 }}>
             <TextFieldWithButton
                 textFieldLabel="스마트팜 고유번호"
-                textFieldValue={smartfarm.smartfarmNumber}
+                textFieldValue={smartfarmNumber}
                 textFieldOnChange={onSmartfarmNumberChange}
-                buttonDisabled={smartfarm.smartfarmNumber === '' ? true : false}
-                buttonOnClick={onSuccessChange}
+                buttonDisabled={smartfarmNumber === '' ? true : false}
+                buttonOnClick={onCheckSmartfarmNumberClick}
                 buttonText="중복 확인"
             />
             <ButtonDefault
-                disabled={!smartfarm.success}
+                disabled={!checkSmartfarmNumberSuccess}
                 sx={{
                     mt: 6.5,
                     mb: 2,

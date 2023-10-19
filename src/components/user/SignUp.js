@@ -5,7 +5,6 @@ import TextFieldDefault from '../common/TextFieldDefault';
 import TextFieldPassword from '../../containers/common/TextFieldPassword';
 import ButtonDefault from '../common/ButtonDefault';
 import WarningAmberRoundedIcon from '@mui/icons-material/WarningAmberRounded';
-import SnackbarWithAlert from '../../containers/common/SnackbarWithAlert';
 
 const SignUp = ({
     name,
@@ -62,7 +61,7 @@ const SignUp = ({
                 </Grid>
             </Grid>
             <ButtonDefault
-                disabled={name === '' || id === '' || password !== passwordCheck}
+                disabled={name === '' || id === '' || password === '' || password !== passwordCheck}
                 color="secondary"
                 sx={{
                     mt: 6.5,
@@ -82,7 +81,6 @@ const SignUp = ({
                 onClick={goBack}
                 text="취소"
             />
-            <SnackbarWithAlert />
         </div>
     );
 };

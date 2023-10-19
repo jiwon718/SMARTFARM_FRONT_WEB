@@ -1,11 +1,12 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import RegisterPlantComponent from '../../components/smartfarm/RegisterPlant';
-import { changeName, changeDay } from '../../modules/smartfarm/plant';
+import { changeName, changeDay, registerPlantInitialize, registerPlant } from '../../modules/smartfarm/plant';
 
 const RegisterPlant = () => {
     const plant = useSelector(state => state.plant);
+    const registerPlantSuccess = useSelector(state => state.plant.registerPlantSuccess);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -14,12 +15,26 @@ const RegisterPlant = () => {
     const onDayChange = useCallback(e => dispatch(changeDay(e.target.value)), [dispatch]);
 
     const onRegisterClick = () => {
-        console.log('SERVER: 작물 등록');
-        navigate(process.env.REACT_APP_REGISTER_PLANT_SUCCESS_PATH);
+        const name = plant.name;
+        const day = plant.day;
+
+        if (name === '') {
+            dispatch(changeName('새싹이'));
+        }
+
+        dispatch(registerPlant({name, day}));
     };
     const goBack = () => {
         navigate(-1);
     };
+
+    useEffect(() => {
+        if (registerPlantSuccess) {
+            navigate(process.env.REACT_APP_REGISTER_PLANT_SUCCESS_PATH);
+        }
+
+        return () => dispatch(registerPlantInitialize());
+    }, [registerPlantSuccess, navigate, dispatch]);
 
     return (
         <RegisterPlantComponent
