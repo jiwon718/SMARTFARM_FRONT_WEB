@@ -1,13 +1,4 @@
-// '인증번호 전송' 버튼 기능 추가하기
-// : 휴대전화 인증번호 API 사용하기
-// : 재전송 관련 기능 추가 고민하기
-// '다음' 버튼 인증 완료 후 활성화 추가하기
-// '다음' 버튼 클릭 시 서버에 이름과 전화번호로 아이디 찾은 후 결과 받기
-// 성공, 실패에 따라 결과 페이지 이동하기
-
-import { Grid } from '@mui/material';
 import TextFieldDefault from '../common/TextFieldDefault';
-import TextFieldWithButton from '../common/TextFieldWithButton';
 import ButtonDefault from '../common/ButtonDefault';
 
 const SearchId = ({
@@ -18,6 +9,8 @@ const SearchId = ({
     goBack,
     goNext
 }) => {
+    var phoneNumberPattern = /01[016789]-[^0][0-9]{2,3}-[0-9]{4}/;
+
     return (
         <div>
             <TextFieldDefault
@@ -27,22 +20,15 @@ const SearchId = ({
                 onChange={onNameChange}
                 sx={{ mb: 3 }}
             />
-            <Grid container rowSpacing={3}>
-                <TextFieldWithButton
-                    textFieldLabel="휴대전화번호('-' 제외)"
-                    textFieldDisabled={name === ''}
-                    textFieldOnChange={onPhoneNumberChange}
-                    buttonDisabled={name === '' || phoneNumber === ''}
-                    buttonText="인증번호 전송"/>
-                <TextFieldWithButton
-                    textFieldLabel="인증번호"
-                    textFieldDisabled={true}
-                    buttonDisabled={true}
-                    buttonText="인증번호 확인"
-                />
-            </Grid>
+            <TextFieldDefault
+                error={phoneNumber !== '' && !phoneNumberPattern.test(phoneNumber)}
+                label="휴대전화번호"
+                helperText="XXX-XXXX-XXXX(XXX-XXX-XXXX) 형식으로 입력해주세요"
+                value={phoneNumber}
+                onChange={onPhoneNumberChange}
+            />
             <ButtonDefault
-                disabled={false}
+                disabled={name === '' || phoneNumber === ''}
                 color="secondary"
                 sx={{
                     mt: 6.5,

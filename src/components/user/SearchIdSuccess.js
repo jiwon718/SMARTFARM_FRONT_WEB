@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material';
 import ButtonDefault from '../common/ButtonDefault';
 
 const SearchIdSuccess = ({
+    id,
     goSearchPassword,
     goLogIn
 }) => {
@@ -18,7 +19,7 @@ const SearchIdSuccess = ({
                     찾으시는 아이디는 다음 아래와 같습니다.
                 </Typography>
                 <Typography variant="body1">
-                    lime0716
+                    {id}
                 </Typography>
             </Box>
             <ButtonDefault

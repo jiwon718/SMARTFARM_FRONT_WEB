@@ -1,13 +1,14 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SearchPasswordComponent from '../../components/user/SearchPassword';
-import { changeName, changeId, changePhoneNumber } from '../../modules/user/user';
+import { changeName, changeId, changePhoneNumber, searchPasswordInitialize, searchPassword } from '../../modules/user/user';
 
 const SearchPassword = () => {
     const name = useSelector(state => state.user.name);
     const id = useSelector(state => state.user.id);
     const phoneNumber = useSelector(state => state.user.phoneNumber);
+    const searchPasswordSuccess = useSelector(state => state.user.searchPasswordSuccess);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -20,9 +21,22 @@ const SearchPassword = () => {
         navigate(-1);
     };
     const goNext = () => {
-        console.log('SERVER: 이름, 아이디, 전화번호로 비밀번호 찾기');
-        navigate(process.env.REACT_APP_SEARCH_PASSWORD_SUCCESS_PATH);
+        dispatch(searchPassword({
+            name,
+            phoneNumber,
+            id
+        }));
     };
+
+    useEffect(() => {
+        if (searchPasswordSuccess) {
+            navigate(process.env.REACT_APP_SEARCH_PASSWORD_SUCCESS_PATH);
+        } else if (searchPasswordSuccess === null) {} else {
+            navigate(process.env.REACT_APP_SEARCH_PASSWORD_FAILURE_PATH);
+        }
+
+        return () => dispatch(searchPasswordInitialize());
+    }, [searchPasswordSuccess, navigate, dispatch]);
 
     return (
         <SearchPasswordComponent

@@ -1,15 +1,13 @@
 import { call, put } from 'redux-saga/effects';
+import { createRequestActionTypes } from './createRequestSaga';
 import { startLoading, finishLoading } from '../../modules/loading';
-import { showSnackbar } from '../../modules/common';
+import { CHECK } from '../../modules/user/user';
 
-export const createRequestActionTypes = type => {
-    const SUCCESS = `${type}_SUCCESS`;
-    const FAILURE = `${type}_FAILURE`;
-
-    return [type, SUCCESS, FAILURE];
+export const createRequesWithoutSnackbarActionTypes = type => {
+    return createRequestActionTypes(type);
 }
 
-export default function createRequestSaga(type, request) {
+export default function createRequestWithoutSnackbarSaga(type, request) {
     const SUCCESS = `${type}_SUCCESS`;
     const FAILURE = `${type}_FAILURE`;
 
@@ -28,7 +26,14 @@ export default function createRequestSaga(type, request) {
                 payload: e,
                 error: true
             });
-            yield put(showSnackbar(e.response.data === '' ? '잠시 후 시도해주세요' : e.response.data.message));
+
+            if (type === CHECK) {
+                try {
+                    localStorage.removeItem('token');
+                } catch (e) {
+                    console.log('localStorage is not working');
+                }
+            }
         }
 
         yield put(finishLoading(type));

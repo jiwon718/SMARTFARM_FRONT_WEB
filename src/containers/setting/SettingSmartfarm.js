@@ -1,12 +1,14 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SettingSmartfarmComponent from '../../components/setting/SettingSmartfarm';
-import { changeExist, changeSmartfarmNumber, checkSmartfarmNumber } from '../../modules/smartfarm/smartfarm';
+import { changeSmartfarmNumber, modifySmartfarmInitialize, checkSmartfarmNumber, removeSmartfarmInitialize, modifySmartfarm, removeSmartfarm } from '../../modules/smartfarm/smartfarm';
 
 const SettingSmartfarm = () => {
+    const token = useSelector(state => state.user.token);
     const smartfarmNumber = useSelector(state => state.smartfarm.smartfarmNumber);
     const checkSmartfarmNumberSuccess = useSelector(state => state.smartfarm.checkSmartfarmNumberSuccess);
+    const removeSmartfarmSuccess = useSelector(state => state.smartfarm.removeSmartfarmSuccess);
 
     const [open, setOpen] = useState(false);
 
@@ -15,19 +17,20 @@ const SettingSmartfarm = () => {
 
     const onSmartfarmNumberChange = useCallback(e => dispatch(changeSmartfarmNumber(e.target.value)), [dispatch]);
     const onCheckSmartfarmNumberClick = () => {
-        dispatch(checkSmartfarmNumber({smartfarmNumber}));
+        dispatch(checkSmartfarmNumber(smartfarmNumber));
     };
 
     const onModifyClick = () => {
-        console.log('SERVER: 스마트팜 수정 요청');
+        dispatch(modifySmartfarm({
+            token,
+            smartfarmNumber
+        }));
     };
     const onOpenClick = () => {
         setOpen(true);
     };
     const onYesClick = () => {
-        console.log('SERVER: 스마트팜 삭제 요청');
-        dispatch(changeExist());
-        navigate(process.env.REACT_APP_REMOVE_SMARTFARM_SUCCESS_PATH);
+        dispatch(removeSmartfarm(token));
     };
     const onNoClick = () => {
         setOpen(false);
@@ -35,6 +38,19 @@ const SettingSmartfarm = () => {
     const goBack = () => {
         navigate(process.env.REACT_APP_SETTING_PATH);
     };
+
+    useEffect(() => {
+        if (removeSmartfarmSuccess) {
+            navigate(process.env.REACT_APP_REMOVE_SMARTFARM_SUCCESS_PATH);
+            dispatch(removeSmartfarmInitialize());
+        }
+
+        return () => {
+            if (!removeSmartfarmSuccess) {
+                dispatch(modifySmartfarmInitialize());
+            }
+        }
+    }, [removeSmartfarmSuccess, navigate, dispatch]);
 
     return (
         <SettingSmartfarmComponent

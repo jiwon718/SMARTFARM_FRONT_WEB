@@ -7,7 +7,8 @@ import SelectAutoWidth from '../common/SelectAutoWidth';
 import ButtonDefault from '../common/ButtonDefault';
 
 const SettingPlant = ({
-    plant,
+    name,
+    day,
     open,
     onNameChange,
     onDayChange,
@@ -29,7 +30,7 @@ const SettingPlant = ({
                 <TextFieldDefault
                     label="이름"
                     autoFocus={true}
-                    value={plant.name}
+                    value={name}
                     onChange={onNameChange}
                 />
                 <TextFieldWithButton
@@ -45,7 +46,7 @@ const SettingPlant = ({
                 sx={{ mt: 3 }}
             >
                 <Typography variant='subtitle1' sx={{ mr: 1.5 }}>작물을 키운 지</Typography>
-                <SelectAutoWidth value={plant.day} onChange={onDayChange}>
+                <SelectAutoWidth value={day} onChange={onDayChange}>
                     {numbers.map((number, index) => <MenuItem key={index} value={number}>{number}</MenuItem>)}
                 </SelectAutoWidth>
                 <Typography variant='subtitle1' sx={{ ml: 1 }}>일 지났어요</Typography>

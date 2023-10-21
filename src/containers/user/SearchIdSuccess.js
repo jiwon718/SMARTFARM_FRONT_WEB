@@ -1,7 +1,10 @@
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import SearchIdSuccessComponent from '../../components/user/SearchIdSuccess';
 
 const SearchIdSuccess = () => {
+    const id = useSelector(state => state.user.id);
+
     const navigate = useNavigate();
 
     const goSearchPassword = () => {
@@ -13,6 +16,7 @@ const SearchIdSuccess = () => {
 
     return (
         <SearchIdSuccessComponent
+            id={id}
             goSearchPassword={goSearchPassword}
             goLogIn={goLogIn}
         />

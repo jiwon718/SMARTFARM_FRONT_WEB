@@ -1,11 +1,14 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SettingPlantComponent from '../../components/setting/SettingPlant';
-import { changeExist, changeName, changeDay } from '../../modules/smartfarm/plant';
+import { changeName, changeDay, modifyPlantInitialize, removePlantInitialize, modifyPlant, removePlant } from '../../modules/smartfarm/plant';
 
 const SettingPlant = () => {
-    const plant = useSelector(state => state.plant);
+    const token = useSelector(state => state.user.token);
+    const name = useSelector(state => state.plant.name);
+    const day = useSelector(state => state.plant.day);
+    const removePlantSuccess = useSelector(state => state.plant.removePlantSuccess);
 
     const [open, setOpen] = useState(false);
 
@@ -16,15 +19,17 @@ const SettingPlant = () => {
     const onDayChange = useCallback(e => dispatch(changeDay(e.target.value)), [dispatch]);
 
     const onModifyClick = () => {
-        console.log('SERVER: 작물 수정 요청');
+        dispatch(modifyPlant({
+            token,
+            name,
+            day
+        }));
     };
     const onOpenClick = () => {
         setOpen(true);
     };
     const onYesClick = () => {
-        console.log('SERVER: 작물 삭제 요청');
-        dispatch(changeExist());
-        navigate(process.env.REACT_APP_REMOVE_PLANT_SUCCESS_PATH);
+        dispatch(removePlant(token));
     };
     const onNoClick = () => {
         setOpen(false);
@@ -33,9 +38,23 @@ const SettingPlant = () => {
         navigate(process.env.REACT_APP_SETTING_PATH);
     };
 
+    useEffect(() => {
+        if (removePlantSuccess) {
+            navigate(process.env.REACT_APP_REMOVE_SMARTFARM_SUCCESS_PATH);
+            dispatch(removePlantInitialize());
+        }
+
+        return () => {
+            if (!removePlantSuccess) {
+                dispatch(modifyPlantInitialize());
+            }
+        }
+    }, [removePlantSuccess, navigate, dispatch]);
+
     return (
         <SettingPlantComponent
-            plant={plant}
+            name={name}
+            day={day}
             open={open}
             onNameChange={onNameChange}
             onDayChange={onDayChange}

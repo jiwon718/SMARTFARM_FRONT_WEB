@@ -16,7 +16,7 @@ const initialState = {
     errorMessage: null
 };
 
-export function* initailizeSaga() {
+export function* initializeSaga() {
     const showSnackbar = yield select(state => state.common.showSnackbar);
 
     if (showSnackbar) {

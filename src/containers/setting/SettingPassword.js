@@ -2,11 +2,13 @@ import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SettingPasswordComponent from '../../components/setting/SettingPassword';
-import { changePassword, changePasswordCheck } from '../../modules/user/user';
+import { changePassword, changePasswordCheck, modifyPasswordInitialize, modifyPassword } from '../../modules/user/user';
 
 const SettingPassword = () => {
+    const token = useSelector(state => state.user.token);
     const password = useSelector(state => state.user.password);
     const passwordCheck = useSelector(state => state.user.passwordCheck);
+    const modifyPasswordSuccess = useSelector(state => state.user.modifyPasswordSuccess);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -15,19 +17,22 @@ const SettingPassword = () => {
     const onPasswordCheckChange = useCallback(e => dispatch(changePasswordCheck(e.target.value)), [dispatch]);
 
     const onModifyClick = () => {
-        console.log('SERVER: 비밀번호 재설정 요청');
-        navigate(process.env.REACT_APP_SETTING_PATH);
+        dispatch(modifyPassword({
+            token,
+            password
+        }));
     };
     const goBack = () => {
         navigate(process.env.REACT_APP_SETTING_PATH);
     };
 
     useEffect(() => {
-        return () => {
-            dispatch(changePassword(''));
-            dispatch(changePasswordCheck(''));
-        };
-    }, [dispatch]);
+        if (modifyPasswordSuccess) {
+            navigate(process.env.REACT_APP_SETTING_PATH);
+        }
+
+        return () => dispatch(modifyPasswordInitialize());
+    }, [modifyPasswordSuccess, navigate, dispatch]);
 
     return (
         <SettingPasswordComponent

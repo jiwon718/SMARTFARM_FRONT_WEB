@@ -20,7 +20,7 @@ const SettingVerify = ({
                 onChange={onPasswordChange}
             />
             <ButtonDefault
-                disabled={false}
+                disabled={password === ''}
                 sx={{
                     mt: 6.5,
                     mb: 2,

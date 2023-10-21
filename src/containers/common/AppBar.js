@@ -2,15 +2,14 @@ import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import AppBarComponent from '../../components/common/AppBar';
-import { changeLogOut } from '../../modules/user/user';
+import { logout } from '../../modules/user/user';
 
 const AppBar = ({ text, children }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const onLogOutClick = useCallback(() => {
-        console.log('SERVER: 로그아웃 처리');
-        dispatch(changeLogOut());
+        dispatch(logout());
         navigate(process.env.REACT_APP_LOGIN_PATH);
     }, [dispatch, navigate]);
 

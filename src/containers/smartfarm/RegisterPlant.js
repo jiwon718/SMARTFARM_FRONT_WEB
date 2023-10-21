@@ -5,6 +5,7 @@ import RegisterPlantComponent from '../../components/smartfarm/RegisterPlant';
 import { changeName, changeDay, registerPlantInitialize, registerPlant } from '../../modules/smartfarm/plant';
 
 const RegisterPlant = () => {
+    const token = useSelector(state => state.user.token);
     const plant = useSelector(state => state.plant);
     const registerPlantSuccess = useSelector(state => state.plant.registerPlantSuccess);
 
@@ -22,7 +23,11 @@ const RegisterPlant = () => {
             dispatch(changeName('새싹이'));
         }
 
-        dispatch(registerPlant({name, day}));
+        dispatch(registerPlant({
+            token,
+            name,
+            day
+        }));
     };
     const goBack = () => {
         navigate(-1);

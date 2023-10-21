@@ -47,7 +47,7 @@ const SettingList = ({
                 title='스마트팜'
                 sx={{ mb: 4 }}
             >
-                { existSmartfarm === false ? (
+                { !existSmartfarm ? (
                     <ButtonDefault
                         sx={{
                             mt: 2,

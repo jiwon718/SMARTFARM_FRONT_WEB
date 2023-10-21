@@ -1,12 +1,13 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SearchIdComponent from '../../components/user/SearchId';
-import { changeName, changePhoneNumber } from '../../modules/user/user';
+import { changeName, changePhoneNumber, searchIdInitialize, searchId } from '../../modules/user/user';
 
 const SearchId = () => {
     const name = useSelector(state => state.user.name);
     const phoneNumber = useSelector(state => state.user.phoneNumber);
+    const searchIdSuccess = useSelector(state => state.user.searchIdSuccess);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -18,9 +19,21 @@ const SearchId = () => {
         navigate(-1);
     };
     const goNext = () => {
-        console.log('SERVER: 이름과 전화번호로 아이디 찾기');
-        navigate(process.env.REACT_APP_SEARCH_ID_SUCCESS_PATH);
+        dispatch(searchId({
+            name,
+            phoneNumber
+        }));
     };
+
+    useEffect(() => {
+        if (searchIdSuccess) {
+            navigate(process.env.REACT_APP_SEARCH_ID_SUCCESS_PATH);
+        } else if (searchIdSuccess === null) {} else {
+            navigate(process.env.REACT_APP_SEARCH_ID_FAILURE_PATH);
+        }
+
+        return () => dispatch(searchIdInitialize());
+    }, [searchIdSuccess, navigate, dispatch]);
 
     return (
         <SearchIdComponent

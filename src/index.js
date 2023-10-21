@@ -11,11 +11,26 @@ import rootReducer, { rootSaga } from './modules';
 import { createLogger } from 'redux-logger';
 import ReduxThunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
+import { check } from './modules/user/user';
 
 const logger = createLogger();
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(logger, ReduxThunk, sagaMiddleware)));
+
+function loadToken() {
+  try {
+    const token = localStorage.getItem('token');
+
+    if (!token) return;
+    
+    store.dispatch(check(token));
+  } catch (e) {
+    console.log('localStorage is not working');
+  }
+}
+
 sagaMiddleware.run(rootSaga);
+loadToken();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

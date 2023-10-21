@@ -1,10 +1,12 @@
 import { TextField } from '@mui/material';
 
-const TextFieldDefault = ({ disabled, label, value, onChange, autoFocus, sx }) => {
+const TextFieldDefault = ({ error, disabled, label, helperText, value, onChange, autoFocus, sx }) => {
     return (
         <TextField
+            error={error}
             disabled={disabled}
             label={label}
+            helperText={error ? helperText : undefined}
             value={value}
             onChange={onChange}
             fullWidth

@@ -40,7 +40,7 @@ const SettingPassword = ({
                 </Grid>
             </Grid>
             <ButtonDefault
-                disabled={false}
+                disabled={password === '' || password !== passwordCheck}
                 sx={{
                     mt: 6.5,
                     mb: 2,

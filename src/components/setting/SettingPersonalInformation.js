@@ -1,12 +1,5 @@
-// SERVER: 서버에 해당 계정 정보 수정 요청
-// SERVER: 서버에 해당 계정 탈퇴 요청
-// 계정 탈퇴에 따른 페이지 이동
-// : 탈퇴 성공 시 설정 목록 페이지로 이동
-// : 탈퇴 실패 시 해당 페이지에 그대로
-
-import { Grid, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@mui/material';
 import TextFieldDefault from "../common/TextFieldDefault";
-import TextFieldWithButton from "../common/TextFieldWithButton";
 import ButtonDefault from '../common/ButtonDefault';
 import TextFieldPassword from '../../containers/common/TextFieldPassword';
 
@@ -24,6 +17,8 @@ const SettingPersonalInformation = ({
     onNoClick,
     goBack
 }) => {
+    var phoneNumberPattern = /01[016789]-[^0][0-9]{2,3}-[0-9]{4}/;
+
     return (
         <div style={{ marginTop: 32 }}>
             <TextFieldDefault
@@ -32,20 +27,13 @@ const SettingPersonalInformation = ({
                 onChange={onNameChange}
                 sx={{ mb: 3 }}
             />
-            <Grid container rowSpacing={3}>
-                <TextFieldWithButton
-                    textFieldLabel="휴대전화번호('-' 제외)"
-                    textFieldDisabled={name === ''}
-                    textFieldOnChange={onPhoneNumberChange}
-                    buttonDisabled={name === '' || phoneNumber === ''}
-                    buttonText="인증번호 전송"/>
-                <TextFieldWithButton
-                    textFieldLabel="인증번호"
-                    textFieldDisabled={true}
-                    buttonDisabled={true}
-                    buttonText="인증번호 확인"
-                />
-            </Grid>
+            <TextFieldDefault
+                error={phoneNumber !== '' && !phoneNumberPattern.test(phoneNumber)}
+                label="휴대전화번호"
+                helperText="XXX-XXXX-XXXX(XXX-XXX-XXXX) 형식으로 입력해주세요"
+                value={phoneNumber}
+                onChange={onPhoneNumberChange}
+            />
             <ButtonDefault
                 disabled={false}
                 sx={{

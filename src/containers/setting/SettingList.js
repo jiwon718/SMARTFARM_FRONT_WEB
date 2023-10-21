@@ -13,7 +13,7 @@ const SettingList = () => {
         navigate(process.env.REACT_APP_REGISTER_SMARTFARM_PATH);
     };
     const goRegisterPlant = () => {
-        navigate(process.env.REACT_APP_REGISTER_SMARTFARM_PATH);
+        navigate(process.env.REACT_APP_REGISTER_PLANT_PATH);
     };
 
     return (

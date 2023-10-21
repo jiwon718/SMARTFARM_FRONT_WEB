@@ -5,6 +5,7 @@ import RegisterSmartfarmComponent from '../../components/smartfarm/RegisterSmart
 import { changeSmartfarmNumber, registerSmartfarmInitialize, checkSmartfarmNumber, registerSmartfarm } from '../../modules/smartfarm/smartfarm';
 
 const RegisterSmartfarm = () => {
+    const token = useSelector(state => state.user.token);
     const smartfarmNumber = useSelector(state => state.smartfarm.smartfarmNumber);
     const checkSmartfarmNumberSuccess = useSelector(state => state.smartfarm.checkSmartfarmNumberSuccess);
     const registerSmartfarmSuccess = useSelector(state => state.smartfarm.registerSmartfarmSuccess);
@@ -15,10 +16,13 @@ const RegisterSmartfarm = () => {
     const onSmartfarmNumberChange = useCallback(e => dispatch(changeSmartfarmNumber(e.target.value)), [dispatch]);
 
     const onCheckSmartfarmNumberClick = () => {
-        dispatch(checkSmartfarmNumber({smartfarmNumber}));
+        dispatch(checkSmartfarmNumber(smartfarmNumber));
     };
     const onRegisterClick = () => {
-        dispatch(registerSmartfarm({smartfarmNumber}));
+        dispatch(registerSmartfarm({
+            token,
+            smartfarmNumber
+        }));
     };
     const goBack = () => {
         navigate(-1);
