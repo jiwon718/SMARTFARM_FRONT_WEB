@@ -1,3 +1,4 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import SearchIdSuccessComponent from '../../components/user/SearchIdSuccess';
@@ -23,4 +24,4 @@ const SearchIdSuccess = () => {
     );
 };
 
-export default SearchIdSuccess;
+export default React.memo(SearchIdSuccess);

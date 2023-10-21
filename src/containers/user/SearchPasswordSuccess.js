@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import SearchPasswordSuccessComponent from '../../components/user/SearchPasswordSuccess';
@@ -14,9 +15,13 @@ const SearchPasswordSuccess = () => {
         dispatch(changePassword(''));
     };
 
+    useEffect(() => {
+        return () => dispatch(changePassword(''));
+    }, [dispatch]);
+
     return (
         <SearchPasswordSuccessComponent password={password} goLogIn={goLogIn}/>
     );
 };
 
-export default SearchPasswordSuccess;
+export default React.memo(SearchPasswordSuccess);

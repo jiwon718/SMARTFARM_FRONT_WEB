@@ -36,7 +36,7 @@ const SearchId = ({
                 onChange={onPhoneNumberChange}
             />
             <ButtonDefault
-                disabled={name === '' || phoneNumber === ''}
+                disabled={name === '' || id === '' || !phoneNumberPattern.test(phoneNumber)}
                 color="secondary"
                 sx={{
                     mt: 6.5,

@@ -18,8 +18,6 @@ export default function createControlRequestSaga(type, request, key) {
         const datas = yield select(state => state[type.split('/', 1)[0]]);
 
         try {
-            // throw "예외 발생";
-
             yield call(request, {
                 token,
                 datas: {
@@ -37,7 +35,7 @@ export default function createControlRequestSaga(type, request, key) {
                 payload: e,
                 error: true
             });
-            yield put(showSnackbar(e.response?.data !== undefined && e.response?.data !== undefined && typeof(e.response.data) === 'string' ? e.response.data : '잠시 후 시도해주세요'));
+            yield put(showSnackbar(e.response.data?.message === undefined ? '잠시 후 시도해주세요' : e.response.data.message));
         }
 
         yield put(finishLoading(type));

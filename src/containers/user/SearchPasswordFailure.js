@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import SearchPasswordFailureComponent from '../../components/user/SearchPasswordFailure';
 
@@ -23,4 +24,4 @@ const SearchPasswordFailure = () => {
     );
 };
 
-export default SearchPasswordFailure;
+export default React.memo(SearchPasswordFailure);

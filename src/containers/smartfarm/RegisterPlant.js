@@ -6,7 +6,8 @@ import { changeName, changeDay, registerPlantInitialize, registerPlant } from '.
 
 const RegisterPlant = () => {
     const token = useSelector(state => state.user.token);
-    const plant = useSelector(state => state.plant);
+    const name = useSelector(state => state.plant.name);
+    const day = useSelector(state => state.plant.day);
     const registerPlantSuccess = useSelector(state => state.plant.registerPlantSuccess);
 
     const dispatch = useDispatch();
@@ -16,9 +17,6 @@ const RegisterPlant = () => {
     const onDayChange = useCallback(e => dispatch(changeDay(e.target.value)), [dispatch]);
 
     const onRegisterClick = () => {
-        const name = plant.name;
-        const day = plant.day;
-
         if (name === '') {
             dispatch(changeName('새싹이'));
         }
@@ -43,7 +41,8 @@ const RegisterPlant = () => {
 
     return (
         <RegisterPlantComponent
-            plant={plant}
+            name={name}
+            day={day}
             onNameChange={onNameChange}
             onDayChange={onDayChange}
             onRegisterClick={onRegisterClick}

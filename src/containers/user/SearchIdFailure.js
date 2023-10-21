@@ -1,3 +1,4 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import SearchIdFailureComponent from '../../components/user/SearchIdFailure';
 
@@ -23,4 +24,4 @@ const SearchIdFailure = () => {
     );
 };
 
-export default SearchIdFailure;
+export default React.memo(SearchIdFailure);

@@ -19,4 +19,4 @@ const ControlAppBar = ({ text }) => {
     );
 };
 
-export default ControlAppBar;
+export default React.memo(ControlAppBar);

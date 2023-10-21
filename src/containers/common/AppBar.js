@@ -39,4 +39,4 @@ const AppBar = ({ text, children }) => {
     );
 };
 
-export default AppBar;
+export default React.memo(AppBar);

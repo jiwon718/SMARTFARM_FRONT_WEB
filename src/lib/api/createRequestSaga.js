@@ -28,7 +28,7 @@ export default function createRequestSaga(type, request) {
                 payload: e,
                 error: true
             });
-            yield put(showSnackbar(e.response.data === '' ? '잠시 후 시도해주세요' : e.response.data.message));
+            yield put(showSnackbar(e.response.data?.message === undefined ? '잠시 후 시도해주세요' : e.response.data.message));
         }
 
         yield put(finishLoading(type));

@@ -35,7 +35,6 @@ const SettingPersonalInformation = ({
                 onChange={onPhoneNumberChange}
             />
             <ButtonDefault
-                disabled={false}
                 sx={{
                     mt: 6.5,
                     mb: 2,
@@ -46,7 +45,6 @@ const SettingPersonalInformation = ({
                 text="개인정보 수정"
             />
             <ButtonDefault
-                disabled={false}
                 sx={{
                     mb: 2,
                     fontSize: 'medium',
@@ -83,7 +81,12 @@ const SettingPersonalInformation = ({
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={onNoClick}>아니요</Button>
-                    <Button onClick={onYesClick}>예</Button>
+                    <Button
+                        disabled={password === ''}
+                        onClick={onYesClick}
+                    >
+                        예
+                    </Button>
                 </DialogActions>
             </Dialog>
         </div>

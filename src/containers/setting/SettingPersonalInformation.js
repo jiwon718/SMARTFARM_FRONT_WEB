@@ -9,7 +9,6 @@ const SettingPersonalInformation = () => {
     const name = useSelector(state => state.user.name);
     const phoneNumber = useSelector(state => state.user.phoneNumber);
     const password = useSelector(state => state.user.password);
-    const modifyPersonalInformationSuccess = useSelector(state => state.user.modifyPersonalInformationSuccess);
     const withdrawSuccess = useSelector(state => state.user.withdrawSuccess);
 
     const [open, setOpen] = useState(false);
@@ -32,7 +31,10 @@ const SettingPersonalInformation = () => {
         setOpen(true);
     };
     const onYesClick = () => {
-        dispatch(withdraw(password));
+        dispatch(withdraw({
+            token,
+            password
+        }));
     };
     const onNoClick = () => {
         setOpen(false);
@@ -44,14 +46,16 @@ const SettingPersonalInformation = () => {
     }
 
     useEffect(() => {
-        if (modifyPersonalInformationSuccess || withdrawSuccess) {
+        if (withdrawSuccess) {
             navigate(process.env.REACT_APP_SETTING_PATH);
         }
 
         return () => {
-            dispatch(modifyPersonalInformationInitialize());
+            if (!withdrawSuccess) {
+                dispatch(modifyPersonalInformationInitialize());
+            }
         };
-    }, [modifyPersonalInformationSuccess, withdrawSuccess, navigate, dispatch]);
+    }, [withdrawSuccess, navigate, dispatch]);
 
     return (
         <SettingPersonalInformationComponent

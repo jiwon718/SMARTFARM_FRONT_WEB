@@ -51,12 +51,12 @@ export const searchPassword = ({
     user_id: id
 });
 
-// 스마트팜 고유번호 확인
+// 스마트팜 고유번호 확인 X
 export const checkSmartfarmNumber = (smartfarmNumber) => {
     console.log(smartfarmNumber);
 }
 
-// 스마트팜 등록
+// 스마트팜 등록 X
 export const registerSmartfarm = ({
     token,
     smartfarmNumber
@@ -64,7 +64,7 @@ export const registerSmartfarm = ({
     console.log(token, smartfarmNumber);
 };
 
-// 작물 등록
+// 작물 등록 X
 export const registerPlant = ({
     name,
     day
@@ -72,16 +72,15 @@ export const registerPlant = ({
     console.log(name, day);
 };
 
-// 스마트팜 시스템 제어 - 원격 제어
+// 스마트팜 시스템 제어 - 원격 제어 X
 export const remoteControl = ({
     token,
     datas
 }) => {
-    console.log(token);
-    console.log(datas);
+    console.log(token, datas);
 }
 
-// 스마트팜 시스템 제어 - LED
+// 스마트팜 시스템 제어 - LED X
 export const controlLed = ({
     token,
     datas
@@ -89,7 +88,7 @@ export const controlLed = ({
     console.log(token, datas);
 };
 
-// 스마트팜 시스템 제어 - 관수 시스템
+// 스마트팜 시스템 제어 - 관수 시스템 X
 export const controlWateringSystem = ({
     token,
     datas
@@ -97,7 +96,7 @@ export const controlWateringSystem = ({
     console.log(token, datas);
 };
 
-// 스마트팜 시스템 제어 - 환기팬
+// 스마트팜 시스템 제어 - 환기팬 X
 export const controlFan = ({
     token,
     datas
@@ -105,7 +104,7 @@ export const controlFan = ({
     console.log(token, datas);
 };
 
-// 스마트팜 시스템 제어 - 중앙문
+// 스마트팜 시스템 제어 - 중앙문 X
 export const controlCenterDoor = ({
     token,
     datas
@@ -164,7 +163,7 @@ export const withdraw = ({
     }
 });
 
-// 스마트팜 수정
+// 스마트팜 수정 X
 export const modifySmartfarm = ({
     token,
     datas
@@ -172,12 +171,12 @@ export const modifySmartfarm = ({
     console.log(token, datas);
 }
 
-// 스마트팜 삭제
+// 스마트팜 삭제 X
 export const removeSmartfarm = (token) => {
     console.log(token);
 }
 
-// 작물 수정
+// 작물 수정 X
 export const modifyPlant = ({
     token,
     name,
@@ -186,12 +185,12 @@ export const modifyPlant = ({
     console.log(token, name, day);
 }
 
-// 작물 삭제
+// 작물 삭제 X
 export const removePlant = (token) => {
     console.log(token);
 }
 
-// 설정
+// 설정 X
 export const setting = (datas) => {
     console.log(datas);
 }

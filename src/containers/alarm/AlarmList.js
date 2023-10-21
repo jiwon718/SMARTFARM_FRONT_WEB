@@ -26,4 +26,4 @@ const AlarmList = () => {
     );
 };
 
-export default AlarmList;
+export default React.memo(AlarmList);
