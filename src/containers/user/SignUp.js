@@ -6,6 +6,7 @@ import { changeName, changeId, changePassword, changePasswordCheck, signupInitia
 
 const SignUp = () => {
     const name = useSelector(state => state.user.name);
+    const phoneNumber = useSelector(state => state.user.phoneNumber);
     const id = useSelector(state => state.user.id);
     const password = useSelector(state => state.user.password);
     const passwordCheck = useSelector(state => state.user.passwordCheck);
@@ -22,9 +23,9 @@ const SignUp = () => {
     const onSignUpSuccessClick = () => {
         dispatch(signup({
             name,
+            phoneNumber,
             id,
-            password,
-            passwordCheck
+            password
         }));
     };
     const goBack = () => {

@@ -4,14 +4,12 @@ import axios from 'axios';
 export const signup = ({
     id,
     password,
-    passwordCheck,
     name,
     phoneNumber
 }) => axios.post(process.env.REACT_APP_SIGNUP_API_URL, {
-    user_id: id,
+    username: id,
     password,
-    passwordCheck,
-    user_name: name,
+    name: name,
     phone_number: phoneNumber
 });
 
@@ -20,7 +18,7 @@ export const login = ({
     id,
     password
 }) => axios.post(process.env.REACT_APP_LOGIN_API_URL, {
-    user_id: id,
+    username: id,
     password
 });
 
@@ -84,33 +82,67 @@ export const remoteControl = ({
 export const controlLed = ({
     token,
     datas
-}) => {
-    console.log(token, datas);
-};
+}) => axios.post(process.env.REACT_APP_CONTROL_LED, {
+    ledtoggle: datas.work,
+    ledautotoggle: datas.autoWork,
+    ledstarttimevalue: datas.autoWorkStartTime.get('h'),
+    ledstartminutevalue: datas.autoWorkStartTime.get('m'),
+    ledendtimevalue: datas.autoWorkEndTime.get('h'),
+    ledendminutevalue: datas.autoWorkEndTime.get('m')
+}, {
+    headers: {
+        Authorization: `Token ${token}`
+    }
+})
 
 // 스마트팜 시스템 제어 - 관수 시스템 X
 export const controlWateringSystem = ({
     token,
     datas
-}) => {
-    console.log(token, datas);
-};
+}) => axios.post(process.env.REACT_APP_CONTROL_WATERING_SYSTEM, {
+    waterpumptoggle: datas.work,
+    waterpumprunningtime: datas.workTime,
+    waterpumpautotoggle: datas.autoWork,
+    waterpumpstarttime: datas.autoWorkPeriod
+}, {
+    headers: {
+        Authorization: `Token ${token}`
+    }
+});
 
 // 스마트팜 시스템 제어 - 환기팬 X
 export const controlFan = ({
     token,
     datas
-}) => {
-    console.log(token, datas);
-};
+}) => axios.post(process.env.REACT_APP_CONTROL_FAN, {
+    fantoggle: datas.work,
+    fanautotoggle: datas.autoWork,
+    fanstarttimevalue: datas.autoWorkStartTime.get('h'),
+    fanstartminutevalue: datas.autoWorkStartTime.get('m'),
+    fanendtimevalue: datas.autoWorkEndTime.get('h'),
+    fanendminutevalue: datas.autoWorkEndTime.get('m')
+}, {
+    headers: {
+        Authorization: `Token ${token}`
+    }
+});
 
 // 스마트팜 시스템 제어 - 중앙문 X
 export const controlCenterDoor = ({
     token,
     datas
-}) => {
-    console.log(token, datas);
-};
+}) => axios.post(process.env.REACT_APP_CONTROL_CENTER_DOOR, {
+    doortoggle: datas.work,
+    doorautotoggle: datas.autoWork,
+    doorstarttimevalue: datas.autoWorkStartTime.get('h'),
+    doorstartminutevalue: datas.autoWorkStartTime.get('m'),
+    doorentimevalue: datas.autoWorkEndTime.get('h'),
+    doorendminutevalue: datas.autoWorkEndTime.get('m')
+}, {
+    headers: {
+        Authorization: `Token ${token}`
+    }
+});
 
 // 비밀번호 확인
 export const verify = ({
