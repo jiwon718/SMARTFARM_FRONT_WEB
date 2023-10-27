@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import AppBar from "../../containers/common/AppBar";
 import ContainerBox from "../../components/common/ContainerBox";
 import SettingSmartfarm from "../../containers/setting/SettingSmartfarm";
-import Snackbar from '../../containers/common/Snackbar';
 
 const SettingSmartfarmPage = () => {
     const token = useSelector(state => state.user.token);
@@ -26,7 +25,6 @@ const SettingSmartfarmPage = () => {
             <ContainerBox maxWidth='xs'>
                 <SettingSmartfarm />
             </ContainerBox>
-            <Snackbar />
         </div>
     );
 };

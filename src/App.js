@@ -43,6 +43,8 @@ import RemovePlantSuccessPage from './pages/setting/RemovePlantSuccessPage';
 import SettingAlarmPage from './pages/setting/SettingAlarmPage';
 import NotFoundPage from './pages/NotFoundPage';
 
+import Snackbar from "./containers/common/Snackbar";
+
 // FCM permission & token
 if (Notification.permission !== 'granted') {
     requestPermission();
@@ -100,6 +102,7 @@ const App = () => {
 
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
+            <Snackbar />
         </ThemeProvider>
     )
 }
