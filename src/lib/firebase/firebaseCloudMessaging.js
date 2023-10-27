@@ -1,5 +1,7 @@
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import { app as firebaseApp } from "./firebase";
+import { store } from "../..";
+import { showSnackbar } from "../../modules/common";
 
 const messaging = getMessaging(firebaseApp);
 
@@ -22,5 +24,6 @@ export function requestPermission() {
 export function onForegroundMessage() {
     onMessage(messaging, (payload) => {
         console.log("Received forground message: ", payload);
+        store.dispatch(showSnackbar(payload.notification.body));
     });
 }
