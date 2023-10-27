@@ -1,8 +1,9 @@
-import { getMessaging, getToken } from "firebase/messaging";
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import { app as firebaseApp } from "./firebase";
 
 const messaging = getMessaging(firebaseApp);
 
+// Request notification permission & FCM token
 export function requestPermission() {
     Notification.requestPermission().then((permission) => {
         if (permission === 'granted') {
@@ -14,5 +15,12 @@ export function requestPermission() {
                 }
             })
         }
+    });
+}
+
+//FCM foreground
+export function onForegroundMessage() {
+    onMessage(messaging, (payload) => {
+        console.log("Received forground message: ", payload);
     });
 }

@@ -1,6 +1,6 @@
 import { ThemeProvider } from "@mui/material";
 import { Route, Routes } from 'react-router-dom';
-import { requestPermission } from "./lib/firebase/firebaseCloudMessaging";
+import { requestPermission, onForegroundMessage } from "./lib/firebase/firebaseCloudMessaging";
 import MyTheme from './MyTheme';
 // 회원가입
 import VerifyPage from './pages/user/VerifyPage';
@@ -46,6 +46,12 @@ import NotFoundPage from './pages/NotFoundPage';
 // FCM permission & token
 if (Notification.permission !== 'granted') {
     requestPermission();
+} else {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+        onForegroundMessage();
+    }
 }
 
 const App = () => {
