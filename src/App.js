@@ -48,13 +48,10 @@ import Snackbar from "./containers/common/Snackbar";
 // FCM permission & token
 if (Notification.permission !== 'granted') {
     requestPermission();
-} else {
-    const token = localStorage.getItem('token');
-
-    if (token) {
-        onForegroundMessage();
-    }
 }
+
+// FCM foreground
+onForegroundMessage();
 
 const App = () => {
     return (

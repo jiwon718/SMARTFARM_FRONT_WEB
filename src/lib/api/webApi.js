@@ -16,10 +16,12 @@ export const signup = ({
 // 로그인
 export const login = ({
     id,
-    password
+    password,
+    fcmToken
 }) => axios.post(process.env.REACT_APP_LOGIN_API_URL, {
     username: id,
-    password
+    password,
+    fcm_webtoken: fcmToken
 });
 
 // 토큰 유효 확인
@@ -50,39 +52,53 @@ export const searchPassword = ({
 });
 
 // 스마트팜 고유번호 확인 X
-export const checkSmartfarmNumber = (smartfarmNumber) => {
-    console.log(smartfarmNumber);
-}
+export const checkSmartfarmNumber = (smartfarmNumber) => axios.post(process.env.REACT_APP_CHECK_SMARTFARM_NUMBER_API_URL, {
+    smartfarmNumber
+})
 
 // 스마트팜 등록 X
 export const registerSmartfarm = ({
     token,
     smartfarmNumber
-}) => {
-    console.log(token, smartfarmNumber);
-};
+}) => axios.post(process.env.REACT_APP_REGISTER_SMARTFARM_API_URL, {
+    smartfarmNumber
+}, {
+    headers: {
+        Authorization: `Token ${token}`
+    }
+});
 
 // 작물 등록 X
 export const registerPlant = ({
+    token,
     name,
     day
-}) => {
-    console.log(name, day);
-};
+}) => axios.post(process.env.REACT_APP_REGISTER_PLANT_API_URL, {
+    name,
+    day
+}, {
+    headers: {
+        Authorization: `Token ${token}`
+    }
+});
 
 // 스마트팜 시스템 제어 - 원격 제어 X
 export const remoteControl = ({
     token,
     datas
-}) => {
-    console.log(token, datas);
-}
+}) => axios.post(process.env.REACT_APP_REMOTE_CONTROL_API_URL, {
+    remotepower: datas.remoteControl
+}, {
+    headers: {
+        Authorization: `Token ${token}`
+    }
+});
 
 // 스마트팜 시스템 제어 - LED X
 export const controlLed = ({
     token,
     datas
-}) => axios.post(process.env.REACT_APP_CONTROL_LED, {
+}) => axios.post(process.env.REACT_APP_CONTROL_LED_API_URL, {
     ledtoggle: datas.work,
     ledautotoggle: datas.autoWork,
     ledstarttimevalue: datas.autoWorkStartTime.get('h'),
@@ -93,13 +109,13 @@ export const controlLed = ({
     headers: {
         Authorization: `Token ${token}`
     }
-})
+});
 
 // 스마트팜 시스템 제어 - 관수 시스템 X
 export const controlWateringSystem = ({
     token,
     datas
-}) => axios.post(process.env.REACT_APP_CONTROL_WATERING_SYSTEM, {
+}) => axios.post(process.env.REACT_APP_CONTROL_WATERING_SYSTEM_API_URL, {
     waterpumptoggle: datas.work,
     waterpumprunningtime: datas.workTime,
     waterpumpautotoggle: datas.autoWork,
@@ -114,7 +130,7 @@ export const controlWateringSystem = ({
 export const controlFan = ({
     token,
     datas
-}) => axios.post(process.env.REACT_APP_CONTROL_FAN, {
+}) => axios.post(process.env.REACT_APP_CONTROL_FAN_API_URL, {
     fantoggle: datas.work,
     fanautotoggle: datas.autoWork,
     fanstarttimevalue: datas.autoWorkStartTime.get('h'),
@@ -131,7 +147,7 @@ export const controlFan = ({
 export const controlCenterDoor = ({
     token,
     datas
-}) => axios.post(process.env.REACT_APP_CONTROL_CENTER_DOOR, {
+}) => axios.post(process.env.REACT_APP_CONTROL_CENTER_DOOR_API_URL, {
     doortoggle: datas.work,
     doorautotoggle: datas.autoWork,
     doorstarttimevalue: datas.autoWorkStartTime.get('h'),
@@ -198,29 +214,42 @@ export const withdraw = ({
 // 스마트팜 수정 X
 export const modifySmartfarm = ({
     token,
-    datas
-}) => {
-    console.log(token, datas);
-}
+    smartfarmNumber
+}) => axios.put(process.env.REACT_APP_MODIFY_SMARTFARM_API_URL, {
+    smartfarmNumber
+}, {
+    headers: {
+        Authorization: `Token ${token}`
+    }
+});
 
 // 스마트팜 삭제 X
-export const removeSmartfarm = (token) => {
-    console.log(token);
-}
+export const removeSmartfarm = (token) => axios.delete(process.env.REACT_APP_REMOVE_SMARTFARM_API_URL, {
+    headers: {
+        Authorization: `Token ${token}`
+    }
+});
 
 // 작물 수정 X
 export const modifyPlant = ({
     token,
     name,
     day
-}) => {
-    console.log(token, name, day);
-}
+}) => axios.put(process.env.REACT_APP_MODIFY_PLANT_API_URL, {
+    name,
+    day
+}, {
+    headers: {
+        Authorization: `Token ${token}`
+    }
+});
 
 // 작물 삭제 X
-export const removePlant = (token) => {
-    console.log(token);
-}
+export const removePlant = (token) => axios.delete(process.env.REACT_APP_REMOVE_PLANT_API_URL, {
+    headers: {
+        Authorization: `Token ${token}`
+    }
+});
 
 // 설정 X
 export const setting = (datas) => {
