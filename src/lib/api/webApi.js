@@ -36,7 +36,7 @@ export const searchId = ({
     name,
     phoneNumber
 }) => axios.post(process.env.REACT_APP_SEARCH_ID_API_URL, {
-    user_name: name,
+    name,
     phone_number: phoneNumber
 });
 
@@ -46,29 +46,29 @@ export const searchPassword = ({
     phoneNumber,
     id
 }) => axios.post(process.env.REACT_APP_SEARCH_PASSWORD_API_URL, {
-    user_name: name,
+    name,
     phone_number: phoneNumber,
-    user_id: id
+    username: id
 });
 
-// 스마트팜 고유번호 확인 X
+// 스마트팜 고유번호 확인
 export const checkSmartfarmNumber = (smartfarmNumber) => axios.post(process.env.REACT_APP_CHECK_SMARTFARM_NUMBER_API_URL, {
-    smartfarmNumber
+    sfid: smartfarmNumber
 })
 
-// 스마트팜 등록 X
+// 스마트팜 등록
 export const registerSmartfarm = ({
     token,
     smartfarmNumber
 }) => axios.post(process.env.REACT_APP_REGISTER_SMARTFARM_API_URL, {
-    smartfarmNumber
+    sfid: smartfarmNumber
 }, {
     headers: {
         Authorization: `Token ${token}`
     }
 });
 
-// 작물 등록 X
+// 작물 등록
 export const registerPlant = ({
     token,
     name,
@@ -82,7 +82,7 @@ export const registerPlant = ({
     }
 });
 
-// 스마트팜 시스템 제어 - 원격 제어 X
+// 스마트팜 시스템 제어 - 원격 제어
 export const remoteControl = ({
     token,
     datas
@@ -94,7 +94,7 @@ export const remoteControl = ({
     }
 });
 
-// 스마트팜 시스템 제어 - LED X
+// 스마트팜 시스템 제어 - LED
 export const controlLed = ({
     token,
     datas
@@ -111,7 +111,7 @@ export const controlLed = ({
     }
 });
 
-// 스마트팜 시스템 제어 - 관수 시스템 X
+// 스마트팜 시스템 제어 - 관수 시스템
 export const controlWateringSystem = ({
     token,
     datas
@@ -126,7 +126,7 @@ export const controlWateringSystem = ({
     }
 });
 
-// 스마트팜 시스템 제어 - 환기팬 X
+// 스마트팜 시스템 제어 - 환기팬
 export const controlFan = ({
     token,
     datas
@@ -143,7 +143,7 @@ export const controlFan = ({
     }
 });
 
-// 스마트팜 시스템 제어 - 중앙문 X
+// 스마트팜 시스템 제어 - 중앙문
 export const controlCenterDoor = ({
     token,
     datas
@@ -184,13 +184,20 @@ export const modifyPassword = ({
     }
 });
 
+// 개인정보 가져오기
+export const getPersonalInformation = (token) => axios.get(process.env.REACT_APP_GET_PERSONAL_INFORMATION_API_URL, {
+    headers: {
+        Authorization: `Token ${token}`
+    }
+});
+
 // 개인정보 수정
 export const modifyPersonalInformation = ({
     token,
     name,
     phoneNumber
 }) => axios.put(process.env.REACT_APP_MODIFY_PERSONAL_INFORMATION_API_URL, {
-    user_name: name,
+    name,
     phone_number: phoneNumber
 }, {
     headers: {
@@ -211,26 +218,40 @@ export const withdraw = ({
     }
 });
 
-// 스마트팜 수정 X
+// 스마트팜 정보
+export const getSmartfarm = (token) => axios.get(process.env.REACT_APP_GET_SMARTFARM_API_URL, {
+    headers: {
+        Authorization: `Token ${token}`
+    }
+});
+
+// 스마트팜 수정
 export const modifySmartfarm = ({
     token,
     smartfarmNumber
 }) => axios.put(process.env.REACT_APP_MODIFY_SMARTFARM_API_URL, {
-    smartfarmNumber
+    sfid: smartfarmNumber
 }, {
     headers: {
         Authorization: `Token ${token}`
     }
 });
 
-// 스마트팜 삭제 X
+// 스마트팜 삭제
 export const removeSmartfarm = (token) => axios.delete(process.env.REACT_APP_REMOVE_SMARTFARM_API_URL, {
     headers: {
         Authorization: `Token ${token}`
     }
 });
 
-// 작물 수정 X
+// 작물 정보
+export const getPlant = (token) => axios.get(process.env.REACT_APP_GET_PLANT_API_URL, {
+    headers: {
+        Authorization: `Token ${token}`
+    }
+});
+
+// 작물 수정
 export const modifyPlant = ({
     token,
     name,
@@ -244,14 +265,16 @@ export const modifyPlant = ({
     }
 });
 
-// 작물 삭제 X
+// 작물 삭제
 export const removePlant = (token) => axios.delete(process.env.REACT_APP_REMOVE_PLANT_API_URL, {
     headers: {
         Authorization: `Token ${token}`
     }
 });
 
-// 설정 X
-export const setting = (datas) => {
-    console.log(datas);
-}
+// 알람 리스트 가져오기
+export const getSmartfarmAlarmList = (token) => axios.get(process.env.REACT_APP_GET_ALARM_LIST_API_URL, {
+    headers: {
+        Authorization: `Token ${token}`
+    }
+});

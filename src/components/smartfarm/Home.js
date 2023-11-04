@@ -12,8 +12,13 @@ import door from '../../lib/icon/door.png';
 const Home = ({
     existSmartfarm,
     existPlant,
+    plantName,
+    day,
     temperature,
     humidity,
+    waterTemperature,
+    waterLevel,
+    ndvi,
     ledStatus,
     wateringSystemStatus,
     fanStatus,
@@ -63,7 +68,7 @@ const Home = ({
                 { !existPlant ? (
                     <HomeNotRegisterPlant onClick={goRegisterPlant}/>
                 ) : (
-                    <HomeRegisterPlant />
+                    <HomeRegisterPlant name={plantName} day={day}/>
                 )}
                 <MyCard sx={{ width: '100%', mt: 6, mb: 4 }}>
                     <Environment
@@ -71,7 +76,22 @@ const Home = ({
                         value={`${temperature}℃`}
                         sx={{ mb: 1 }}
                     />
-                    <Environment name='습도' value={`${humidity}%`}/>
+                    <Environment
+                        name='습도'
+                        value={`${humidity}%`}
+                        sx={{ mb: 1 }}
+                    />
+                    <Environment
+                        name='수온'
+                        value={`${waterTemperature}℃`}
+                        sx={{ mb: 1 }}
+                    />
+                    <Environment
+                        name='수위'
+                        value={`${waterLevel}cm`}
+                        sx={{ mb: 1 }}
+                    />
+                    <Environment name='NDVI(정규 식생 지수)' value={ndvi}/>
                 </MyCard>
                 <MyCard sx={{ width: '100%' }}>
                     { system.map((system) => 

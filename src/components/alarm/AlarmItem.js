@@ -20,7 +20,7 @@ const AlarmItem = ({
             }}
                 onClick={onOpenClick}
             >
-                <Typography variant='subtitle1'>{alarm.text}</Typography>
+                <Typography variant='subtitle1'>{alarm.body}</Typography>
                 <Typography variant='overline' sx={{ textAlign: 'right' }}>{alarm.time}</Typography>
             </Stack>
             <Dialog

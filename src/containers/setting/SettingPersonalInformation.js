@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SettingPersonalInformationComponent from '../../components/setting/SettingPersonalInformation';
-import { changeName, changePhoneNumber, changePassword, modifyPersonalInformationInitialize, modifyPersonalInformation, withdraw } from '../../modules/user/user';
+import { changeName, changePhoneNumber, changePassword, modifyPersonalInformationInitialize, getPersonalInformation, modifyPersonalInformation, withdraw } from '../../modules/user/user';
 
 const SettingPersonalInformation = () => {
     const token = useSelector(state => state.user.token);
@@ -44,6 +44,10 @@ const SettingPersonalInformation = () => {
     const goBack = () => {
         navigate(-1);
     }
+
+    useEffect(() => {
+        dispatch(getPersonalInformation(token));
+    }, [dispatch, token]);
 
     useEffect(() => {
         if (withdrawSuccess) {

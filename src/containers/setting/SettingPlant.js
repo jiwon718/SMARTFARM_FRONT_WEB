@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SettingPlantComponent from '../../components/setting/SettingPlant';
-import { changeName, changeDay, modifyPlantInitialize, removePlantInitialize, modifyPlant, removePlant } from '../../modules/smartfarm/plant';
+import { changeName, changeDay, modifyPlantInitialize, removePlantInitialize, getPlant, modifyPlant, removePlant } from '../../modules/smartfarm/plant';
 
 const SettingPlant = () => {
     const token = useSelector(state => state.user.token);
@@ -37,6 +37,10 @@ const SettingPlant = () => {
     const goBack = () => {
         navigate(process.env.REACT_APP_SETTING_PATH);
     };
+
+    useEffect(() => {
+        dispatch(getPlant(token));
+    }, [dispatch, token]);
 
     useEffect(() => {
         if (removePlantSuccess) {

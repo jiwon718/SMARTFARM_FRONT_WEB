@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SettingSmartfarmComponent from '../../components/setting/SettingSmartfarm';
-import { changeSmartfarmNumber, modifySmartfarmInitialize, checkSmartfarmNumber, removeSmartfarmInitialize, modifySmartfarm, removeSmartfarm } from '../../modules/smartfarm/smartfarm';
+import { changeSmartfarmNumber, modifySmartfarmInitialize, checkSmartfarmNumber, removeSmartfarmInitialize, getSmartfarm, modifySmartfarm, removeSmartfarm } from '../../modules/smartfarm/smartfarm';
 
 const SettingSmartfarm = () => {
     const token = useSelector(state => state.user.token);
@@ -38,6 +38,10 @@ const SettingSmartfarm = () => {
     const goBack = () => {
         navigate(process.env.REACT_APP_SETTING_PATH);
     };
+
+    useEffect(() => {
+        dispatch(getSmartfarm(token));
+    }, [dispatch, token]);
 
     useEffect(() => {
         if (removeSmartfarmSuccess) {
