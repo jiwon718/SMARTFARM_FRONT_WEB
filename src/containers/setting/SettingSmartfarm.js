@@ -6,6 +6,7 @@ import { changeSmartfarmNumber, modifySmartfarmInitialize, checkSmartfarmNumber,
 
 const SettingSmartfarm = () => {
     const token = useSelector(state => state.user.token);
+    const exist = useSelector(state => state.smartfarm.exist);
     const smartfarmNumber = useSelector(state => state.smartfarm.smartfarmNumber);
     const checkSmartfarmNumberSuccess = useSelector(state => state.smartfarm.checkSmartfarmNumberSuccess);
     const removeSmartfarmSuccess = useSelector(state => state.smartfarm.removeSmartfarmSuccess);
@@ -40,8 +41,17 @@ const SettingSmartfarm = () => {
     };
 
     useEffect(() => {
-        dispatch(getSmartfarm(token));
-    }, [dispatch, token]);
+        if (exist) {
+            dispatch(getSmartfarm(token));
+        }
+        
+    }, [exist, dispatch, token]);
+
+    useEffect(() => {
+        if (!exist) {
+            navigate(process.env.REACT_APP_REGISTER_SMARTFARM_PATH);
+        }
+    }, [exist, navigate]);
 
     useEffect(() => {
         if (removeSmartfarmSuccess) {

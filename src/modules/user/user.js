@@ -3,7 +3,7 @@ import { select, put, takeLatest } from 'redux-saga/effects';
 import createRequestSaga, { createRequestActionTypes } from '../../lib/api/createRequestSaga';
 import createRequestWithoutSnackbarSaga, { createRequesWithoutSnackbarActionTypes } from '../../lib/api/createRequestWithoutSnackbarSaga';
 import * as WebAPI from '../../lib/api/webApi';
-import { initializeSaga } from '../common';
+import { initializeSaga, success, showSnackbar } from '../common';
 
 const CHANGE_ID = 'user/CHANGE_ID';
 const CHANGE_PASSWORD = 'user/CHANGE_PASSWORD';
@@ -75,8 +75,14 @@ function removeTokenSaga() {
 
 function* loginSuccessSaga() {
     const token = yield select(state => state.user.token);
-    
+
     yield put(check(token));
+}
+
+function* modifyPersonalInformationSuccessSaga() {
+    yield put(success());
+    yield put(showSnackbar('개인 정보를 성공적으로 수정했습니다.'));
+    loginSuccessSaga();
 }
 
 export function* userSaga() {
@@ -94,6 +100,7 @@ export function* userSaga() {
     yield takeLatest(SEARCH_PASSWORD, searchPasswordSaga);
     yield takeLatest(VERIFY, verifySaga);
     yield takeLatest(MODIFY_PERSONAL_INFORMATION, modifyPersonalInformationSaga);
+    yield takeLatest(MODIFY_PERSONAL_INFORMATION_SUCCESS, modifyPersonalInformationSuccessSaga);
     yield takeLatest(MODIFY_PASSWORD, modifyPasswordSaga);
     yield takeLatest(WITHDRAW, withdrawSaga);
     yield takeLatest(WITHDRAW_SUCCESS, removeTokenSaga);
@@ -227,7 +234,7 @@ const user = handleActions(
             ...state,
             verifySuccess: true
         }),
-        [GET_PERSONAL_INFORMATION_SUCCESS]: (state, { pyaload: {
+        [GET_PERSONAL_INFORMATION_SUCCESS]: (state, { payload: {
             username,
             phone_number
         }}) => ({

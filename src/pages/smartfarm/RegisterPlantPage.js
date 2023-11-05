@@ -7,14 +7,17 @@ import RegisterPlant from '../../containers/smartfarm/RegisterPlant';
 
 const RegisterPlantPage = () => {
     const token = useSelector(state => state.user.token);
+    const exist = useSelector(state => state.plant.exist);
 
     const navigate = useNavigate();
 
     useEffect(() => {
         if (token === null) {
             navigate(process.env.REACT_APP_LOGIN_PATH);
+        } else if (exist === true) {
+            navigate(process.env.REACT_APP_HOME_PATH);
         }
-    }, [token, navigate]);
+    }, [token, exist, navigate]);
     
     return (
         <div>

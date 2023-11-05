@@ -9,12 +9,13 @@ import { changeRemoteControl as changeCenterDoorRemoteControl } from './centerDo
 import { check, CHECK_SUCCESS } from '../user/user';
 import { removePlant } from './plant';
 import * as WebAPI from '../../lib/api/webApi';
-import { initializeSaga } from '../common';
+import { initializeSaga, success, showSnackbar } from '../common';
 
 const CHANGE_EXIST = 'smartfarm/CHANGE_EXIST';
 const CHANGE_SMARTFARM_NUMBER = 'smartfarm/CHANGE_SMARTFARM_NUMBER';
 const [CHANGE_REMOTE_CONTROL, CHANGE_REMOTE_CONTROL_SUCCESS] = createControlRequesActionTypes('smartfarm/CHANGE_REMOTE_CONTROL');
 const REGISTER_SMARTFARM_INITIALIZE = 'smartfarm/REGISTER_SMARTFARM_INITIALIZE';
+const REGISTER_SMARTFARM_SUCCESS_INITIALIZE = 'smartfarm/REGISTER_SMARTFARM_SUCCESS_INITIALIZE';
 const [GET_SMARTFARM, GET_SMARTFARM_SUCCESS] = createRequestActionTypes('smartfarm/GET_SMARTFARM');
 const MODIFY_SMARTFARM_INITIALIZE = 'smartfarm/MODIFY_SMARTFARM_INITIALIZE';
 const REMOVE_SMARTFARM_INITIALIZE = 'smartfarm/REMOVE_SMARTFARM_INITIALIZE';
@@ -27,6 +28,7 @@ export const changeExist = createAction(CHANGE_EXIST);
 export const changeSmartfarmNumber = createAction(CHANGE_SMARTFARM_NUMBER, smartfarmNumber => smartfarmNumber);
 export const changeRemoteControl = createAction(CHANGE_REMOTE_CONTROL);
 export const registerSmartfarmInitialize = createAction(REGISTER_SMARTFARM_INITIALIZE);
+export const registerSmartfarmSuccessInitialize = createAction(REGISTER_SMARTFARM_SUCCESS_INITIALIZE);
 export const getSmartfarm = createAction(GET_SMARTFARM);
 export const modifySmartfarmInitialize = createAction(MODIFY_SMARTFARM_INITIALIZE);
 export const removeSmartfarmInitialize = createAction(REMOVE_SMARTFARM_INITIALIZE);
@@ -57,6 +59,12 @@ function* checkSaga() {
     yield put(check(token));
 }
 
+function* modifySmartfarmSuccessSaga() {
+    yield put(success());
+    yield put(showSnackbar('스마트팜을 성공적으로 수정했습니다.'));
+    checkSaga();
+}
+
 function* removeSmartfarmSuccessSaga() {
     yield put(removePlant());
     checkSaga();
@@ -71,7 +79,7 @@ export function* smartfarmSaga() {
     yield takeLatest(REGISTER_SMARTFARM_SUCCESS, checkSaga);
     yield takeLatest(GET_SMARTFARM, getSmartfarmSaga);
     yield takeLatest(MODIFY_SMARTFARM, modifySmartfarmSaga);
-    yield takeLatest(MODIFY_SMARTFARM_SUCCESS, checkSaga);
+    yield takeLatest(MODIFY_SMARTFARM_SUCCESS, modifySmartfarmSuccessSaga);
     yield takeLatest(REMOVE_SMARTFARM, removeSmartfarmSaga);
     yield takeLatest(REMOVE_SMARTFARM_SUCCESS, removeSmartfarmSuccessSaga);
     yield takeLatest(CHANGE_REMOTE_CONTROL, changeRemoteControlSaga);
@@ -114,6 +122,10 @@ const smartfarm = handleActions(
             checkSmartfarmNumberSuccess: null,
             registerSmartfarmSuccess: null
         }),
+        [REGISTER_SMARTFARM_SUCCESS_INITIALIZE]: (state) => ({
+            ...state,
+            registerSmartfarmSuccess: null
+        }),
         [CHECK_SMARTFARM_NUMBER_SUCCESS]: (state) => ({
             ...state,
             checkSmartfarmNumberSuccess: true
@@ -122,9 +134,9 @@ const smartfarm = handleActions(
             ...state,
             registerSmartfarmSuccess: true
         }),
-        [GET_SMARTFARM_SUCCESS]: (state, { payload: sfid }) => ({
+        [GET_SMARTFARM_SUCCESS]: (state, { payload: {smartfarm} }) => ({
             ...state,
-            smartfarmNumber: sfid
+            smartfarmNumber: smartfarm
         }),
         [MODIFY_SMARTFARM_INITIALIZE]: (state) => ({
             ...state,

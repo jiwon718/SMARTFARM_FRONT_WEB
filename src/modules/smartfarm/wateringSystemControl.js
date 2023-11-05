@@ -46,9 +46,7 @@ const initialState = {
     autoWorkPeriod: 1,
     status: '원격 제어 모드가 아니에요',
 
-    workButtonText: '물 주기',
-    getError: 'null',
-    postError: 'null'
+    workButtonText: '물 주기'
 };
 
 const wateringSystemControl = handleActions(

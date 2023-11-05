@@ -7,17 +7,14 @@ import SettingPlant from "../../containers/setting/SettingPlant";
 
 const SettingPlantPage = () => {
     const token = useSelector(state => state.user.token);
-    const exist = useSelector(state => state.plant.exist);
 
     const navigate = useNavigate();
 
     useEffect(() => {
         if (token === null) {
             navigate(process.env.REACT_APP_LOGIN_PATH);
-        } else if (!exist) {
-            navigate(process.env.REACT_APP_REGISTER_PLANT_PATH);
         }
-    }, [token, exist, navigate]);
+    }, [token, navigate]);
     
     return (
         <div>

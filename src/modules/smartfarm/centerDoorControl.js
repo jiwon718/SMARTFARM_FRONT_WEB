@@ -79,19 +79,19 @@ const centerDoorControl = handleActions(
             doorautotoggle,
             doorstarttimevalue,
             doorstartminutevalue,
-            doorentimevalue,
+            doorendtimevalue,
             doorendminutevalue
         }}) => ({
             ...state,
             work: remotepower ? doortoggle : false,
             autoWork: remotepower ? doorautotoggle : false,
             autoWorkStartTime: remotepower ? dayjs(`${doorstarttimevalue}:${doorstartminutevalue}`, 'h:m') : dayjs(),
-            autoWorkEndTime: remotepower ? dayjs(`${doorentimevalue}:${doorendminutevalue}`, 'h:m') : dayjs(),
+            autoWorkEndTime: remotepower ? dayjs(`${doorendtimevalue}:${doorendminutevalue}`, 'h:m') : dayjs(),
             status: remotepower
             ? (doortoggle
                 ? '중앙문이 열려 있어요'
                 : (doorautotoggle
-                    ? `중앙문이 자동으로 ${dayjs(`${doorstarttimevalue}:${doorstartminutevalue}`, 'h:m').format('A hh:mm')}에 열고, ${dayjs(`${doorentimevalue}:${doorendminutevalue}`, 'h:m').format('A hh:mm')}에 닫아요`
+                    ? `중앙문이 자동으로 ${dayjs(`${doorstarttimevalue}:${doorstartminutevalue}`, 'h:m').format('A hh:mm')}에 열고, ${dayjs(`${doorendtimevalue}:${doorendminutevalue}`, 'h:m').format('A hh:mm')}에 닫아요`
                     : '중앙문이 열려 있지 않아요'
                 )
             ) : '원격 제어 모드가 아니에요',

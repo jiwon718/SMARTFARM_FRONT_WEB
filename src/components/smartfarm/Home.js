@@ -105,6 +105,7 @@ const Home = ({
                         />
                     )}
                 </MyCard>
+                <div style={{ height: 30 }}/>
             </div>
         )
     );

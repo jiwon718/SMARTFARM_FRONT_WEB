@@ -35,7 +35,7 @@ const AlarmList = ({
                 { !existSmartfarm ? (
                     <ButtonDefault
                         sx={{
-                            mt: 1,
+                            mt: 2,
                             fontSize: 'medium',
                             fontweight: 'bold',
                             color: '#ffffff'
@@ -54,7 +54,7 @@ const AlarmList = ({
                 { !existPlant ? (
                     <ButtonDefault
                         sx={{
-                            mt: 1,
+                            mt: 2,
                             fontSize: 'medium',
                             fontweight: 'bold',
                             color: '#ffffff'
@@ -66,6 +66,7 @@ const AlarmList = ({
                     plantAlarm && plantAlarm.map((alarm) => <AlarmItem key={alarm.id} alarm={alarm}/>)
                 )}
             </AlarmBox>
+            <div style={{ height: 30 }}/>
         </div>
     )
 }

@@ -6,6 +6,7 @@ import { changeName, changeDay, modifyPlantInitialize, removePlantInitialize, ge
 
 const SettingPlant = () => {
     const token = useSelector(state => state.user.token);
+    const exist = useSelector(state => state.plant.exist);
     const name = useSelector(state => state.plant.name);
     const day = useSelector(state => state.plant.day);
     const removePlantSuccess = useSelector(state => state.plant.removePlantSuccess);
@@ -39,12 +40,20 @@ const SettingPlant = () => {
     };
 
     useEffect(() => {
-        dispatch(getPlant(token));
-    }, [dispatch, token]);
+        if (exist) {
+            dispatch(getPlant(token));
+        }
+    }, [exist, dispatch, token]);
+
+    useEffect(() => {
+        if (!exist) {
+            navigate(process.env.REACT_APP_REGISTER_PLANT_PATH);
+        }
+    }, [exist, navigate]);
 
     useEffect(() => {
         if (removePlantSuccess) {
-            navigate(process.env.REACT_APP_REMOVE_SMARTFARM_SUCCESS_PATH);
+            navigate(process.env.REACT_APP_REMOVE_PLANT_SUCCESS_PATH);
             dispatch(removePlantInitialize());
         }
 

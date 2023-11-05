@@ -9,7 +9,7 @@ const AlarmList = () => {
     const token = useSelector(state => state.user.token);
     const existSmartfarm = useSelector(state => state.smartfarm.exist);
     const existPlant = useSelector(state => state.plant.exist);
-    const [smartfarmList, setSmartfarmList] = useState(null);
+    const [smartfarmAlarm, setSmartfarmAlarm] = useState(null);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -26,7 +26,7 @@ const AlarmList = () => {
             try{
                 const response = await getSmartfarmAlarmList(token);
 
-                setSmartfarmList(response.data);
+                setSmartfarmAlarm(response.data);
             } catch (e) {
                 dispatch(showSnackbar(e.response.data?.message === undefined ? '잠시 후 시도해주세요' : e.response.data.message));
             }
@@ -38,7 +38,7 @@ const AlarmList = () => {
         <AlarmListComponent
             existSmartfarm={existSmartfarm}
             existPlant={existPlant}
-            smartfarmList={smartfarmList}
+            smartfarmAlarm={smartfarmAlarm}
             goRegisterSmartfarm={goRegisterSmartfarm}
             goRegisterPlant={goRegisterPlant}
         />
