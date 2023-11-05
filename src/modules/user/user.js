@@ -235,11 +235,11 @@ const user = handleActions(
             verifySuccess: true
         }),
         [GET_PERSONAL_INFORMATION_SUCCESS]: (state, { payload: {
-            username,
+            name,
             phone_number
         }}) => ({
             ...state,
-            name: username,
+            name: name,
             phoneNumber: phone_number
         }),
         [MODIFY_PASSWORD_INITIALIZE]: (state) => ({
