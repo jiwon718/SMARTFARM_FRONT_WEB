@@ -82,7 +82,10 @@ function* loginSuccessSaga() {
 function* modifyPersonalInformationSuccessSaga() {
     yield put(success());
     yield put(showSnackbar('개인 정보를 성공적으로 수정했습니다.'));
-    loginSuccessSaga();
+    
+    const token = yield select(state => state.user.token);
+
+    yield put(check(token));
 }
 
 export function* userSaga() {
@@ -209,7 +212,7 @@ const user = handleActions(
         }),
         [SEARCH_ID_SUCCESS]: (state, { payload }) => ({
             ...state,
-            id: payload.user_id,
+            id: payload.username,
             searchIdSuccess: true
         }),
         [SEARCH_ID_FAILURE]: (state) => ({
