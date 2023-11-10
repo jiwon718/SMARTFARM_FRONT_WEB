@@ -17,10 +17,10 @@ export const changeAutoWorkStartTime = createAction(CHANGE_AUTOWORK_START_TIME, 
 export const changeAutoWorkEndTime = createAction(CHANGE_AUTOWORK_END_TIME, endTime => endTime);
 export const changeRemoteControl = createAction(CHANGE_REMOTE_CONTROL, remoteControl => remoteControl);
 
-const changeWorkSaga = createControlRequestSaga(CHANGE_WORK, WebAPI.controlLed, 'work');
-const changeAutoWorkSaga = createControlRequestSaga(CHANGE_AUTOWORK, WebAPI.controlLed, 'autoWork');
-const changeLedAutoWorkStartTimeSaga = createControlRequestSaga(CHANGE_AUTOWORK_START_TIME, WebAPI.controlLed, 'autoWorkStartTime');
-const changeLedAutoWorkEndTimeSaga = createControlRequestSaga(CHANGE_AUTOWORK_END_TIME, WebAPI.controlLed, 'autoWorkEndTime');
+const changeWorkSaga = createControlRequestSaga(CHANGE_WORK, WebAPI.controlFan, 'work');
+const changeAutoWorkSaga = createControlRequestSaga(CHANGE_AUTOWORK, WebAPI.controlFan, 'autoWork');
+const changeLedAutoWorkStartTimeSaga = createControlRequestSaga(CHANGE_AUTOWORK_START_TIME, WebAPI.controlFan, 'autoWorkStartTime');
+const changeLedAutoWorkEndTimeSaga = createControlRequestSaga(CHANGE_AUTOWORK_END_TIME, WebAPI.controlFan, 'autoWorkEndTime');
 
 export function* fanControlSaga() {
     yield takeLatest(CHANGE_WORK, changeWorkSaga);

@@ -124,6 +124,7 @@ const smartfarm = handleActions(
         }),
         [REGISTER_SMARTFARM_SUCCESS_INITIALIZE]: (state) => ({
             ...state,
+            checkSmartfarmNumberSuccess: null,
             registerSmartfarmSuccess: null
         }),
         [CHECK_SMARTFARM_NUMBER_SUCCESS]: (state) => ({
