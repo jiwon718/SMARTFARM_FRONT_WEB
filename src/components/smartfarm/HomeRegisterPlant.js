@@ -8,6 +8,12 @@ import frown from '../../lib/emoji/frown.png';
 import dizzy from '../../lib/emoji/dizzy.png';
 
 const textWithNdvi = (ndvi, name) => {
+    if (ndvi === null) {
+        return (
+            <></>
+        )
+    }
+
     if (ndvi > 0.5) {
         return (
             <>

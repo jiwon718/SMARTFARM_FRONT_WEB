@@ -97,7 +97,7 @@ const Home = ({
                         value={`${waterLevel}cm`}
                         sx={{ mb: 1 }}
                     />
-                    <Environment name='NDVI(정규 식생 지수)' value={ndvi}/>
+                    <Environment name='NDVI(정규 식생 지수)' value={ndvi ? ndvi : '-'}/>
                 </MyCard>
                 <MyCard sx={{ width: '100%' }}>
                     { system.map((system) => 
