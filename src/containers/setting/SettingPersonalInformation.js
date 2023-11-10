@@ -26,7 +26,7 @@ const SettingPersonalInformation = () => {
     const onModifyClick = () => {
         dispatch(modifyPersonalInformation({
             token,
-            name,
+            tmpName,
             phoneNumber
         }));
     };
@@ -50,7 +50,8 @@ const SettingPersonalInformation = () => {
 
     useEffect(() => {
         dispatch(getPersonalInformation(token));
-    }, [dispatch, token]);
+        setTmpName(name);
+    }, [dispatch, token, name]);
 
     useEffect(() => {
         if (withdrawSuccess) {

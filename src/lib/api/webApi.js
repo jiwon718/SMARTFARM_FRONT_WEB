@@ -152,7 +152,7 @@ export const controlCenterDoor = ({
     doorautotoggle: datas.autoWork,
     doorstarttimevalue: datas.autoWorkStartTime.get('h'),
     doorstartminutevalue: datas.autoWorkStartTime.get('m'),
-    doorentimevalue: datas.autoWorkEndTime.get('h'),
+    doorendtimevalue: datas.autoWorkEndTime.get('h'),
     doorendminutevalue: datas.autoWorkEndTime.get('m')
 }, {
     headers: {
@@ -194,10 +194,10 @@ export const getPersonalInformation = (token) => axios.get(process.env.REACT_APP
 // 개인정보 수정
 export const modifyPersonalInformation = ({
     token,
-    name,
+    tmpName,
     phoneNumber
 }) => axios.put(process.env.REACT_APP_MODIFY_PERSONAL_INFORMATION_API_URL, {
-    name,
+    name: tmpName,
     phone_number: phoneNumber
 }, {
     headers: {
