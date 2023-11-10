@@ -88,13 +88,17 @@ function* modifyPersonalInformationSuccessSaga() {
     yield put(check(token));
 }
 
+function* modifyPasswordSuccessSaga() {
+    yield put(success());
+    yield put(showSnackbar('비밀번호를 성공적으로 수정했습니다.'));
+}
+
 export function* userSaga() {
     yield takeLatest(SIGNUP_INITIALIZE, initializeSaga);
     yield takeLatest(LOGIN_INITIALIZE, initializeSaga);
     yield takeLatest(CHECK, checkSaga);
     yield takeLatest(VERIFY_INITIALIZE, initializeSaga);
     yield takeLatest(GET_PERSONAL_INFORMATION, getPersonalInformationSaga);
-    yield takeLatest(MODIFY_PASSWORD_INITIALIZE, initializeSaga);
     yield takeLatest(MODIFY_PERSONAL_INFORMATION_INITIALIZE, initializeSaga);
     yield takeLatest(SIGNUP, signupSaga);
     yield takeLatest(LOGIN, loginSaga);
@@ -105,6 +109,7 @@ export function* userSaga() {
     yield takeLatest(MODIFY_PERSONAL_INFORMATION, modifyPersonalInformationSaga);
     yield takeLatest(MODIFY_PERSONAL_INFORMATION_SUCCESS, modifyPersonalInformationSuccessSaga);
     yield takeLatest(MODIFY_PASSWORD, modifyPasswordSaga);
+    yield takeLatest(MODIFY_PASSWORD_SUCCESS, modifyPasswordSuccessSaga);
     yield takeLatest(WITHDRAW, withdrawSaga);
     yield takeLatest(WITHDRAW_SUCCESS, removeTokenSaga);
     yield takeLatest(LOGOUT, removeTokenSaga);
@@ -235,6 +240,7 @@ const user = handleActions(
         }),
         [VERIFY_SUCCESS]: (state) => ({
             ...state,
+            password: '',
             verifySuccess: true
         }),
         [GET_PERSONAL_INFORMATION_SUCCESS]: (state, { payload: {
@@ -247,10 +253,14 @@ const user = handleActions(
         }),
         [MODIFY_PASSWORD_INITIALIZE]: (state) => ({
             ...state,
+            password: '',
+            passwordCheck: '',
             modifyPasswordSuccess: null
         }),
         [MODIFY_PASSWORD_SUCCESS]: (state) => ({
             ...state,
+            password: '',
+            passwordCheck: '',
             modifyPasswordSuccess: true
         }),
         [MODIFY_PERSONAL_INFORMATION_INITIALIZE]: (state) => ({

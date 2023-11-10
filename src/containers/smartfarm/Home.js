@@ -1,9 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import HomeComonent from '../../components/smartfarm/Home';
+import { removePlant } from '../../modules/smartfarm/plant';
 
 const Home = () => {
+    const token = useSelector(state => state.user.token);
     const existSmartfarm = useSelector(state => state.smartfarm.exist);
     const existPlant = useSelector(state => state.plant.exist);
     const plantName = useSelector(state => state.plant.name);
@@ -18,6 +20,7 @@ const Home = () => {
     const fanStatus = useSelector(state => state.fanControl.status);
     const centerDoorStatus = useSelector(state => state.centerDoorControl.status);
 
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const goRegisterSmartfarm = () => {
@@ -26,6 +29,10 @@ const Home = () => {
     const goRegisterPlant = () => {
         navigate(process.env.REACT_APP_REGISTER_PLANT_PATH);
     };
+
+    const onHarvest = () => {
+        dispatch(removePlant(token));
+    }
 
     return (
         <HomeComonent
@@ -44,6 +51,7 @@ const Home = () => {
             centerDoorStatus={centerDoorStatus}
             goRegisterSmartfarm={goRegisterSmartfarm}
             goRegisterPlant={goRegisterPlant}
+            onHarvest={onHarvest}
         />
     );
 };

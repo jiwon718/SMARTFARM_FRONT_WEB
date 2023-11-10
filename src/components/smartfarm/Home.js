@@ -24,7 +24,8 @@ const Home = ({
     fanStatus,
     centerDoorStatus,
     goRegisterSmartfarm,
-    goRegisterPlant
+    goRegisterPlant,
+    onHarvest
 }) => {
     const system = [
         {
@@ -68,7 +69,12 @@ const Home = ({
                 { !existPlant ? (
                     <HomeNotRegisterPlant onClick={goRegisterPlant}/>
                 ) : (
-                    <HomeRegisterPlant name={plantName} day={day}/>
+                    <HomeRegisterPlant
+                        name={plantName}
+                        day={day}
+                        ndvi={ndvi}
+                        onHarvest={onHarvest}
+                    />
                 )}
                 <MyCard sx={{ width: '100%', mt: 6, mb: 4 }}>
                     <Environment
