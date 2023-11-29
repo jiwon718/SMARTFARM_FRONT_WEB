@@ -11,7 +11,7 @@ const ControlAppBar = ({
 }) => {
     return (
         <AppBar text={text}>
-            <div style={{ width: 208 }}>
+            <div>
                 <Stack
                     direction='row'
                     alignItems='center'

@@ -24,9 +24,9 @@ const AppBar = ({
             direction='row'
             alignItems='center'
             justifyContent='space-between'
-            sx={{ margin: 0.2 }}
+            sx={{ margin: 0.2, display: 'flex' }}
         >
-            <Stack direction='row' alignItems='center'>
+            <Stack direction='row' alignItems='center' sx={{ flex: 1 }}>
                 <IconButtonWithTooltip title='홈' onClick={goHome}>
                     <HomeRoundedIcon sx={{ fontSize: 36 }}/>
                 </IconButtonWithTooltip>
@@ -61,12 +61,12 @@ const AppBar = ({
                     fontWeight: 'bold',
                     color: '#000000',
                     textAlign: 'center',
-                    width: 316.46
+                    flex: 1
                 }}
             >
                 {text}
             </Typography>
-            <div style={{ width: 316.46 }}>
+            <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
                 {children}
             </div>
         </Stack>
